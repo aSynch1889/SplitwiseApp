@@ -4,6 +4,8 @@ import SwiftData
 @main
 public struct SplitwiseApp: App {
     @State private var appState = AppState()
+    @State private var isShowingLaunchScreen: Bool = true
+    @AppStorage("hasCompletedOnboarding") private var hasCompletedOnboarding: Bool = false
 
     public var sharedModelContainer: ModelContainer = {
         let schema = Schema([
@@ -26,9 +28,27 @@ public struct SplitwiseApp: App {
 
     public var body: some Scene {
         WindowGroup {
-            MainView()
-                .environment(appState)
-                .preferredColorScheme(appState.preferredColorScheme)
+            ZStack {
+                if isShowingLaunchScreen {
+                    LaunchScreenView()
+                        .transition(.opacity)
+                } else if !hasCompletedOnboarding {
+                    OnboardingView()
+                        .transition(.opacity)
+                } else {
+                    MainView()
+                        .environment(appState)
+                        .preferredColorScheme(appState.preferredColorScheme)
+                        .transition(.opacity)
+                }
+            }
+            .onAppear {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                    withAnimation(.easeInOut(duration: 0.4)) {
+                        isShowingLaunchScreen = false
+                    }
+                }
+            }
         }
         .modelContainer(sharedModelContainer)
     }

@@ -341,6 +341,9 @@
     "Generate and share complete financial reports for this group." : {
 
     },
+    "Get Started" : {
+
+    },
     "gets back %@" : {
 
     },
@@ -430,6 +433,9 @@
 
     },
     "New Group" : {
+
+    },
+    "Next" : {
 
     },
     "No Activity Recorded" : {
@@ -635,7 +641,13 @@
     "Simulator Mock Pro Mode" : {
 
     },
+    "Skip" : {
+
+    },
     "Spending by Group" : {
+
+    },
+    "Split bills with friends, not relationships." : {
 
     },
     "Split Breakdown" : {

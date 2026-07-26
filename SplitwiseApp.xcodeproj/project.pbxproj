@@ -3,532 +3,465 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		03B01234A3788EB0B6A5E84A /* GroupDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD00E44D0D9A76F41CC67EF3 /* GroupDetailView.swift */; };
-		0464895FD3233449F2194BDE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F0421F024AB86BC7D926B9 /* User.swift */; };
-		0EB2AD830629576DABEE07D1 /* SimplifyDebtsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A1CCD39794D4FF69694DBF /* SimplifyDebtsView.swift */; };
-		0EBDD0978DFA8F075D612F19 /* SplitwiseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2A0F04C7DB2DD98DC4AA15 /* SplitwiseApp.swift */; };
-		16E7211A8FDE60FF3B3E9CA2 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1AF04BC3C9A9F20F68DC95 /* SampleData.swift */; };
-		182FDF491EA51529E37F5422 /* ExpenseSplit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2205450A9F0271BDD5990AB3 /* ExpenseSplit.swift */; };
-		1F8F43FD49E38AE0F5E29392 /* ChartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F497BB39F0C900B053EB89 /* ChartsView.swift */; };
-		23A785C5F294389A79F85299 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 9025C69E6DB254660769F59B /* Localizable.xcstrings */; };
-		23D91D91708B2B23AFF9DE0A /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD039E08E4A9D049E10D84A /* Group.swift */; };
-		241378D658FF05003D655FE8 /* ActivityFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541CBE2CEC80D5BDA31EE249 /* ActivityFeedView.swift */; };
-		286E50CDC3EFF9A6B9ED0E4B /* CurrencyFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6305BEE5EA67EB8E0E5E0FC /* CurrencyFormatter.swift */; };
-		32358EED3652B26D8A920B55 /* AddExpenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2B0A91C6AE57C5A63ABB45 /* AddExpenseView.swift */; };
-		37DED71DAA7716763E2BA975 /* FriendsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04795DBD3F6E5E68F8AA2773 /* FriendsListView.swift */; };
-		3C46D5BEDD88A6DB4B2EDF3E /* SplitOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E092EF0322B30A1007F725 /* SplitOptionsView.swift */; };
-		4843FAA1A8D717209E292B80 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ABC5F522B760F050206C36 /* MainView.swift */; };
-		4AF554FB0D35C25DC48FC263 /* CurrencyPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442E38856B7F52F915B131D4 /* CurrencyPicker.swift */; };
-		56F116EB15CB583DEE595C38 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BA1E34AFBE438DA65E5212 /* AccountView.swift */; };
-		5C3BF866A4CA48D7C0D5109E /* ReceiptPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169BD4FCD72C054AC794A0D8 /* ReceiptPickerView.swift */; };
-		5D25717089853C183E07495A /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4160F1F8A7E4E54D06182F /* AppState.swift */; };
-		5E3231BF53D79EB563BD5E97 /* ExportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4EFE3DACE2FA771F7175A5 /* ExportManager.swift */; };
-		62B1F8334F1D058992CFDCB1 /* CategoryIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C96711D4AD58B8AD6501B4 /* CategoryIconView.swift */; };
-		6DD1B3327852C584B1D709C2 /* Settlement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857D66FEFA249437EE31CD1A /* Settlement.swift */; };
-		6F000DD1FAEB135FDD7AD5FE /* ActivityLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23225D68B2BB931F38F17F51 /* ActivityLog.swift */; };
-		71A1ED268F41CF1FB659B68F /* StoreKit.storekit in Resources */ = {isa = PBXBuildFile; fileRef = A513CFED9698D00C3E7161F8 /* StoreKit.storekit */; };
-		7CEB7E8D0F18A7CF9A90D72D /* ExportReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8775F697CF36F8C3635BE9 /* ExportReportView.swift */; };
-		9C74FB96EC525664D95D3614 /* GroupSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8CF9666F2C774F0C4AF787 /* GroupSettingsView.swift */; };
-		A154205A19BE822835F7DA29 /* AddFriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1FDA0A2FC7674C81533547 /* AddFriendView.swift */; };
-		A21C5C574EF82002F884082C /* BalanceBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1293272EFAA046FC069E3870 /* BalanceBadge.swift */; };
-		AAA85376652408713FBD5614 /* GroupListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C71A01C8FF47B7B1C5F7190 /* GroupListView.swift */; };
-		B319AECC3CC580C813812629 /* ReceiptScannerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B340D776FB8417C6A2BC48 /* ReceiptScannerService.swift */; };
-		B8069AB870D2B19061A9C8FF /* ColorTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECE8BB1918D85239CA87247 /* ColorTheme.swift */; };
-		BA2AA287476CEA42D93729A3 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665D4BF26327BFACE6AADDFF /* Expense.swift */; };
-		C035D75A6323DC56E30BAD08 /* SettleUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252393345A60DFAC29B3781B /* SettleUpView.swift */; };
-		C4CE77BDD783CEC676420916 /* SplitwiseProView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276917BAD86EDB1E73F7C5E1 /* SplitwiseProView.swift */; };
-		C83011606FC24FA420DE4A88 /* DebtSimplifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C805858CFE508930F72957DD /* DebtSimplifier.swift */; };
-		CEE287407A942073CA2CE815 /* CreateGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7F26B85E1ECACD432E58D9 /* CreateGroupView.swift */; };
-		DB1C6D6F2E6049A1D317B046 /* ExpenseDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83AF2179F158E9A861F2C99 /* ExpenseDetailView.swift */; };
-		E69E54DBA176BDC915167128 /* ProSubscriptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F9FDC5112809A5F2EA027D /* ProSubscriptionManager.swift */; };
-		EC5DC8D565C1A8333424CB09 /* FriendDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8405A287DA35F59D60F2B9 /* FriendDetailView.swift */; };
+		05DC663C04DD4DF4B7E97523 /* SplitwiseApp/Views/Groups/SimplifyDebtsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1887F7E8BE724089872B5DF5 /* SplitwiseApp/Views/Groups/SimplifyDebtsView.swift */; };
+		0D055E2C874747C69C49F363 /* SplitwiseApp/Views/Friends/FriendsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0697F3FFFE534EF7AB798A18 /* SplitwiseApp/Views/Friends/FriendsListView.swift */; };
+		112CD9DA4E2B4F7BA8E75267 /* SplitwiseApp/Views/Components/CurrencyPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D85D74464D40ACA10B104D /* SplitwiseApp/Views/Components/CurrencyPicker.swift */; };
+		13B47E2A11EB48E784706402 /* SplitwiseApp/Models/Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF78C5817C0D4A4BABAC946C /* SplitwiseApp/Models/Group.swift */; };
+		27FC8317F08B46549A22DA14 /* SplitwiseApp/Models/ActivityLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DFCDC7F9E044B28AAFE643 /* SplitwiseApp/Models/ActivityLog.swift */; };
+		2D62000E1B4D425EBC2B487D /* SplitwiseApp/Views/Account/SplitwiseProView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E3B4D73424427F8D009265 /* SplitwiseApp/Views/Account/SplitwiseProView.swift */; };
+		32032A71019749B49E4AD138 /* SplitwiseApp/Models/Settlement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377D20916BF14168A4684D5D /* SplitwiseApp/Models/Settlement.swift */; };
+		34215AB8B9C0448995C4DB5C /* SplitwiseApp/Views/Account/AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4727151BDB214E1686C988CA /* SplitwiseApp/Views/Account/AccountView.swift */; };
+		3D9B904FD68B4664A98836B1 /* SplitwiseApp/Views/Friends/FriendDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C9D0647EE344C3A626E906 /* SplitwiseApp/Views/Friends/FriendDetailView.swift */; };
+		49E83AA35D104268925E7787 /* SplitwiseApp/Models/User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8644421225114B3F946D119D /* SplitwiseApp/Models/User.swift */; };
+		4ABC7FBDF54E4F2A80840711 /* SplitwiseApp/Utilities/ColorTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = D303B629F93B45599C5FABFD /* SplitwiseApp/Utilities/ColorTheme.swift */; };
+		4C6EF46050F64CBFBCEF88CD /* SplitwiseApp/Views/Launch/LaunchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149432DFFE554E22BFADBC2B /* SplitwiseApp/Views/Launch/LaunchScreenView.swift */; };
+		50CCBBE85E524761B3ECB6D9 /* SplitwiseApp/App/AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1537C1D79F47519FE23761 /* SplitwiseApp/App/AppState.swift */; };
+		57BB10A057444BB6A70AEDDC /* SplitwiseApp/Resources/Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = DBE8E7C7676A41AD976FCD7F /* SplitwiseApp/Resources/Localizable.xcstrings */; };
+		5AC25D6270E0481A9153B61F /* SplitwiseApp/Services/DebtSimplifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23B5F9C5E48441A9DFB9B92 /* SplitwiseApp/Services/DebtSimplifier.swift */; };
+		6184D24FAB35462681CD557E /* SplitwiseApp/Views/Groups/GroupDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAC96326A5346FD82857771 /* SplitwiseApp/Views/Groups/GroupDetailView.swift */; };
+		62F990FB9EB94FF68054754B /* SplitwiseApp/Views/Groups/GroupListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DC0BA4024B4AF58D42A6F3 /* SplitwiseApp/Views/Groups/GroupListView.swift */; };
+		6387B25862B543388A0D40E8 /* SplitwiseApp/Utilities/CurrencyFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C8220CCCB74633B2AE2D54 /* SplitwiseApp/Utilities/CurrencyFormatter.swift */; };
+		638CDBAD7BD5485EBB8E878C /* SplitwiseApp/Resources/Assets.xcassets/AppIcon.appiconset/AppIcon-1024.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6BAAC882F3D64B0AA4BBC659 /* SplitwiseApp/Resources/Assets.xcassets/AppIcon.appiconset/AppIcon-1024.jpg */; };
+		644D2CBCA975462E85C6A70A /* SplitwiseApp/Models/ProSubscriptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02AC2A7A34F144DD9DCE4FF1 /* SplitwiseApp/Models/ProSubscriptionManager.swift */; };
+		6D8E938BA76A460D8D3979A9 /* SplitwiseApp/Models/Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC2831FCA424BA89C306A80 /* SplitwiseApp/Models/Expense.swift */; };
+		70A5A16157D846799635A991 /* SplitwiseApp/Views/Groups/CreateGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3ECEFFF3C8487CA9BAC4A6 /* SplitwiseApp/Views/Groups/CreateGroupView.swift */; };
+		716BD89015C340DEAE476507 /* SplitwiseApp/Resources/Assets.xcassets/AppIcon.appiconset/Contents.json in Resources */ = {isa = PBXBuildFile; fileRef = 2EBA8A62813D49EC896F40C8 /* SplitwiseApp/Resources/Assets.xcassets/AppIcon.appiconset/Contents.json */; };
+		75E7CF85F3684C57BA5E7A1F /* SplitwiseApp/Views/Expense/ReceiptPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFEA39B24EF48F1A7FB492D /* SplitwiseApp/Views/Expense/ReceiptPickerView.swift */; };
+		7A8B6701CBB34EE7B758AFE3 /* SplitwiseApp/Views/Onboarding/OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A459C18553D745079F1AD146 /* SplitwiseApp/Views/Onboarding/OnboardingView.swift */; };
+		86A076FD787143C18FCA92BC /* SplitwiseApp/Views/Analytics/ChartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EECCC024820454E8D408E12 /* SplitwiseApp/Views/Analytics/ChartsView.swift */; };
+		8E8B205982054A7190830CDA /* SplitwiseApp/Services/ReceiptScannerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E931748E37042928DC4DAE8 /* SplitwiseApp/Services/ReceiptScannerService.swift */; };
+		963DD6023BC24820B2062F0E /* SplitwiseApp/Views/Settlement/SettleUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27188D21994476BB74577AA /* SplitwiseApp/Views/Settlement/SettleUpView.swift */; };
+		988698FCC087466BA6E5689C /* SplitwiseApp/Views/MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23415157EC0B4476A053BD36 /* SplitwiseApp/Views/MainView.swift */; };
+		989301C88F1347DB996DACC3 /* SplitwiseApp/Views/Expense/AddExpenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A183A7E2A12041F889C6CC1C /* SplitwiseApp/Views/Expense/AddExpenseView.swift */; };
+		A7EB17A6028C4AD59B8D3EB5 /* SplitwiseApp/App/SplitwiseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B5C362FED644E0B438D43B /* SplitwiseApp/App/SplitwiseApp.swift */; };
+		AE4EA5DA66844CB7B6365970 /* SplitwiseApp/Views/Components/BalanceBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD82D92414AE4B8DB749440E /* SplitwiseApp/Views/Components/BalanceBadge.swift */; };
+		AF1E92A0BC0347A3B09E3CBF /* SplitwiseApp/Views/Friends/AddFriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F14A4E2FF7D49358F2EDA06 /* SplitwiseApp/Views/Friends/AddFriendView.swift */; };
+		AF5DF9514B4A403AAA7BAE33 /* SplitwiseApp/Services/SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89200A0C9754E39AC24C940 /* SplitwiseApp/Services/SampleData.swift */; };
+		CBCC9EB7415446C9A0A30C7E /* SplitwiseApp/Views/Expense/ExpenseDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B743CAE8424F0E8F56D4D8 /* SplitwiseApp/Views/Expense/ExpenseDetailView.swift */; };
+		E79DF66163BD41F2837A2B0F /* SplitwiseApp/Models/ExpenseSplit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F0E7DF182541B9B5275141 /* SplitwiseApp/Models/ExpenseSplit.swift */; };
+		EB3D48ED765C42AEBBE2B798 /* SplitwiseApp/Resources/StoreKit.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 86D3D354B0F9405DBA91949A /* SplitwiseApp/Resources/StoreKit.storekit */; };
+		EFDC5EA244564FB9AFBB34A4 /* SplitwiseApp/Views/Components/CategoryIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 720538D91FB746F18A5B011F /* SplitwiseApp/Views/Components/CategoryIconView.swift */; };
+		F967F5E3E55844949F83F686 /* SplitwiseApp/Views/Analytics/ExportReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA50D14AD5E4437FB54A7BED /* SplitwiseApp/Views/Analytics/ExportReportView.swift */; };
+		FA5FE9BBF1C546BFBBC0B610 /* SplitwiseApp/Views/Groups/GroupSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A307BA948B2439F9382E37C /* SplitwiseApp/Views/Groups/GroupSettingsView.swift */; };
+		FA84014F33314A698BF652EF /* SplitwiseApp/Services/ExportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984DBBA048C04586AD64BD1F /* SplitwiseApp/Services/ExportManager.swift */; };
+		FE48AD3211D4483F8FE236A2 /* SplitwiseApp/Views/Activity/ActivityFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38ADAEE2A0864085A398F8F5 /* SplitwiseApp/Views/Activity/ActivityFeedView.swift */; };
+		FE97D40333C34F5497DE7520 /* SplitwiseApp/Views/Expense/SplitOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F99E70BEA5841E28735A250 /* SplitwiseApp/Views/Expense/SplitOptionsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		04795DBD3F6E5E68F8AA2773 /* FriendsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsListView.swift; sourceTree = "<group>"; };
-		0B8775F697CF36F8C3635BE9 /* ExportReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportReportView.swift; sourceTree = "<group>"; };
-		1293272EFAA046FC069E3870 /* BalanceBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceBadge.swift; sourceTree = "<group>"; };
-		169BD4FCD72C054AC794A0D8 /* ReceiptPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptPickerView.swift; sourceTree = "<group>"; };
-		16F497BB39F0C900B053EB89 /* ChartsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsView.swift; sourceTree = "<group>"; };
-		1B8405A287DA35F59D60F2B9 /* FriendDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendDetailView.swift; sourceTree = "<group>"; };
-		1C8CF9666F2C774F0C4AF787 /* GroupSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSettingsView.swift; sourceTree = "<group>"; };
-		1D4160F1F8A7E4E54D06182F /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
-		2205450A9F0271BDD5990AB3 /* ExpenseSplit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseSplit.swift; sourceTree = "<group>"; };
-		23225D68B2BB931F38F17F51 /* ActivityLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLog.swift; sourceTree = "<group>"; };
-		252393345A60DFAC29B3781B /* SettleUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettleUpView.swift; sourceTree = "<group>"; };
-		276917BAD86EDB1E73F7C5E1 /* SplitwiseProView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitwiseProView.swift; sourceTree = "<group>"; };
-		3C71A01C8FF47B7B1C5F7190 /* GroupListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListView.swift; sourceTree = "<group>"; };
-		3C7F26B85E1ECACD432E58D9 /* CreateGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupView.swift; sourceTree = "<group>"; };
-		40F0421F024AB86BC7D926B9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		442E38856B7F52F915B131D4 /* CurrencyPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyPicker.swift; sourceTree = "<group>"; };
-		4B86614DA51BD09683BB6850 /* SplitwiseApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SplitwiseApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		52ABC5F522B760F050206C36 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		541CBE2CEC80D5BDA31EE249 /* ActivityFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFeedView.swift; sourceTree = "<group>"; };
-		5F4EFE3DACE2FA771F7175A5 /* ExportManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportManager.swift; sourceTree = "<group>"; };
-		65B340D776FB8417C6A2BC48 /* ReceiptScannerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptScannerService.swift; sourceTree = "<group>"; };
-		665D4BF26327BFACE6AADDFF /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
-		857D66FEFA249437EE31CD1A /* Settlement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settlement.swift; sourceTree = "<group>"; };
-		8E2B0A91C6AE57C5A63ABB45 /* AddExpenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseView.swift; sourceTree = "<group>"; };
-		9025C69E6DB254660769F59B /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
-		90C96711D4AD58B8AD6501B4 /* CategoryIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryIconView.swift; sourceTree = "<group>"; };
-		A513CFED9698D00C3E7161F8 /* StoreKit.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = StoreKit.storekit; sourceTree = "<group>"; };
-		A6305BEE5EA67EB8E0E5E0FC /* CurrencyFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyFormatter.swift; sourceTree = "<group>"; };
-		AECE8BB1918D85239CA87247 /* ColorTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTheme.swift; sourceTree = "<group>"; };
-		B2A1CCD39794D4FF69694DBF /* SimplifyDebtsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplifyDebtsView.swift; sourceTree = "<group>"; };
-		BFD039E08E4A9D049E10D84A /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
-		C5E092EF0322B30A1007F725 /* SplitOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitOptionsView.swift; sourceTree = "<group>"; };
-		C7F9FDC5112809A5F2EA027D /* ProSubscriptionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProSubscriptionManager.swift; sourceTree = "<group>"; };
-		C805858CFE508930F72957DD /* DebtSimplifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtSimplifier.swift; sourceTree = "<group>"; };
-		D5BA1E34AFBE438DA65E5212 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
-		D83AF2179F158E9A861F2C99 /* ExpenseDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseDetailView.swift; sourceTree = "<group>"; };
-		EB1AF04BC3C9A9F20F68DC95 /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
-		FC1FDA0A2FC7674C81533547 /* AddFriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendView.swift; sourceTree = "<group>"; };
-		FD00E44D0D9A76F41CC67EF3 /* GroupDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDetailView.swift; sourceTree = "<group>"; };
-		FE2A0F04C7DB2DD98DC4AA15 /* SplitwiseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitwiseApp.swift; sourceTree = "<group>"; };
+		02AC2A7A34F144DD9DCE4FF1 /* SplitwiseApp/Models/ProSubscriptionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitwiseApp/Models/ProSubscriptionManager.swift; sourceTree = SOURCE_ROOT; };
+		03C8220CCCB74633B2AE2D54 /* SplitwiseApp/Utilities/CurrencyFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitwiseApp/Utilities/CurrencyFormatter.swift; sourceTree = SOURCE_ROOT; };
+		05E3B4D73424427F8D009265 /* SplitwiseApp/Views/Account/SplitwiseProView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitwiseApp/Views/Account/SplitwiseProView.swift; sourceTree = SOURCE_ROOT; };
+		0697F3FFFE534EF7AB798A18 /* SplitwiseApp/Views/Friends/FriendsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitwiseApp/Views/Friends/FriendsListView.swift; sourceTree = SOURCE_ROOT; };
+		0A307BA948B2439F9382E37C /* SplitwiseApp/Views/Groups/GroupSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitwiseApp/Views/Groups/GroupSettingsView.swift; sourceTree = SOURCE_ROOT; };
+		0E3ECEFFF3C8487CA9BAC4A6 /* SplitwiseApp/Views/Groups/CreateGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitwiseApp/Views/Groups/CreateGroupView.swift; sourceTree = SOURCE_ROOT; };
+		149432DFFE554E22BFADBC2B /* SplitwiseApp/Views/Launch/LaunchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitwiseApp/Views/Launch/LaunchScreenView.swift; sourceTree = SOURCE_ROOT; };
+		1887F7E8BE724089872B5DF5 /* SplitwiseApp/Views/Groups/SimplifyDebtsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitwiseApp/Views/Groups/SimplifyDebtsView.swift; sourceTree = SOURCE_ROOT; };
+		1EECCC024820454E8D408E12 /* SplitwiseApp/Views/Analytics/ChartsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitwiseApp/Views/Analytics/ChartsView.swift; sourceTree = SOURCE_ROOT; };
+		23415157EC0B4476A053BD36 /* SplitwiseApp/Views/MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitwiseApp/Views/MainView.swift; sourceTree = SOURCE_ROOT; };
+		2EBA8A62813D49EC896F40C8 /* SplitwiseApp/Resources/Assets.xcassets/AppIcon.appiconset/Contents.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SplitwiseApp/Resources/Assets.xcassets/AppIcon.appiconset/Contents.json; sourceTree = SOURCE_ROOT; };
+		33C9D0647EE344C3A626E906 /* SplitwiseApp/Views/Friends/FriendDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitwiseApp/Views/Friends/FriendDetailView.swift; sourceTree = SOURCE_ROOT; };
+		377D20916BF14168A4684D5D /* SplitwiseApp/Models/Settlement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitwiseApp/Models/Settlement.swift; sourceTree = SOURCE_ROOT; };
+		38ADAEE2A0864085A398F8F5 /* SplitwiseApp/Views/Activity/ActivityFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitwiseApp/Views/Activity/ActivityFeedView.swift; sourceTree = SOURCE_ROOT; };
+		3DAC96326A5346FD82857771 /* SplitwiseApp/Views/Groups/GroupDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitwiseApp/Views/Groups/GroupDetailView.swift; sourceTree = SOURCE_ROOT; };
+		46B5C362FED644E0B438D43B /* SplitwiseApp/App/SplitwiseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitwiseApp/App/SplitwiseApp.swift; sourceTree = SOURCE_ROOT; };
+		4727151BDB214E1686C988CA /* SplitwiseApp/Views/Account/AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitwiseApp/Views/Account/AccountView.swift; sourceTree = SOURCE_ROOT; };
+		48DC0BA4024B4AF58D42A6F3 /* SplitwiseApp/Views/Groups/GroupListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitwiseApp/Views/Groups/GroupListView.swift; sourceTree = SOURCE_ROOT; };
+		5BFEA39B24EF48F1A7FB492D /* SplitwiseApp/Views/Expense/ReceiptPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitwiseApp/Views/Expense/ReceiptPickerView.swift; sourceTree = SOURCE_ROOT; };
+		5E931748E37042928DC4DAE8 /* SplitwiseApp/Services/ReceiptScannerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitwiseApp/Services/ReceiptScannerService.swift; sourceTree = SOURCE_ROOT; };
+		694B2E771B974037A376F371 /* SplitwiseApp/App/Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SplitwiseApp/App/Info.plist; sourceTree = SOURCE_ROOT; };
+		6BAAC882F3D64B0AA4BBC659 /* SplitwiseApp/Resources/Assets.xcassets/AppIcon.appiconset/AppIcon-1024.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "SplitwiseApp/Resources/Assets.xcassets/AppIcon.appiconset/AppIcon-1024.jpg"; sourceTree = SOURCE_ROOT; };
+		720538D91FB746F18A5B011F /* SplitwiseApp/Views/Components/CategoryIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitwiseApp/Views/Components/CategoryIconView.swift; sourceTree = SOURCE_ROOT; };
+		84F0E7DF182541B9B5275141 /* SplitwiseApp/Models/ExpenseSplit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitwiseApp/Models/ExpenseSplit.swift; sourceTree = SOURCE_ROOT; };
+		8644421225114B3F946D119D /* SplitwiseApp/Models/User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitwiseApp/Models/User.swift; sourceTree = SOURCE_ROOT; };
+		86D3D354B0F9405DBA91949A /* SplitwiseApp/Resources/StoreKit.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = SplitwiseApp/Resources/StoreKit.storekit; sourceTree = SOURCE_ROOT; };
+		8F14A4E2FF7D49358F2EDA06 /* SplitwiseApp/Views/Friends/AddFriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitwiseApp/Views/Friends/AddFriendView.swift; sourceTree = SOURCE_ROOT; };
+		91DFCDC7F9E044B28AAFE643 /* SplitwiseApp/Models/ActivityLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitwiseApp/Models/ActivityLog.swift; sourceTree = SOURCE_ROOT; };
+		96D85D74464D40ACA10B104D /* SplitwiseApp/Views/Components/CurrencyPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitwiseApp/Views/Components/CurrencyPicker.swift; sourceTree = SOURCE_ROOT; };
+		984DBBA048C04586AD64BD1F /* SplitwiseApp/Services/ExportManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitwiseApp/Services/ExportManager.swift; sourceTree = SOURCE_ROOT; };
+		9F99E70BEA5841E28735A250 /* SplitwiseApp/Views/Expense/SplitOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitwiseApp/Views/Expense/SplitOptionsView.swift; sourceTree = SOURCE_ROOT; };
+		A183A7E2A12041F889C6CC1C /* SplitwiseApp/Views/Expense/AddExpenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitwiseApp/Views/Expense/AddExpenseView.swift; sourceTree = SOURCE_ROOT; };
+		A2B743CAE8424F0E8F56D4D8 /* SplitwiseApp/Views/Expense/ExpenseDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitwiseApp/Views/Expense/ExpenseDetailView.swift; sourceTree = SOURCE_ROOT; };
+		A459C18553D745079F1AD146 /* SplitwiseApp/Views/Onboarding/OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitwiseApp/Views/Onboarding/OnboardingView.swift; sourceTree = SOURCE_ROOT; };
+		BCC2831FCA424BA89C306A80 /* SplitwiseApp/Models/Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitwiseApp/Models/Expense.swift; sourceTree = SOURCE_ROOT; };
+		C23B5F9C5E48441A9DFB9B92 /* SplitwiseApp/Services/DebtSimplifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitwiseApp/Services/DebtSimplifier.swift; sourceTree = SOURCE_ROOT; };
+		C89200A0C9754E39AC24C940 /* SplitwiseApp/Services/SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitwiseApp/Services/SampleData.swift; sourceTree = SOURCE_ROOT; };
+		CB1537C1D79F47519FE23761 /* SplitwiseApp/App/AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitwiseApp/App/AppState.swift; sourceTree = SOURCE_ROOT; };
+		CD82D92414AE4B8DB749440E /* SplitwiseApp/Views/Components/BalanceBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitwiseApp/Views/Components/BalanceBadge.swift; sourceTree = SOURCE_ROOT; };
+		CF78C5817C0D4A4BABAC946C /* SplitwiseApp/Models/Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitwiseApp/Models/Group.swift; sourceTree = SOURCE_ROOT; };
+		D27188D21994476BB74577AA /* SplitwiseApp/Views/Settlement/SettleUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitwiseApp/Views/Settlement/SettleUpView.swift; sourceTree = SOURCE_ROOT; };
+		D303B629F93B45599C5FABFD /* SplitwiseApp/Utilities/ColorTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitwiseApp/Utilities/ColorTheme.swift; sourceTree = SOURCE_ROOT; };
+		DBE8E7C7676A41AD976FCD7F /* SplitwiseApp/Resources/Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = SplitwiseApp/Resources/Localizable.xcstrings; sourceTree = SOURCE_ROOT; };
+		EA50D14AD5E4437FB54A7BED /* SplitwiseApp/Views/Analytics/ExportReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitwiseApp/Views/Analytics/ExportReportView.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
+/* Begin PBXFrameworksBuildPhase section */
+		70B4846A556A48CD93C75F57 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
 /* Begin PBXGroup section */
-		2CF589DC70286FB8D8BE4B5A /* Activity */ = {
+		0052E337F27D4726B3BD5E1D /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				541CBE2CEC80D5BDA31EE249 /* ActivityFeedView.swift */,
+				C23B5F9C5E48441A9DFB9B92 /* SplitwiseApp/Services/DebtSimplifier.swift */,
+				984DBBA048C04586AD64BD1F /* SplitwiseApp/Services/ExportManager.swift */,
+				5E931748E37042928DC4DAE8 /* SplitwiseApp/Services/ReceiptScannerService.swift */,
+				C89200A0C9754E39AC24C940 /* SplitwiseApp/Services/SampleData.swift */,
 			);
-			path = Activity;
+			name = Services;
 			sourceTree = "<group>";
 		};
-		2D7A8ED694159F91B36B68F9 /* Analytics */ = {
+		07593D7825654AD4A162A4CD /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				16F497BB39F0C900B053EB89 /* ChartsView.swift */,
-				0B8775F697CF36F8C3635BE9 /* ExportReportView.swift */,
+				A459C18553D745079F1AD146 /* SplitwiseApp/Views/Onboarding/OnboardingView.swift */,
 			);
-			path = Analytics;
+			name = Onboarding;
 			sourceTree = "<group>";
 		};
-		3F195CFEC2F09627DADD437B /* Resources */ = {
+		136E19477A844A21BDD67B7B /* Friends */ = {
 			isa = PBXGroup;
 			children = (
-				9025C69E6DB254660769F59B /* Localizable.xcstrings */,
-				A513CFED9698D00C3E7161F8 /* StoreKit.storekit */,
+				8F14A4E2FF7D49358F2EDA06 /* SplitwiseApp/Views/Friends/AddFriendView.swift */,
+				0697F3FFFE534EF7AB798A18 /* SplitwiseApp/Views/Friends/FriendsListView.swift */,
+				33C9D0647EE344C3A626E906 /* SplitwiseApp/Views/Friends/FriendDetailView.swift */,
 			);
-			path = Resources;
+			name = Friends;
 			sourceTree = "<group>";
 		};
-		5859BB05FFEF0E34ACB7F04A /* Views */ = {
+		18F316DC32EC4C65ACD7BDE3 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				52ABC5F522B760F050206C36 /* MainView.swift */,
-				FEEDEA8D8E84EF2DB15C895B /* Account */,
-				2CF589DC70286FB8D8BE4B5A /* Activity */,
-				2D7A8ED694159F91B36B68F9 /* Analytics */,
-				D8327FFB0AAC1C7ABEAEDAFD /* Components */,
-				DACB41D9549BFF32658980B3 /* Expense */,
-				FE4581C9CBAB77BFC4E04FE5 /* Friends */,
-				F2CC4C116CD2A4A8CA0E268E /* Groups */,
-				5AD436770B4DCFBD53BFB9D4 /* Settlement */,
+				03C8220CCCB74633B2AE2D54 /* SplitwiseApp/Utilities/CurrencyFormatter.swift */,
+				D303B629F93B45599C5FABFD /* SplitwiseApp/Utilities/ColorTheme.swift */,
 			);
-			path = Views;
+			name = Utilities;
 			sourceTree = "<group>";
 		};
-		5AD436770B4DCFBD53BFB9D4 /* Settlement */ = {
+		2BB438F81F964F39819CBFE3 /* Analytics */ = {
 			isa = PBXGroup;
 			children = (
-				252393345A60DFAC29B3781B /* SettleUpView.swift */,
+				EA50D14AD5E4437FB54A7BED /* SplitwiseApp/Views/Analytics/ExportReportView.swift */,
+				1EECCC024820454E8D408E12 /* SplitwiseApp/Views/Analytics/ChartsView.swift */,
 			);
-			path = Settlement;
+			name = Analytics;
 			sourceTree = "<group>";
 		};
-		765247D774A22F08ED557DD5 /* Models */ = {
+		2EB82E7C42884DBB8639D0A7 /* Settlement */ = {
 			isa = PBXGroup;
 			children = (
-				23225D68B2BB931F38F17F51 /* ActivityLog.swift */,
-				665D4BF26327BFACE6AADDFF /* Expense.swift */,
-				2205450A9F0271BDD5990AB3 /* ExpenseSplit.swift */,
-				BFD039E08E4A9D049E10D84A /* Group.swift */,
-				C7F9FDC5112809A5F2EA027D /* ProSubscriptionManager.swift */,
-				857D66FEFA249437EE31CD1A /* Settlement.swift */,
-				40F0421F024AB86BC7D926B9 /* User.swift */,
+				D27188D21994476BB74577AA /* SplitwiseApp/Views/Settlement/SettleUpView.swift */,
 			);
-			path = Models;
+			name = Settlement;
 			sourceTree = "<group>";
 		};
-		834338BB3747DCA49BE86F96 /* Utilities */ = {
+		30DB9AD24EB644D3A2E70EA8 /* Assets.xcassets */ = {
 			isa = PBXGroup;
 			children = (
-				AECE8BB1918D85239CA87247 /* ColorTheme.swift */,
-				A6305BEE5EA67EB8E0E5E0FC /* CurrencyFormatter.swift */,
+				A661CA9706234467B5CAE91F /* AppIcon.appiconset */,
 			);
-			path = Utilities;
+			name = Assets.xcassets;
 			sourceTree = "<group>";
 		};
-		9159D6D2AD85E6D7FF182A9B /* SplitwiseApp */ = {
+		4164E60F85A14AA5AE73B872 /* Launch */ = {
 			isa = PBXGroup;
 			children = (
-				DE2770CEC2313D7FDC6857E5 /* App */,
-				765247D774A22F08ED557DD5 /* Models */,
-				3F195CFEC2F09627DADD437B /* Resources */,
-				9A07EF826E87FF144ED13E30 /* Services */,
-				834338BB3747DCA49BE86F96 /* Utilities */,
-				5859BB05FFEF0E34ACB7F04A /* Views */,
+				149432DFFE554E22BFADBC2B /* SplitwiseApp/Views/Launch/LaunchScreenView.swift */,
 			);
-			path = SplitwiseApp;
+			name = Launch;
 			sourceTree = "<group>";
 		};
-		9A07EF826E87FF144ED13E30 /* Services */ = {
+		53687CD0287D4786B2851F67 /* Activity */ = {
 			isa = PBXGroup;
 			children = (
-				C805858CFE508930F72957DD /* DebtSimplifier.swift */,
-				5F4EFE3DACE2FA771F7175A5 /* ExportManager.swift */,
-				65B340D776FB8417C6A2BC48 /* ReceiptScannerService.swift */,
-				EB1AF04BC3C9A9F20F68DC95 /* SampleData.swift */,
+				38ADAEE2A0864085A398F8F5 /* SplitwiseApp/Views/Activity/ActivityFeedView.swift */,
 			);
-			path = Services;
+			name = Activity;
 			sourceTree = "<group>";
 		};
-		B147CAFE9645E1900FC79E07 /* Products */ = {
+		59F83A3928144ECE88A714B4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				4B86614DA51BD09683BB6850 /* SplitwiseApp.app */,
+				8644421225114B3F946D119D /* SplitwiseApp/Models/User.swift */,
+				02AC2A7A34F144DD9DCE4FF1 /* SplitwiseApp/Models/ProSubscriptionManager.swift */,
+				84F0E7DF182541B9B5275141 /* SplitwiseApp/Models/ExpenseSplit.swift */,
+				CF78C5817C0D4A4BABAC946C /* SplitwiseApp/Models/Group.swift */,
+				91DFCDC7F9E044B28AAFE643 /* SplitwiseApp/Models/ActivityLog.swift */,
+				377D20916BF14168A4684D5D /* SplitwiseApp/Models/Settlement.swift */,
+				BCC2831FCA424BA89C306A80 /* SplitwiseApp/Models/Expense.swift */,
 			);
-			name = Products;
+			name = Models;
 			sourceTree = "<group>";
 		};
-		D04EA38BB1B48A0FCA997F5F = {
+		74602CEBD86040449A9085EA /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				9159D6D2AD85E6D7FF182A9B /* SplitwiseApp */,
-				B147CAFE9645E1900FC79E07 /* Products */,
+				23415157EC0B4476A053BD36 /* SplitwiseApp/Views/MainView.swift */,
+				AA15630D2322468CB88A84A3 /* Expense */,
+				2EB82E7C42884DBB8639D0A7 /* Settlement */,
+				53687CD0287D4786B2851F67 /* Activity */,
+				4164E60F85A14AA5AE73B872 /* Launch */,
+				829F8535F8744593A38CD20F /* Groups */,
+				815B92B0AA734F888117A19E /* Components */,
+				136E19477A844A21BDD67B7B /* Friends */,
+				8DDA4E0FF1E7487DAE5F075C /* Account */,
+				07593D7825654AD4A162A4CD /* Onboarding */,
+				2BB438F81F964F39819CBFE3 /* Analytics */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		815B92B0AA734F888117A19E /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				96D85D74464D40ACA10B104D /* SplitwiseApp/Views/Components/CurrencyPicker.swift */,
+				720538D91FB746F18A5B011F /* SplitwiseApp/Views/Components/CategoryIconView.swift */,
+				CD82D92414AE4B8DB749440E /* SplitwiseApp/Views/Components/BalanceBadge.swift */,
+			);
+			name = Components;
+			sourceTree = "<group>";
+		};
+		829F8535F8744593A38CD20F /* Groups */ = {
+			isa = PBXGroup;
+			children = (
+				48DC0BA4024B4AF58D42A6F3 /* SplitwiseApp/Views/Groups/GroupListView.swift */,
+				3DAC96326A5346FD82857771 /* SplitwiseApp/Views/Groups/GroupDetailView.swift */,
+				1887F7E8BE724089872B5DF5 /* SplitwiseApp/Views/Groups/SimplifyDebtsView.swift */,
+				0E3ECEFFF3C8487CA9BAC4A6 /* SplitwiseApp/Views/Groups/CreateGroupView.swift */,
+				0A307BA948B2439F9382E37C /* SplitwiseApp/Views/Groups/GroupSettingsView.swift */,
+			);
+			name = Groups;
+			sourceTree = "<group>";
+		};
+		8DDA4E0FF1E7487DAE5F075C /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				4727151BDB214E1686C988CA /* SplitwiseApp/Views/Account/AccountView.swift */,
+				05E3B4D73424427F8D009265 /* SplitwiseApp/Views/Account/SplitwiseProView.swift */,
+			);
+			name = Account;
+			sourceTree = "<group>";
+		};
+		A661CA9706234467B5CAE91F /* AppIcon.appiconset */ = {
+			isa = PBXGroup;
+			children = (
+				6BAAC882F3D64B0AA4BBC659 /* SplitwiseApp/Resources/Assets.xcassets/AppIcon.appiconset/AppIcon-1024.jpg */,
+				2EBA8A62813D49EC896F40C8 /* SplitwiseApp/Resources/Assets.xcassets/AppIcon.appiconset/Contents.json */,
+			);
+			name = AppIcon.appiconset;
+			sourceTree = "<group>";
+		};
+		AA15630D2322468CB88A84A3 /* Expense */ = {
+			isa = PBXGroup;
+			children = (
+				9F99E70BEA5841E28735A250 /* SplitwiseApp/Views/Expense/SplitOptionsView.swift */,
+				5BFEA39B24EF48F1A7FB492D /* SplitwiseApp/Views/Expense/ReceiptPickerView.swift */,
+				A2B743CAE8424F0E8F56D4D8 /* SplitwiseApp/Views/Expense/ExpenseDetailView.swift */,
+				A183A7E2A12041F889C6CC1C /* SplitwiseApp/Views/Expense/AddExpenseView.swift */,
+			);
+			name = Expense;
+			sourceTree = "<group>";
+		};
+		B92242B13AD34CDFA55D0689 = {
+			isa = PBXGroup;
+			children = (
+				E6EF9EAE954547AB809C2079 /* SplitwiseApp */,
 			);
 			sourceTree = "<group>";
 		};
-		D8327FFB0AAC1C7ABEAEDAFD /* Components */ = {
+		CD1E9EA962214605AD75AA30 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				1293272EFAA046FC069E3870 /* BalanceBadge.swift */,
-				90C96711D4AD58B8AD6501B4 /* CategoryIconView.swift */,
-				442E38856B7F52F915B131D4 /* CurrencyPicker.swift */,
+				CB1537C1D79F47519FE23761 /* SplitwiseApp/App/AppState.swift */,
+				46B5C362FED644E0B438D43B /* SplitwiseApp/App/SplitwiseApp.swift */,
+				694B2E771B974037A376F371 /* SplitwiseApp/App/Info.plist */,
 			);
-			path = Components;
+			name = App;
 			sourceTree = "<group>";
 		};
-		DACB41D9549BFF32658980B3 /* Expense */ = {
+		E6EF9EAE954547AB809C2079 /* SplitwiseApp */ = {
 			isa = PBXGroup;
 			children = (
-				8E2B0A91C6AE57C5A63ABB45 /* AddExpenseView.swift */,
-				D83AF2179F158E9A861F2C99 /* ExpenseDetailView.swift */,
-				169BD4FCD72C054AC794A0D8 /* ReceiptPickerView.swift */,
-				C5E092EF0322B30A1007F725 /* SplitOptionsView.swift */,
+				CD1E9EA962214605AD75AA30 /* App */,
+				59F83A3928144ECE88A714B4 /* Models */,
+				18F316DC32EC4C65ACD7BDE3 /* Utilities */,
+				74602CEBD86040449A9085EA /* Views */,
+				0052E337F27D4726B3BD5E1D /* Services */,
+				ED85AEAF91784999A028ACE8 /* Resources */,
 			);
-			path = Expense;
+			name = SplitwiseApp;
 			sourceTree = "<group>";
 		};
-		DE2770CEC2313D7FDC6857E5 /* App */ = {
+		ED85AEAF91784999A028ACE8 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				1D4160F1F8A7E4E54D06182F /* AppState.swift */,
-				FE2A0F04C7DB2DD98DC4AA15 /* SplitwiseApp.swift */,
+				DBE8E7C7676A41AD976FCD7F /* SplitwiseApp/Resources/Localizable.xcstrings */,
+				86D3D354B0F9405DBA91949A /* SplitwiseApp/Resources/StoreKit.storekit */,
+				30DB9AD24EB644D3A2E70EA8 /* Assets.xcassets */,
 			);
-			path = App;
-			sourceTree = "<group>";
-		};
-		F2CC4C116CD2A4A8CA0E268E /* Groups */ = {
-			isa = PBXGroup;
-			children = (
-				3C7F26B85E1ECACD432E58D9 /* CreateGroupView.swift */,
-				FD00E44D0D9A76F41CC67EF3 /* GroupDetailView.swift */,
-				3C71A01C8FF47B7B1C5F7190 /* GroupListView.swift */,
-				1C8CF9666F2C774F0C4AF787 /* GroupSettingsView.swift */,
-				B2A1CCD39794D4FF69694DBF /* SimplifyDebtsView.swift */,
-			);
-			path = Groups;
-			sourceTree = "<group>";
-		};
-		FE4581C9CBAB77BFC4E04FE5 /* Friends */ = {
-			isa = PBXGroup;
-			children = (
-				FC1FDA0A2FC7674C81533547 /* AddFriendView.swift */,
-				1B8405A287DA35F59D60F2B9 /* FriendDetailView.swift */,
-				04795DBD3F6E5E68F8AA2773 /* FriendsListView.swift */,
-			);
-			path = Friends;
-			sourceTree = "<group>";
-		};
-		FEEDEA8D8E84EF2DB15C895B /* Account */ = {
-			isa = PBXGroup;
-			children = (
-				D5BA1E34AFBE438DA65E5212 /* AccountView.swift */,
-				276917BAD86EDB1E73F7C5E1 /* SplitwiseProView.swift */,
-			);
-			path = Account;
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		AD98287837BE93E01207691E /* SplitwiseApp */ = {
+		2B85AF7A286F4D3E8F605E27 /* SplitwiseApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CD97F480178583B221C52011 /* Build configuration list for PBXNativeTarget "SplitwiseApp" */;
+			buildConfigurationList = 839B3C7566884099B9BF82AC /* Build configuration list for PBXNativeTarget "SplitwiseApp" */;
 			buildPhases = (
-				B9A7653C1E1134EB17E3CC6F /* Sources */,
-				918740A5008286C56C5AB0F5 /* Resources */,
+				A0D964AEE22B40B0B12DF619 /* Sources */,
+				70B4846A556A48CD93C75F57 /* Frameworks */,
+				AE7DFFEA5495458B8B36C258 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = SplitwiseApp;
-			packageProductDependencies = (
-			);
 			productName = SplitwiseApp;
-			productReference = 4B86614DA51BD09683BB6850 /* SplitwiseApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		7CDF7093C1379716A9B2D767 /* Project object */ = {
+		586E0A36716F43A1B7D9BA14 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 1430;
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
-					AD98287837BE93E01207691E = {
-						ProvisioningStyle = Automatic;
+					2B85AF7A286F4D3E8F605E27 = {
+						CreatedOnToolsVersion = 15.0;
 					};
 				};
 			};
-			buildConfigurationList = 9D13921B48CF3F9AB51ECACB /* Build configuration list for PBXProject "SplitwiseApp" */;
+			buildConfigurationList = 7D60BCFC79664F00A2839C0D /* Build configuration list for PBXProject "SplitwiseApp" */;
+			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				Base,
 				en,
+				Base,
 				"zh-Hans",
 				"zh-Hant",
 			);
-			mainGroup = D04EA38BB1B48A0FCA997F5F;
-			minimizedProjectReferenceProxies = 1;
-			preferredProjectObjectVersion = 77;
-			productRefGroup = B147CAFE9645E1900FC79E07 /* Products */;
+			mainGroup = B92242B13AD34CDFA55D0689;
+			productRefGroup = B92242B13AD34CDFA55D0689;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AD98287837BE93E01207691E /* SplitwiseApp */,
+				2B85AF7A286F4D3E8F605E27 /* SplitwiseApp */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		918740A5008286C56C5AB0F5 /* Resources */ = {
+		AE7DFFEA5495458B8B36C258 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				23A785C5F294389A79F85299 /* Localizable.xcstrings in Resources */,
-				71A1ED268F41CF1FB659B68F /* StoreKit.storekit in Resources */,
+				57BB10A057444BB6A70AEDDC /* SplitwiseApp/Resources/Localizable.xcstrings in Resources */,
+				EB3D48ED765C42AEBBE2B798 /* SplitwiseApp/Resources/StoreKit.storekit in Resources */,
+				638CDBAD7BD5485EBB8E878C /* SplitwiseApp/Resources/Assets.xcassets/AppIcon.appiconset/AppIcon-1024.jpg in Resources */,
+				716BD89015C340DEAE476507 /* SplitwiseApp/Resources/Assets.xcassets/AppIcon.appiconset/Contents.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		B9A7653C1E1134EB17E3CC6F /* Sources */ = {
+		A0D964AEE22B40B0B12DF619 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				56F116EB15CB583DEE595C38 /* AccountView.swift in Sources */,
-				241378D658FF05003D655FE8 /* ActivityFeedView.swift in Sources */,
-				6F000DD1FAEB135FDD7AD5FE /* ActivityLog.swift in Sources */,
-				32358EED3652B26D8A920B55 /* AddExpenseView.swift in Sources */,
-				A154205A19BE822835F7DA29 /* AddFriendView.swift in Sources */,
-				5D25717089853C183E07495A /* AppState.swift in Sources */,
-				A21C5C574EF82002F884082C /* BalanceBadge.swift in Sources */,
-				62B1F8334F1D058992CFDCB1 /* CategoryIconView.swift in Sources */,
-				1F8F43FD49E38AE0F5E29392 /* ChartsView.swift in Sources */,
-				B8069AB870D2B19061A9C8FF /* ColorTheme.swift in Sources */,
-				CEE287407A942073CA2CE815 /* CreateGroupView.swift in Sources */,
-				286E50CDC3EFF9A6B9ED0E4B /* CurrencyFormatter.swift in Sources */,
-				4AF554FB0D35C25DC48FC263 /* CurrencyPicker.swift in Sources */,
-				C83011606FC24FA420DE4A88 /* DebtSimplifier.swift in Sources */,
-				BA2AA287476CEA42D93729A3 /* Expense.swift in Sources */,
-				DB1C6D6F2E6049A1D317B046 /* ExpenseDetailView.swift in Sources */,
-				182FDF491EA51529E37F5422 /* ExpenseSplit.swift in Sources */,
-				5E3231BF53D79EB563BD5E97 /* ExportManager.swift in Sources */,
-				7CEB7E8D0F18A7CF9A90D72D /* ExportReportView.swift in Sources */,
-				EC5DC8D565C1A8333424CB09 /* FriendDetailView.swift in Sources */,
-				37DED71DAA7716763E2BA975 /* FriendsListView.swift in Sources */,
-				23D91D91708B2B23AFF9DE0A /* Group.swift in Sources */,
-				03B01234A3788EB0B6A5E84A /* GroupDetailView.swift in Sources */,
-				AAA85376652408713FBD5614 /* GroupListView.swift in Sources */,
-				9C74FB96EC525664D95D3614 /* GroupSettingsView.swift in Sources */,
-				4843FAA1A8D717209E292B80 /* MainView.swift in Sources */,
-				E69E54DBA176BDC915167128 /* ProSubscriptionManager.swift in Sources */,
-				5C3BF866A4CA48D7C0D5109E /* ReceiptPickerView.swift in Sources */,
-				B319AECC3CC580C813812629 /* ReceiptScannerService.swift in Sources */,
-				16E7211A8FDE60FF3B3E9CA2 /* SampleData.swift in Sources */,
-				C035D75A6323DC56E30BAD08 /* SettleUpView.swift in Sources */,
-				6DD1B3327852C584B1D709C2 /* Settlement.swift in Sources */,
-				0EB2AD830629576DABEE07D1 /* SimplifyDebtsView.swift in Sources */,
-				3C46D5BEDD88A6DB4B2EDF3E /* SplitOptionsView.swift in Sources */,
-				0EBDD0978DFA8F075D612F19 /* SplitwiseApp.swift in Sources */,
-				C4CE77BDD783CEC676420916 /* SplitwiseProView.swift in Sources */,
-				0464895FD3233449F2194BDE /* User.swift in Sources */,
+				50CCBBE85E524761B3ECB6D9 /* SplitwiseApp/App/AppState.swift in Sources */,
+				A7EB17A6028C4AD59B8D3EB5 /* SplitwiseApp/App/SplitwiseApp.swift in Sources */,
+				49E83AA35D104268925E7787 /* SplitwiseApp/Models/User.swift in Sources */,
+				644D2CBCA975462E85C6A70A /* SplitwiseApp/Models/ProSubscriptionManager.swift in Sources */,
+				E79DF66163BD41F2837A2B0F /* SplitwiseApp/Models/ExpenseSplit.swift in Sources */,
+				13B47E2A11EB48E784706402 /* SplitwiseApp/Models/Group.swift in Sources */,
+				27FC8317F08B46549A22DA14 /* SplitwiseApp/Models/ActivityLog.swift in Sources */,
+				32032A71019749B49E4AD138 /* SplitwiseApp/Models/Settlement.swift in Sources */,
+				6D8E938BA76A460D8D3979A9 /* SplitwiseApp/Models/Expense.swift in Sources */,
+				6387B25862B543388A0D40E8 /* SplitwiseApp/Utilities/CurrencyFormatter.swift in Sources */,
+				4ABC7FBDF54E4F2A80840711 /* SplitwiseApp/Utilities/ColorTheme.swift in Sources */,
+				988698FCC087466BA6E5689C /* SplitwiseApp/Views/MainView.swift in Sources */,
+				FE97D40333C34F5497DE7520 /* SplitwiseApp/Views/Expense/SplitOptionsView.swift in Sources */,
+				75E7CF85F3684C57BA5E7A1F /* SplitwiseApp/Views/Expense/ReceiptPickerView.swift in Sources */,
+				CBCC9EB7415446C9A0A30C7E /* SplitwiseApp/Views/Expense/ExpenseDetailView.swift in Sources */,
+				989301C88F1347DB996DACC3 /* SplitwiseApp/Views/Expense/AddExpenseView.swift in Sources */,
+				963DD6023BC24820B2062F0E /* SplitwiseApp/Views/Settlement/SettleUpView.swift in Sources */,
+				FE48AD3211D4483F8FE236A2 /* SplitwiseApp/Views/Activity/ActivityFeedView.swift in Sources */,
+				4C6EF46050F64CBFBCEF88CD /* SplitwiseApp/Views/Launch/LaunchScreenView.swift in Sources */,
+				62F990FB9EB94FF68054754B /* SplitwiseApp/Views/Groups/GroupListView.swift in Sources */,
+				6184D24FAB35462681CD557E /* SplitwiseApp/Views/Groups/GroupDetailView.swift in Sources */,
+				05DC663C04DD4DF4B7E97523 /* SplitwiseApp/Views/Groups/SimplifyDebtsView.swift in Sources */,
+				70A5A16157D846799635A991 /* SplitwiseApp/Views/Groups/CreateGroupView.swift in Sources */,
+				FA5FE9BBF1C546BFBBC0B610 /* SplitwiseApp/Views/Groups/GroupSettingsView.swift in Sources */,
+				112CD9DA4E2B4F7BA8E75267 /* SplitwiseApp/Views/Components/CurrencyPicker.swift in Sources */,
+				EFDC5EA244564FB9AFBB34A4 /* SplitwiseApp/Views/Components/CategoryIconView.swift in Sources */,
+				AE4EA5DA66844CB7B6365970 /* SplitwiseApp/Views/Components/BalanceBadge.swift in Sources */,
+				AF1E92A0BC0347A3B09E3CBF /* SplitwiseApp/Views/Friends/AddFriendView.swift in Sources */,
+				0D055E2C874747C69C49F363 /* SplitwiseApp/Views/Friends/FriendsListView.swift in Sources */,
+				3D9B904FD68B4664A98836B1 /* SplitwiseApp/Views/Friends/FriendDetailView.swift in Sources */,
+				34215AB8B9C0448995C4DB5C /* SplitwiseApp/Views/Account/AccountView.swift in Sources */,
+				2D62000E1B4D425EBC2B487D /* SplitwiseApp/Views/Account/SplitwiseProView.swift in Sources */,
+				7A8B6701CBB34EE7B758AFE3 /* SplitwiseApp/Views/Onboarding/OnboardingView.swift in Sources */,
+				F967F5E3E55844949F83F686 /* SplitwiseApp/Views/Analytics/ExportReportView.swift in Sources */,
+				86A076FD787143C18FCA92BC /* SplitwiseApp/Views/Analytics/ChartsView.swift in Sources */,
+				5AC25D6270E0481A9153B61F /* SplitwiseApp/Services/DebtSimplifier.swift in Sources */,
+				FA84014F33314A698BF652EF /* SplitwiseApp/Services/ExportManager.swift in Sources */,
+				8E8B205982054A7190830CDA /* SplitwiseApp/Services/ReceiptScannerService.swift in Sources */,
+				AF5DF9514B4A403AAA7BAE33 /* SplitwiseApp/Services/SampleData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		7561981EC926CF7495CE20CD /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = R9TC286V25;
-				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = SplitwiseApp/App/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.splitwise.ios.app;
-				PRODUCT_NAME = SplitwiseApp;
-				SDKROOT = iphoneos;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		947AC13A2715174FDD1D967D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = R9TC286V25;
-				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = SplitwiseApp/App/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.splitwise.ios.app;
-				PRODUCT_NAME = SplitwiseApp;
-				SDKROOT = iphoneos;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		A8C29F8FB2783F1C6C367E42 /* Release */ = {
+		075258AE27E04615BFED5717 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		BB25E7799D18F2281E235E86 /* Debug */ = {
+		09C5379537C44DF7BF25C11E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -538,49 +471,96 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					"$(inherited)",
 					"DEBUG=1",
+					"$(inherited)",
 				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
+		0C57994E003E4AE79514A39E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = R9TC286V25;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = SplitwiseApp/App/Info.plist;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.splitwise.ios.app;
+				PRODUCT_NAME = SplitwiseApp;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A83749A2974F42DF91697922 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = R9TC286V25;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = SplitwiseApp/App/Info.plist;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.splitwise.ios.app;
+				PRODUCT_NAME = SplitwiseApp;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9D13921B48CF3F9AB51ECACB /* Build configuration list for PBXProject "SplitwiseApp" */ = {
+		7D60BCFC79664F00A2839C0D /* Build configuration list for PBXProject "SplitwiseApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BB25E7799D18F2281E235E86 /* Debug */,
-				A8C29F8FB2783F1C6C367E42 /* Release */,
+				09C5379537C44DF7BF25C11E /* Debug */,
+				075258AE27E04615BFED5717 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
-		CD97F480178583B221C52011 /* Build configuration list for PBXNativeTarget "SplitwiseApp" */ = {
+		839B3C7566884099B9BF82AC /* Build configuration list for PBXNativeTarget "SplitwiseApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				947AC13A2715174FDD1D967D /* Debug */,
-				7561981EC926CF7495CE20CD /* Release */,
+				0C57994E003E4AE79514A39E /* Debug */,
+				A83749A2974F42DF91697922 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 7CDF7093C1379716A9B2D767 /* Project object */;
+	rootObject = 586E0A36716F43A1B7D9BA14 /* Project object */;
 }
