@@ -3,6 +3,7 @@ import SwiftData
 
 public struct AccountView: View {
     @Environment(AppState.self) private var appState
+    @Environment(LocalizationManager.self) private var loc
     @Environment(\.modelContext) private var modelContext
 
     @Query(filter: #Predicate<User> { $0.isCurrentUser }) private var currentUsers: [User]
@@ -104,12 +105,15 @@ public struct AccountView: View {
                         Label("Appearance", systemImage: "moon.phase.5")
                     }
 
-                    Picker(selection: Bindable(appState).selectedLanguage) {
-                        Text("English").tag("en")
-                        Text("简体中文").tag("zh-Hans")
-                        Text("繁體中文").tag("zh-Hant")
+                    NavigationLink {
+                        LanguageSelectionView()
                     } label: {
-                        Label("Language", systemImage: "globe")
+                        HStack {
+                            Label("Language", systemImage: "globe")
+                            Spacer()
+                            Text(loc.currentNativeName)
+                                .foregroundColor(.secondary)
+                        }
                     }
                 }
 

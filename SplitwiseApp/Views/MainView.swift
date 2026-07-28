@@ -6,9 +6,16 @@ public struct MainView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(AppState.self) private var appState
 
-    @State private var selectedTab: TabItem = .groups
     @State private var selectedSidebarItem: SidebarItem? = .groups
     @State private var showingGlobalAddExpense = false
+
+    // Persisted across the language-switch rebuild so the user stays on their tab.
+    private var selectedTabBinding: Binding<TabItem> {
+        Binding(
+            get: { TabItem(rawValue: appState.selectedTabRaw) ?? .groups },
+            set: { appState.selectedTabRaw = $0.rawValue }
+        )
+    }
 
     public enum TabItem: Int, CaseIterable, Identifiable {
         case groups = 0
@@ -69,7 +76,7 @@ public struct MainView: View {
                         Section("Splitwise") {
                             ForEach(SidebarItem.allCases) { item in
                                 NavigationLink(value: item) {
-                                    Label(item.rawValue, systemImage: item.iconName)
+                                    Label(LocalizedStringKey(item.rawValue), systemImage: item.iconName)
                                 }
                             }
                         }
@@ -102,34 +109,34 @@ public struct MainView: View {
                 }
             } else {
                 // iPhone Adaptive TabView
-                TabView(selection: $selectedTab) {
+                TabView(selection: selectedTabBinding) {
                     GroupListView()
                         .tabItem {
-                            Label(TabItem.groups.title, systemImage: TabItem.groups.iconName)
+                            Label(LocalizedStringKey(TabItem.groups.title), systemImage: TabItem.groups.iconName)
                         }
                         .tag(TabItem.groups)
 
                     FriendsListView()
                         .tabItem {
-                            Label(TabItem.friends.title, systemImage: TabItem.friends.iconName)
+                            Label(LocalizedStringKey(TabItem.friends.title), systemImage: TabItem.friends.iconName)
                         }
                         .tag(TabItem.friends)
 
                     ActivityFeedView()
                         .tabItem {
-                            Label(TabItem.activity.title, systemImage: TabItem.activity.iconName)
+                            Label(LocalizedStringKey(TabItem.activity.title), systemImage: TabItem.activity.iconName)
                         }
                         .tag(TabItem.activity)
 
                     ChartsView()
                         .tabItem {
-                            Label(TabItem.analytics.title, systemImage: TabItem.analytics.iconName)
+                            Label(LocalizedStringKey(TabItem.analytics.title), systemImage: TabItem.analytics.iconName)
                         }
                         .tag(TabItem.analytics)
 
                     AccountView()
                         .tabItem {
-                            Label(TabItem.account.title, systemImage: TabItem.account.iconName)
+                            Label(LocalizedStringKey(TabItem.account.title), systemImage: TabItem.account.iconName)
                         }
                         .tag(TabItem.account)
                 }

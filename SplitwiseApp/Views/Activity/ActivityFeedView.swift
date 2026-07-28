@@ -40,7 +40,7 @@ public struct ActivityFeedView: View {
                                 Button {
                                     selectedTypeFilter = type
                                 } label: {
-                                    Text(type.rawValue)
+                                    Text(LocalizedStringKey(type.rawValue))
                                         .font(.subheadline)
                                         .fontWeight(.medium)
                                         .padding(.horizontal, 14)

@@ -73,7 +73,7 @@ public struct AddExpenseView: View {
 
                     Picker("Category", selection: $selectedCategory) {
                         ForEach(ExpenseCategory.allCases) { category in
-                            Label(category.rawValue, systemImage: category.iconName).tag(category)
+                            Label(LocalizedStringKey(category.rawValue), systemImage: category.iconName).tag(category)
                         }
                     }
                 }
@@ -89,7 +89,11 @@ public struct AddExpenseView: View {
 
                     Picker("Paid By", selection: $payerId) {
                         ForEach(groupMembers) { member in
-                            Text(member.id == appState.currentUserId ? "You" : member.name).tag(member.id)
+                            if member.id == appState.currentUserId {
+                                Text("You").tag(member.id)
+                            } else {
+                                Text(member.name).tag(member.id)
+                            }
                         }
                     }
                 }
@@ -158,7 +162,7 @@ public struct AddExpenseView: View {
 
                     Picker("Repeat", selection: $repeatFrequency) {
                         ForEach(RepeatFrequency.allCases) { freq in
-                            Text(freq.rawValue).tag(freq)
+                            Text(LocalizedStringKey(freq.rawValue)).tag(freq)
                         }
                     }
 

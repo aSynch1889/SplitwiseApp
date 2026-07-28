@@ -4,6 +4,7 @@ import SwiftData
 @main
 public struct SplitwiseApp: App {
     @State private var appState = AppState()
+    @State private var loc = LocalizationManager.shared
     @State private var isShowingLaunchScreen: Bool = true
     @AppStorage("hasCompletedOnboarding") private var hasCompletedOnboarding: Bool = false
 
@@ -24,7 +25,10 @@ public struct SplitwiseApp: App {
         }
     }()
 
-    public init() {}
+    public init() {
+        // Force the Bundle language swizzle to install before any Text renders.
+        _ = LocalizationManager.shared
+    }
 
     public var body: some Scene {
         WindowGroup {
@@ -37,11 +41,14 @@ public struct SplitwiseApp: App {
                         .transition(.opacity)
                 } else {
                     MainView()
-                        .environment(appState)
+                        .id(loc.currentLanguage)
                         .preferredColorScheme(appState.preferredColorScheme)
                         .transition(.opacity)
                 }
             }
+            .environment(loc)
+            .environment(appState)
+            .environment(\.locale, loc.locale)
             .onAppear {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                     withAnimation(.easeInOut(duration: 0.4)) {

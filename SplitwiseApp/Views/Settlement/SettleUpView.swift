@@ -34,13 +34,21 @@ public struct SettleUpView: View {
                 Section("Settle Up Payment") {
                     Picker("Payer", selection: $payerId) {
                         ForEach(availableUsers) { user in
-                            Text(user.id == appState.currentUserId ? "You" : user.name).tag(user.id)
+                            if user.id == appState.currentUserId {
+                                Text("You").tag(user.id)
+                            } else {
+                                Text(user.name).tag(user.id)
+                            }
                         }
                     }
 
                     Picker("Payee", selection: $payeeId) {
                         ForEach(availableUsers.filter { $0.id != payerId }) { user in
-                            Text(user.id == appState.currentUserId ? "You" : user.name).tag(user.id)
+                            if user.id == appState.currentUserId {
+                                Text("You").tag(user.id)
+                            } else {
+                                Text(user.name).tag(user.id)
+                            }
                         }
                     }
 
