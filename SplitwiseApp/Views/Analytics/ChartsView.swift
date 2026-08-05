@@ -25,26 +25,67 @@ public struct ChartsView: View {
 
     public var body: some View {
         NavigationStack {
-            ScrollView {
-                VStack(spacing: 20) {
-                    Picker("Timeframe", selection: $selectedTimeframe) {
-                        ForEach(Timeframe.allCases) { tf in
-                            Text(tf.rawValue).tag(tf)
-                        }
-                    }
-                    .pickerStyle(.segmented)
-                    .padding(.horizontal)
+            Group {
+                if ProAccess.isPro {
+                    ScrollView {
+                        VStack(spacing: 20) {
+                            Picker("Timeframe", selection: $selectedTimeframe) {
+                                ForEach(Timeframe.allCases) { tf in
+                                    Text(tf.rawValue).tag(tf)
+                                }
+                            }
+                            .pickerStyle(.segmented)
+                            .padding(.horizontal)
 
-                    totalSpentCard
-                    categoryPieChartCard
-                    monthlyTrendChartCard
-                    groupBarChartCard
+                            totalSpentCard
+                            categoryPieChartCard
+                            monthlyTrendChartCard
+                            groupBarChartCard
+                        }
+                        .padding(.vertical)
+                    }
+                } else {
+                    proLockedPlaceholder
                 }
-                .padding(.vertical)
             }
             .background(ColorTheme.viewBackground)
             .navigationTitle("Analytics & Charts")
+            .toolbar {
+                if !ProAccess.isPro {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        ProBadge()
+                    }
+                }
+            }
         }
+    }
+
+    private var proLockedPlaceholder: some View {
+        VStack(spacing: 16) {
+            Image(systemName: "chart.bar.xaxis")
+                .font(.system(size: 48))
+                .foregroundColor(ColorTheme.brandTeal)
+            Text("Advanced Charts are Pro")
+                .font(.title3)
+                .fontWeight(.bold)
+            Text(ProFeature.advancedCharts.subtitle)
+                .font(.subheadline)
+                .foregroundColor(.secondary)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal, 32)
+            Button {
+                PaywallPresenter.shared.present(for: .advancedCharts)
+            } label: {
+                Label("Unlock with Pro", systemImage: "crown.fill")
+                    .fontWeight(.semibold)
+                    .foregroundColor(.white)
+                    .padding(.horizontal, 20)
+                    .padding(.vertical, 12)
+                    .background(ColorTheme.brandTeal)
+                    .cornerRadius(12)
+            }
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 
     /// Current user's share of expenses in the selected timeframe, converted to app currency.

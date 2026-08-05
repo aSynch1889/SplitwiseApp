@@ -54,6 +54,7 @@
 		E7E07C7010E54FCC9298595B /* LegalURLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E31A0E65F72F74FA2E5157D /* LegalURLs.swift */; };
 		EBE8D53EE7941D50480C825A /* LanguageSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC54C3499774669A612005F /* LanguageSelectionView.swift */; };
 		EC5DC8D565C1A8333424CB09 /* FriendDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8405A287DA35F59D60F2B9 /* FriendDetailView.swift */; };
+		F13F12FF0D73AACA56954578 /* ProAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004950D103065B4B3BCE4B32 /* ProAccess.swift */; };
 		F7D634B0A76F808AE180BCF4 /* Bundle+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3E915707ECD333AADE1162 /* Bundle+Localization.swift */; };
 		FFC4F99ECC6C0A0BBCF67F91 /* SplitMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = B017574B45A045817433FF08 /* SplitMath.swift */; };
 /* End PBXBuildFile section */
@@ -69,6 +70,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		004950D103065B4B3BCE4B32 /* ProAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProAccess.swift; sourceTree = "<group>"; };
 		04795DBD3F6E5E68F8AA2773 /* FriendsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsListView.swift; sourceTree = "<group>"; };
 		0B8775F697CF36F8C3635BE9 /* ExportReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportReportView.swift; sourceTree = "<group>"; };
 		1293272EFAA046FC069E3870 /* BalanceBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceBadge.swift; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 				AECE8BB1918D85239CA87247 /* ColorTheme.swift */,
 				A6305BEE5EA67EB8E0E5E0FC /* CurrencyFormatter.swift */,
 				3E31A0E65F72F74FA2E5157D /* LegalURLs.swift */,
+				004950D103065B4B3BCE4B32 /* ProAccess.swift */,
 				B017574B45A045817433FF08 /* SplitMath.swift */,
 			);
 			path = Utilities;
@@ -471,6 +474,7 @@
 				14019CB131D9F7219695293F /* LocalizationManager.swift in Sources */,
 				4843FAA1A8D717209E292B80 /* MainView.swift in Sources */,
 				10CC265C53A4234859BDAE4F /* OnboardingView.swift in Sources */,
+				F13F12FF0D73AACA56954578 /* ProAccess.swift in Sources */,
 				E69E54DBA176BDC915167128 /* ProSubscriptionManager.swift in Sources */,
 				5C3BF866A4CA48D7C0D5109E /* ReceiptPickerView.swift in Sources */,
 				B319AECC3CC580C813812629 /* ReceiptScannerService.swift in Sources */,

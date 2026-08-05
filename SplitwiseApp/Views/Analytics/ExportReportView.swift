@@ -39,14 +39,19 @@ public struct ExportReportView: View {
                 // Export Options
                 VStack(spacing: 14) {
                     Button {
-                        exportPDF()
+                        ProAccess.require(.exportReports) {
+                            exportPDF()
+                        }
                     } label: {
                         HStack {
                             Image(systemName: "doc.fill")
                                 .font(.title2)
                             VStack(alignment: .leading) {
-                                Text("Export PDF Report")
-                                    .font(.headline)
+                                HStack {
+                                    Text("Export PDF Report")
+                                        .font(.headline)
+                                    if !ProAccess.isPro { ProBadge() }
+                                }
                                 Text("Formatted printable statement with group summary and expenses.")
                                     .font(.caption)
                                     .foregroundColor(.white.opacity(0.8))
@@ -61,14 +66,19 @@ public struct ExportReportView: View {
                     }
 
                     Button {
-                        exportCSV()
+                        ProAccess.require(.exportReports) {
+                            exportCSV()
+                        }
                     } label: {
                         HStack {
                             Image(systemName: "tablecells.fill")
                                 .font(.title2)
                             VStack(alignment: .leading) {
-                                Text("Export CSV Spreadsheet")
-                                    .font(.headline)
+                                HStack {
+                                    Text("Export CSV Spreadsheet")
+                                        .font(.headline)
+                                    if !ProAccess.isPro { ProBadge() }
+                                }
                                 Text("Raw data spreadsheet compatible with Excel, Numbers, and Google Sheets.")
                                     .font(.caption)
                                     .foregroundColor(.secondary)

@@ -260,15 +260,14 @@ xcodebuild -project SplitwiseApp.xcodeproj -scheme SplitwiseApp \
 
 ### 4.2 Freemium 与 PRD 不一致
 
-**PRD 承诺**：OCR、Itemized、汇率、导出、图表、债务简化开关为 Pro；免费含广告预留。  
-**代码现实**：无 Paywall 门禁、无广告、Mock Pro 默认开。
+**状态：✅ 已修复（I-08）**
 
-**解决方案**
+**修复说明**
 
-1. 实现单一权限源：`FeatureFlag` / `ProEntitlement`。
-2. 免费版明确可用：Equal/Exact 分摊、基础群组好友、简单余额。
-3. 锁功能时用一致的 `ProBadge` + 订阅 Sheet。
-4. 若暂不做广告，**删除**「100% Ad-Free」卖点，避免虚假对比。
+1. 新增统一 `ProAccess` / `PaywallPresenter` / `ProBadge`。
+2. 门禁覆盖：OCR 附件、Itemized 分摊、PDF/CSV 导出、高级图表、Simplify。
+3. 免费可用：群组/好友、Equal/Exact/%/Shares、基础余额与结清记录。
+4. 非 Pro 点击弹出订阅页；「100% Ad-Free」卖点已改为中性「Ad-Free Experience」。
 
 ---
 
@@ -603,9 +602,9 @@ xcodebuild -project SplitwiseApp.xcodeproj -scheme SplitwiseApp \
 
 ### Phase 2（1 周）— 合规可提审
 
-- [ ] 隐私政策 / 条款网页 + 应用内链接  
-- [ ] 订阅动态价格与完整披露（若启用 IAP）  
-- [ ] Pro 门禁与恢复购买验收  
+- [x] 隐私政策 / 条款网页 + 应用内链接  
+- [x] 订阅动态价格与完整披露（若启用 IAP）  
+- [x] Pro 门禁与恢复购买验收  
 - [ ] 本地化至少 en + 一个目标市场语言  
 - [ ] ASC 截图、审核备注、演示账号说明（本地 App 可说明无需账号）  
 
@@ -629,7 +628,7 @@ xcodebuild -project SplitwiseApp.xcodeproj -scheme SplitwiseApp \
 | I-05 | ✅ | P0 | Camera/Face ID/Push 声明与实现不符 | 已删未实现权限与空开关 |
 | I-06 | ✅ | P0 | 多币种未换算 | 余额引擎统一换算到基准币 |
 | I-07 | ❌ | P1 | 邀请/协同虚假承诺 | `AddFriendView.swift` |
-| I-08 | ❌ | P1 | Pro 无门禁 | 全 Views |
+| I-08 | ✅ | P1 | Pro 无门禁 | `ProAccess` 统一门禁 + Paywall |
 | I-09 | ✅ | P1 | 分摊覆盖、无校验、Itemized 丢条目 | `SplitMath` + Options 草稿校验 |
 | I-10 | ❌ | P1 | 循环账单仅存字段 | `Expense.swift`, `AddExpenseView.swift` |
 | I-11 | ✅ | P1 | OCR 失败写入 Mock 数据 | 失败抛错 + Demo 仅 DEBUG |

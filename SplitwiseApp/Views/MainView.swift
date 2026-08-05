@@ -161,5 +161,8 @@ public struct MainView: View {
         .sheet(isPresented: $showingGlobalAddExpense) {
             AddExpenseView()
         }
+        .sheet(isPresented: Bindable(PaywallPresenter.shared).isPresented) {
+            SplitwiseProView()
+        }
     }
 }

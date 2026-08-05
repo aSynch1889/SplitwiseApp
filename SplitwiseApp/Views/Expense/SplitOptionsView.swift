@@ -25,6 +25,10 @@ public struct SplitOptionsView: View {
                     HStack(spacing: 8) {
                         ForEach(SplitMethod.allCases) { method in
                             Button {
+                                if method == .itemized && !ProAccess.isPro {
+                                    PaywallPresenter.shared.present(for: .itemizedSplit)
+                                    return
+                                }
                                 draftMethod = method
                                 recalculateSplits(for: method)
                             } label: {
@@ -35,6 +39,9 @@ public struct SplitOptionsView: View {
                                     Text(method.rawValue)
                                         .font(.subheadline)
                                         .fontWeight(.medium)
+                                    if method == .itemized && !ProAccess.isPro {
+                                        ProBadge()
+                                    }
                                 }
                                 .padding(.horizontal, 14)
                                 .padding(.vertical, 8)

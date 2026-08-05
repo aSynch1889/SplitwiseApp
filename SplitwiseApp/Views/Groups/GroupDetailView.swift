@@ -133,16 +133,27 @@ public struct GroupDetailView: View {
             }
 
             Button {
-                showingSimplifyDebts = true
+                if group.simplifyDebts {
+                    ProAccess.require(.debtSimplification) {
+                        showingSimplifyDebts = true
+                    }
+                } else {
+                    showingSimplifyDebts = true
+                }
             } label: {
-                Label(group.simplifyDebts ? "Simplify" : "Balances", systemImage: "arrow.triangle.merge")
-                    .font(.subheadline)
-                    .fontWeight(.semibold)
-                    .foregroundColor(ColorTheme.brandTeal)
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 10)
-                    .background(ColorTheme.brandTeal.opacity(0.12))
-                    .cornerRadius(10)
+                HStack(spacing: 4) {
+                    Label(group.simplifyDebts ? "Simplify" : "Balances", systemImage: "arrow.triangle.merge")
+                    if group.simplifyDebts && !ProAccess.isPro {
+                        ProBadge()
+                    }
+                }
+                .font(.subheadline)
+                .fontWeight(.semibold)
+                .foregroundColor(ColorTheme.brandTeal)
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 10)
+                .background(ColorTheme.brandTeal.opacity(0.12))
+                .cornerRadius(10)
             }
 
             Button {

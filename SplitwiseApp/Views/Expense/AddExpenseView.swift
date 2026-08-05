@@ -210,7 +210,12 @@ public struct AddExpenseView: View {
                         #endif
                         Spacer()
                         Button(receiptImageData == nil ? "Attach" : "Change") {
-                            showingReceiptPicker = true
+                            ProAccess.require(.receiptOCR) {
+                                showingReceiptPicker = true
+                            }
+                        }
+                        if !ProAccess.isPro {
+                            ProBadge()
                         }
                     }
                 }
