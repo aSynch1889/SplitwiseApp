@@ -4,6 +4,35 @@ import SwiftData
 @MainActor
 public enum SampleData {
 
+    /// Create a blank current-user profile when the store has no users.
+    public static func ensureCurrentUserExists(context: ModelContext) {
+        let descriptor = FetchDescriptor<User>(
+            predicate: #Predicate { $0.isCurrentUser }
+        )
+        if let existing = try? context.fetch(descriptor), !existing.isEmpty {
+            return
+        }
+
+        let allUsers = (try? context.fetch(FetchDescriptor<User>())) ?? []
+        if allUsers.isEmpty {
+            let me = User(
+                name: "Me",
+                email: "",
+                avatarName: "person.crop.circle.fill",
+                defaultCurrency: "USD",
+                isCurrentUser: true
+            )
+            context.insert(me)
+            try? context.save()
+            return
+        }
+
+        if let first = allUsers.first {
+            first.isCurrentUser = true
+            try? context.save()
+        }
+    }
+
     public static func populateIfEmpty(context: ModelContext) {
         let descriptor = FetchDescriptor<User>()
         let existingUsers = (try? context.fetch(descriptor)) ?? []

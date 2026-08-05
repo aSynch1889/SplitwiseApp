@@ -9,6 +9,7 @@ public struct AccountView: View {
     @Query(filter: #Predicate<User> { $0.isCurrentUser }) private var currentUsers: [User]
 
     @State private var showingProView = false
+    @State private var showingResetConfirm = false
 
     private var currentUser: User? {
         currentUsers.first
@@ -124,28 +125,49 @@ public struct AccountView: View {
                             .foregroundColor(.secondary)
                     }
 
+                    #if DEBUG
                     Button(role: .destructive) {
-                        resetDemoData()
+                        showingResetConfirm = true
                     } label: {
                         Label("Reset Demo Sample Data", systemImage: "arrow.triangle.2.circlepath")
                             .foregroundColor(.red)
                     }
+                    #endif
                 }
             }
             .navigationTitle("Account")
             .sheet(isPresented: $showingProView) {
                 SplitwiseProView()
             }
+            #if DEBUG
+            .confirmationDialog(
+                "Reset all data and reload sample demo content?",
+                isPresented: $showingResetConfirm,
+                titleVisibility: .visible
+            ) {
+                Button("Reset & Load Sample", role: .destructive) {
+                    resetDemoData()
+                }
+                Button("Cancel", role: .cancel) {}
+            }
+            #endif
         }
     }
 
+    #if DEBUG
     private func resetDemoData() {
-        try? modelContext.delete(model: Expense.self)
-        try? modelContext.delete(model: Group.self)
-        try? modelContext.delete(model: Settlement.self)
-        try? modelContext.delete(model: ActivityLog.self)
-        try? modelContext.delete(model: User.self)
-
-        SampleData.populateIfEmpty(context: modelContext)
+        do {
+            try modelContext.delete(model: Expense.self)
+            try modelContext.delete(model: Group.self)
+            try modelContext.delete(model: Settlement.self)
+            try modelContext.delete(model: ActivityLog.self)
+            try modelContext.delete(model: User.self)
+            try modelContext.save()
+            SampleData.populateIfEmpty(context: modelContext)
+            appState.resolveCurrentUser(from: modelContext)
+        } catch {
+            print("Reset demo data failed: \(error)")
+        }
     }
+    #endif
 }

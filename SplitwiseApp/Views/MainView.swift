@@ -5,6 +5,8 @@ public struct MainView: View {
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @Environment(\.modelContext) private var modelContext
     @Environment(AppState.self) private var appState
+    @AppStorage("shouldLoadSampleData") private var shouldLoadSampleData: Bool = false
+    @AppStorage("didSeedInitialData") private var didSeedInitialData: Bool = false
 
     @State private var selectedSidebarItem: SidebarItem? = .groups
     @State private var showingGlobalAddExpense = false
@@ -144,7 +146,16 @@ public struct MainView: View {
             }
         }
         .onAppear {
-            SampleData.populateIfEmpty(context: modelContext)
+            if !didSeedInitialData {
+                if shouldLoadSampleData {
+                    SampleData.populateIfEmpty(context: modelContext)
+                } else {
+                    SampleData.ensureCurrentUserExists(context: modelContext)
+                }
+                didSeedInitialData = true
+            } else {
+                SampleData.ensureCurrentUserExists(context: modelContext)
+            }
             appState.resolveCurrentUser(from: modelContext)
         }
         .sheet(isPresented: $showingGlobalAddExpense) {

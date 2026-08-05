@@ -345,17 +345,13 @@ xcodebuild -project SplitwiseApp.xcodeproj -scheme SplitwiseApp \
 
 ### 4.8 样例数据与「重置 Demo」面向生产用户
 
-**现象**
+**状态：✅ 已修复（I-13）**
 
-- 首次进入自动 `SampleData.populateIfEmpty`。  
-- Account 有 **Reset Demo Sample Data** 破坏性操作。  
-- 用户真实数据会被演示人设（Alex Johnson 等）淹没认知。
+**修复说明**
 
-**解决方案**
-
-1. 首次引导二选一：「从空白开始」/「加载示例数据」。  
-2. Reset 仅 DEBUG 或移到隐藏手势，并二次确认。  
-3. 生产默认空白库；示例用单独「Demo Mode」入口。
+1. Onboarding 结束时二选一：「Start Blank」/「Load Sample Data」。
+2. 空白启动仅创建当前用户；样例数据按选择填充。
+3. Reset Demo 仅 DEBUG 可见，并二次确认；失败不再静默吞掉。
 
 ---
 
@@ -485,11 +481,13 @@ xcodebuild -project SplitwiseApp.xcodeproj -scheme SplitwiseApp \
 
 ### 5.4 PDF 导出分页与大数据（复评升为 P1）
 
-- **状态：❌ 未修复，并比初评更严重（I-16）**
-- PDF 明确使用 `expenses.prefix(30)`，第 31 条起被静默丢弃；`settlements` 参数完全未绘制。
-- 换页后不重绘标题/表头，摘要又直接混加多币种。
-- CSV 未处理以 `=`, `+`, `-`, `@` 开头的用户输入，导入表格软件时存在公式注入风险；姓名的引号/换行转义也不完整。
-- **方案**：完整分页、重复表头、包含 settlements、导出前币种策略；对 CSV 所有字段做 RFC 4180 转义与公式前缀防护，并测试 0/30/31/1000 条。
+**状态：✅ 已修复（I-16）**
+
+**修复说明**
+
+1. PDF 导出全部 expenses（无 30 条截断），换页重绘标题/表头，包含 settlements。
+2. 金额换算到导出基准币种。
+3. CSV 全字段 RFC 4180 转义，并对 `=+-@` 前缀做公式注入防护。
 
 ### 5.5 好友/群组成员管理
 
@@ -599,9 +597,9 @@ xcodebuild -project SplitwiseApp.xcodeproj -scheme SplitwiseApp \
 - [x] 修复订阅冷启动权益与 Product ID 白名单
 - [x] 修正文案或更换可证明的债务最少笔数算法
 - [x] 修复图表 timeframe / 年月排序 / 指标口径
-- [ ] 样例数据可选  
+- [x] 样例数据可选  
 - [ ] 基础单元测试（DebtSimplifier + Split）  
-- [ ] 导出完整性（31+ 条、settlements、CSV 注入）
+- [x] 导出完整性（31+ 条、settlements、CSV 注入）
 - [x] 好友详情 Add Expense 入口（I-23，与 Phase 0 一并完成）
 
 ### Phase 2（1 周）— 合规可提审
@@ -637,10 +635,10 @@ xcodebuild -project SplitwiseApp.xcodeproj -scheme SplitwiseApp \
 | I-10 | ❌ | P1 | 循环账单仅存字段 | `Expense.swift`, `AddExpenseView.swift` |
 | I-11 | ✅ | P1 | OCR 失败写入 Mock 数据 | 失败抛错 + Demo 仅 DEBUG |
 | I-12 | ❌ | P1 | 语言切换无效；中/繁各 9/208 | `Localizable.xcstrings`, `AppState.swift` |
-| I-13 | ❌ | P1 | 强制样例数据、危险 Reset Demo | `MainView.swift`, `AccountView.swift` |
+| I-13 | ✅ | P1 | 强制样例数据、危险 Reset Demo | Onboarding 可选 + Reset 仅 DEBUG |
 | I-14 | ℹ️ | P3 | JPEG 图标为有损质量项，不是已证实阻断 | 1024×1024、无 alpha；两配置构建成功 |
 | I-15 | ❌ | P2 | 无测试、迁移与容器失败恢复 | 无 Test target；`fatalError` |
-| I-16 | ❌ | P1 | PDF 截断/漏 settlement、CSV 注入 | `ExportManager.swift:105` |
+| I-16 | ✅ | P1 | PDF 截断/漏 settlement、CSV 注入 | 全量分页 + settlements + CSV 防护 |
 | I-17 | ✅ | P0 | No Group 错分给全部用户/可保存孤儿 payer | `AddExpenseView` 个人/好友参与者模型 |
 | I-18 | ✅ | P0 | 缺少 Required Reason API 隐私清单 | 已加入 `PrivacyInfo.xcprivacy` (CA92.1) |
 | I-19 | ✅ | P1 | 订阅冷启动不恢复、任意 entitlement 解锁 | 冷启动恢复 + Product ID 白名单 |

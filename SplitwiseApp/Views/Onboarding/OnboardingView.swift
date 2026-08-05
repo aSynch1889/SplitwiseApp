@@ -2,7 +2,9 @@ import SwiftUI
 
 public struct OnboardingView: View {
     @AppStorage("hasCompletedOnboarding") private var hasCompletedOnboarding: Bool = false
+    @AppStorage("shouldLoadSampleData") private var shouldLoadSampleData: Bool = false
     @State private var currentTab: Int = 0
+    @State private var showingDataChoice = false
 
     struct OnboardingSlide: Identifiable {
         let id: Int
@@ -24,22 +26,22 @@ public struct OnboardingView: View {
             id: 1,
             iconName: "arrow.triangle.merge",
             title: "Smart Debt Simplification",
-            description: "Our min-flow algorithm automatically combines net balances, reducing dozens of messy debts into the minimum possible transfer payments.",
-            badge: "Graph Algorithm"
+            description: "Net balances to reduce transfers between group members using a simple pairing heuristic (not a proven global minimum).",
+            badge: "Local AA Tool"
         ),
         OnboardingSlide(
             id: 2,
             iconName: "doc.text.viewfinder",
             title: "Vision OCR Receipt Scanner",
-            description: "Snap a photo of your paper receipt! Splitwise Pro automatically extracts amounts, items, and tax to fill out your bill instantly.",
-            badge: "Vision AI OCR"
+            description: "Pick a receipt photo and parse amounts on-device. If scanning fails, enter the expense manually — no fake demo data.",
+            badge: "Vision OCR"
         ),
         OnboardingSlide(
             id: 3,
             iconName: "chart.bar.doc.horizontal.fill",
             title: "Analytics & PDF Statements",
-            description: "Visualize spending trends with Swift Charts and export professional PDF/CSV statements for taxes, trips, and roommates.",
-            badge: "Splitwise Pro"
+            description: "Visualize your share of spending with charts and export PDF/CSV statements for trips and roommates.",
+            badge: "Insights"
         )
     ]
 
@@ -49,12 +51,11 @@ public struct OnboardingView: View {
                 .ignoresSafeArea()
 
             VStack(spacing: 20) {
-                // Top Bar Skip Button
                 HStack {
                     Spacer()
                     if currentTab < slides.count - 1 {
                         Button("Skip") {
-                            completeOnboarding()
+                            showingDataChoice = true
                         }
                         .font(.subheadline)
                         .fontWeight(.semibold)
@@ -64,7 +65,6 @@ public struct OnboardingView: View {
                     }
                 }
 
-                // Carousel Page View
                 TabView(selection: $currentTab) {
                     ForEach(slides) { slide in
                         slideView(slide)
@@ -76,11 +76,10 @@ public struct OnboardingView: View {
                 .indexViewStyle(.page(backgroundDisplayMode: .always))
                 #endif
 
-                // Bottom Action Button
                 VStack(spacing: 12) {
                     if currentTab == slides.count - 1 {
                         Button {
-                            completeOnboarding()
+                            showingDataChoice = true
                         } label: {
                             Text("Get Started")
                                 .font(.headline)
@@ -115,6 +114,17 @@ public struct OnboardingView: View {
                 .padding(.horizontal, 24)
                 .padding(.bottom, 30)
             }
+        }
+        .confirmationDialog("How do you want to start?", isPresented: $showingDataChoice, titleVisibility: .visible) {
+            Button("Start Blank") {
+                completeOnboarding(loadSample: false)
+            }
+            Button("Load Sample Data") {
+                completeOnboarding(loadSample: true)
+            }
+            Button("Cancel", role: .cancel) {}
+        } message: {
+            Text("Blank starts with only your profile. Sample data adds demo friends, groups, and expenses.")
         }
     }
 
@@ -156,7 +166,8 @@ public struct OnboardingView: View {
         }
     }
 
-    private func completeOnboarding() {
+    private func completeOnboarding(loadSample: Bool) {
+        shouldLoadSampleData = loadSample
         withAnimation {
             hasCompletedOnboarding = true
         }
