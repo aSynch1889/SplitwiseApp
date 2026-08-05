@@ -30,6 +30,7 @@
 		5D25717089853C183E07495A /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4160F1F8A7E4E54D06182F /* AppState.swift */; };
 		5E3231BF53D79EB563BD5E97 /* ExportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4EFE3DACE2FA771F7175A5 /* ExportManager.swift */; };
 		62B1F8334F1D058992CFDCB1 /* CategoryIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C96711D4AD58B8AD6501B4 /* CategoryIconView.swift */; };
+		6A1623FAFDA4DE21E2FEF1AB /* SplitwiseAppCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6BF8357926AF9F79BA94FFC /* SplitwiseAppCoreTests.swift */; };
 		6DD1B3327852C584B1D709C2 /* Settlement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857D66FEFA249437EE31CD1A /* Settlement.swift */; };
 		6F000DD1FAEB135FDD7AD5FE /* ActivityLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23225D68B2BB931F38F17F51 /* ActivityLog.swift */; };
 		71A1ED268F41CF1FB659B68F /* StoreKit.storekit in Resources */ = {isa = PBXBuildFile; fileRef = A513CFED9698D00C3E7161F8 /* StoreKit.storekit */; };
@@ -56,6 +57,16 @@
 		FFC4F99ECC6C0A0BBCF67F91 /* SplitMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = B017574B45A045817433FF08 /* SplitMath.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		8FBFF7BBAB7F4E795653DE98 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7CDF7093C1379716A9B2D767 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AD98287837BE93E01207691E;
+			remoteInfo = SplitwiseApp;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		04795DBD3F6E5E68F8AA2773 /* FriendsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsListView.swift; sourceTree = "<group>"; };
 		0B8775F697CF36F8C3635BE9 /* ExportReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportReportView.swift; sourceTree = "<group>"; };
@@ -71,6 +82,7 @@
 		23225D68B2BB931F38F17F51 /* ActivityLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLog.swift; sourceTree = "<group>"; };
 		252393345A60DFAC29B3781B /* SettleUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettleUpView.swift; sourceTree = "<group>"; };
 		276917BAD86EDB1E73F7C5E1 /* SplitwiseProView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitwiseProView.swift; sourceTree = "<group>"; };
+		30F8AE991BBCB9F31C3C7F19 /* SplitwiseAppTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = SplitwiseAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3409B2C403D911C9D3F51C0B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3C71A01C8FF47B7B1C5F7190 /* GroupListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListView.swift; sourceTree = "<group>"; };
 		3C7F26B85E1ECACD432E58D9 /* CreateGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupView.swift; sourceTree = "<group>"; };
@@ -96,6 +108,7 @@
 		B2A1CCD39794D4FF69694DBF /* SimplifyDebtsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplifyDebtsView.swift; sourceTree = "<group>"; };
 		BFD039E08E4A9D049E10D84A /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		C5E092EF0322B30A1007F725 /* SplitOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitOptionsView.swift; sourceTree = "<group>"; };
+		C6BF8357926AF9F79BA94FFC /* SplitwiseAppCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitwiseAppCoreTests.swift; sourceTree = "<group>"; };
 		C7F9FDC5112809A5F2EA027D /* ProSubscriptionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProSubscriptionManager.swift; sourceTree = "<group>"; };
 		C805858CFE508930F72957DD /* DebtSimplifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtSimplifier.swift; sourceTree = "<group>"; };
 		D5BA1E34AFBE438DA65E5212 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
@@ -230,14 +243,24 @@
 			isa = PBXGroup;
 			children = (
 				4B86614DA51BD09683BB6850 /* SplitwiseApp.app */,
+				30F8AE991BBCB9F31C3C7F19 /* SplitwiseAppTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		CF67B55CD32F4007BDE37B99 /* SplitwiseAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				C6BF8357926AF9F79BA94FFC /* SplitwiseAppCoreTests.swift */,
+			);
+			path = SplitwiseAppTests;
 			sourceTree = "<group>";
 		};
 		D04EA38BB1B48A0FCA997F5F = {
 			isa = PBXGroup;
 			children = (
 				9159D6D2AD85E6D7FF182A9B /* SplitwiseApp */,
+				CF67B55CD32F4007BDE37B99 /* SplitwiseAppTests */,
 				B147CAFE9645E1900FC79E07 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -309,6 +332,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		901875ECA03E4C95CCA4B4A0 /* SplitwiseAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5096EAB237489E71DCB2C6BD /* Build configuration list for PBXNativeTarget "SplitwiseAppTests" */;
+			buildPhases = (
+				AF2BD23396CAC27ED40F0347 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				192FECDC4089C708C08094D0 /* PBXTargetDependency */,
+			);
+			name = SplitwiseAppTests;
+			packageProductDependencies = (
+			);
+			productName = SplitwiseAppTests;
+			productReference = 30F8AE991BBCB9F31C3C7F19 /* SplitwiseAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		AD98287837BE93E01207691E /* SplitwiseApp */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CD97F480178583B221C52011 /* Build configuration list for PBXNativeTarget "SplitwiseApp" */;
@@ -336,6 +377,9 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					901875ECA03E4C95CCA4B4A0 = {
+						ProvisioningStyle = Automatic;
+					};
 					AD98287837BE93E01207691E = {
 						ProvisioningStyle = Automatic;
 					};
@@ -360,6 +404,7 @@
 			projectRoot = "";
 			targets = (
 				AD98287837BE93E01207691E /* SplitwiseApp */,
+				901875ECA03E4C95CCA4B4A0 /* SplitwiseAppTests */,
 			);
 		};
 /* End PBXProject section */
@@ -379,6 +424,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		AF2BD23396CAC27ED40F0347 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A1623FAFDA4DE21E2FEF1AB /* SplitwiseAppCoreTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B9A7653C1E1134EB17E3CC6F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -431,13 +484,40 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		192FECDC4089C708C08094D0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AD98287837BE93E01207691E /* SplitwiseApp */;
+			targetProxy = 8FBFF7BBAB7F4E795653DE98 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		2191D9F5F19F791A18D8D289 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.splitwise.ios.app.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SplitwiseApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SplitwiseApp";
+			};
+			name = Release;
+		};
 		7561981EC926CF7495CE20CD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = SplitwiseApp/App/Info.plist;
@@ -455,12 +535,31 @@
 			};
 			name = Release;
 		};
+		8BAC0BB7CBE914F7248C6CE8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.splitwise.ios.app.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SplitwiseApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SplitwiseApp";
+			};
+			name = Debug;
+		};
 		947AC13A2715174FDD1D967D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = SplitwiseApp/App/Info.plist;
@@ -602,6 +701,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		5096EAB237489E71DCB2C6BD /* Build configuration list for PBXNativeTarget "SplitwiseAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8BAC0BB7CBE914F7248C6CE8 /* Debug */,
+				2191D9F5F19F791A18D8D289 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
 		9D13921B48CF3F9AB51ECACB /* Build configuration list for PBXProject "SplitwiseApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

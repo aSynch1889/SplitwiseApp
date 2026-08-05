@@ -135,7 +135,7 @@ public struct GroupDetailView: View {
             Button {
                 showingSimplifyDebts = true
             } label: {
-                Label("Simplify", systemImage: "arrow.triangle.merge")
+                Label(group.simplifyDebts ? "Simplify" : "Balances", systemImage: "arrow.triangle.merge")
                     .font(.subheadline)
                     .fontWeight(.semibold)
                     .foregroundColor(ColorTheme.brandTeal)

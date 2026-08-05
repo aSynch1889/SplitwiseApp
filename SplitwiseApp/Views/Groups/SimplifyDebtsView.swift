@@ -10,6 +10,8 @@ public struct SimplifyDebtsView: View {
 
     @State private var showingSimplifiedOnly = true
 
+    private var canSimplify: Bool { group.simplifyDebts }
+
     public var body: some View {
         NavigationStack {
             ScrollView {
@@ -20,11 +22,13 @@ public struct SimplifyDebtsView: View {
                             Image(systemName: "wand.and.stars")
                                 .font(.title2)
                                 .foregroundColor(ColorTheme.brandTeal)
-                            Text("Splitwise Debt Simplification")
+                            Text(canSimplify ? "Debt Simplification" : "Raw Pairwise Balances")
                                 .font(.headline)
                         }
 
-                        Text("Debt simplification nets balances to reduce transfers between members (greedy heuristic; not a proven global minimum). Amounts are converted to the group currency using in-app static rates (not live FX).")
+                        Text(canSimplify
+                             ? "Debt simplification nets balances to reduce transfers between members (greedy heuristic; not a proven global minimum). Amounts are converted to the group currency using in-app static rates (not live FX)."
+                             : "Simplify Debts is turned off for this group. Showing raw pairwise balances only.")
                             .font(.subheadline)
                             .foregroundColor(.secondary)
                     }
@@ -33,13 +37,14 @@ public struct SimplifyDebtsView: View {
                     .cornerRadius(16)
                     .padding(.horizontal)
 
-                    // Toggle segment
-                    Picker("Mode", selection: $showingSimplifiedOnly) {
-                        Text("Simplified Debts").tag(true)
-                        Text("Raw Individual Debts").tag(false)
+                    if canSimplify {
+                        Picker("Mode", selection: $showingSimplifiedOnly) {
+                            Text("Simplified Debts").tag(true)
+                            Text("Raw Individual Debts").tag(false)
+                        }
+                        .pickerStyle(.segmented)
+                        .padding(.horizontal)
                     }
-                    .pickerStyle(.segmented)
-                    .padding(.horizontal)
 
                     let simplifiedTx = DebtSimplifier.simplifyDebts(
                         members: members,
@@ -55,43 +60,43 @@ public struct SimplifyDebtsView: View {
                         currency: group.defaultCurrency
                     )
 
-                    // Stat comparison
-                    HStack(spacing: 16) {
-                        VStack {
-                            Text("\(rawTx.count)")
-                                .font(.title)
-                                .fontWeight(.bold)
-                                .foregroundColor(.secondary)
-                            Text("Raw Transactions")
-                                .font(.caption)
-                                .foregroundColor(.secondary)
-                        }
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(ColorTheme.cardBackground)
-                        .cornerRadius(12)
+                    if canSimplify {
+                        HStack(spacing: 16) {
+                            VStack {
+                                Text("\(rawTx.count)")
+                                    .font(.title)
+                                    .fontWeight(.bold)
+                                    .foregroundColor(.secondary)
+                                Text("Raw Transactions")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                            }
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(ColorTheme.cardBackground)
+                            .cornerRadius(12)
 
-                        Image(systemName: "arrow.right")
-                            .foregroundColor(ColorTheme.brandTeal)
+                            Image(systemName: "arrow.right")
+                                .foregroundColor(ColorTheme.brandTeal)
 
-                        VStack {
-                            Text("\(simplifiedTx.count)")
-                                .font(.title)
-                                .fontWeight(.bold)
-                                .foregroundColor(ColorTheme.brandTeal)
-                            Text("Simplified Transactions")
-                                .font(.caption)
-                                .foregroundColor(ColorTheme.brandTeal)
+                            VStack {
+                                Text("\(simplifiedTx.count)")
+                                    .font(.title)
+                                    .fontWeight(.bold)
+                                    .foregroundColor(ColorTheme.brandTeal)
+                                Text("Simplified Transactions")
+                                    .font(.caption)
+                                    .foregroundColor(ColorTheme.brandTeal)
+                            }
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(ColorTheme.cardBackground)
+                            .cornerRadius(12)
                         }
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(ColorTheme.cardBackground)
-                        .cornerRadius(12)
+                        .padding(.horizontal)
                     }
-                    .padding(.horizontal)
 
-                    // List of transactions
-                    let activeList = showingSimplifiedOnly ? simplifiedTx : rawTx
+                    let activeList = (canSimplify && showingSimplifiedOnly) ? simplifiedTx : rawTx
 
                     if activeList.isEmpty {
                         VStack(spacing: 10) {
@@ -108,7 +113,7 @@ public struct SimplifyDebtsView: View {
                         .padding()
                     } else {
                         VStack(alignment: .leading, spacing: 12) {
-                            Text(showingSimplifiedOnly ? "Optimal Payments Plan" : "Individual Debt List")
+                            Text((canSimplify && showingSimplifiedOnly) ? "Reduced Transfers Plan" : "Individual Debt List")
                                 .font(.headline)
                                 .padding(.horizontal)
 
@@ -122,10 +127,13 @@ public struct SimplifyDebtsView: View {
                 .padding(.vertical)
             }
             .background(ColorTheme.viewBackground)
-            .navigationTitle("Simplify Debts")
+            .navigationTitle(canSimplify ? "Simplify Debts" : "Balances")
             #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)
             #endif
+            .onAppear {
+                showingSimplifiedOnly = canSimplify
+            }
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Done") { dismiss() }

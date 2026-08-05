@@ -199,10 +199,19 @@ public struct GroupListView: View {
     }
 
     private func calculateOverallNetBalance() -> Double {
+        let activeGroupIds = Set(groups.filter { !$0.isArchived }.map(\.id))
+        let activeExpenses = expenses.filter { expense in
+            guard let groupId = expense.groupId else { return true }
+            return activeGroupIds.contains(groupId)
+        }
+        let activeSettlements = settlements.filter { settlement in
+            guard let groupId = settlement.groupId else { return true }
+            return activeGroupIds.contains(groupId)
+        }
         let balances = DebtSimplifier.calculateNetBalances(
             members: users,
-            expenses: expenses,
-            settlements: settlements,
+            expenses: activeExpenses,
+            settlements: activeSettlements,
             baseCurrency: appState.selectedCurrency
         )
         return balances[appState.currentUserId] ?? 0.0

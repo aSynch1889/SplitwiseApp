@@ -424,12 +424,12 @@ xcodebuild -project SplitwiseApp.xcodeproj -scheme SplitwiseApp \
 
 ### 4.14 归档与 Simplify 开关只有展示效果（新增）
 
-**状态：❌ 未修复（I-22）**
+**状态：✅ 已修复（I-22）**
 
-- Overall Balance 仍计算全部 groups/expenses，归档群组不会从总体提醒中排除，与设置页文案冲突。
-- `group.simplifyDebts` 只显示 badge；Simplify 按钮和算法始终可用，开关没有业务效果。
+**修复说明**
 
-**修复**：明确归档是否影响总余额，并统一查询；关闭 simplify 时展示 raw pairwise 结果或隐藏简化入口，同时加入状态测试。
+1. Overall Balance 仅统计非归档群组的 expenses/settlements（无群组账单仍计入）。
+2. `simplifyDebts == false` 时入口改为「Balances」，Simplify 页只展示 raw pairwise。
 
 ---
 
@@ -523,10 +523,9 @@ xcodebuild -project SplitwiseApp.xcodeproj -scheme SplitwiseApp \
 
 ### 5.11 构建通过，但不存在可执行测试基线
 
-- **状态：❌ 未修复（I-25）**
-- Debug/Release 模拟器构建均成功，说明源码与资产在 Xcode 26.3 下可编译。
-- `xcodebuild test` 返回 “Scheme SplitwiseApp is not currently configured for the test action”；当前没有 Test target，而不是“测试为 0 个但通过”。
-- **方案**：新增 Unit Test 与 UI Test target；先覆盖身份解析、分摊不变量、多币种、settlement 正负号、订阅 entitlement 和 3 分钟审核主路径。
+- **状态：⚠️ 部分修复（I-25）**
+- 已新增 `SplitwiseAppTests`（DebtSimplifier + SplitMath，6 项通过）；Scheme 已配置 testTargets。
+- ModelContainer `fatalError` 与 CI 流水线仍待后续。
 
 ---
 
@@ -598,9 +597,10 @@ xcodebuild -project SplitwiseApp.xcodeproj -scheme SplitwiseApp \
 - [x] 修正文案或更换可证明的债务最少笔数算法
 - [x] 修复图表 timeframe / 年月排序 / 指标口径
 - [x] 样例数据可选  
-- [ ] 基础单元测试（DebtSimplifier + Split）  
+- [x] 基础单元测试（DebtSimplifier + Split）  
 - [x] 导出完整性（31+ 条、settlements、CSV 注入）
 - [x] 好友详情 Add Expense 入口（I-23，与 Phase 0 一并完成）
+- [x] 归档与 Simplify 开关生效（I-22）
 
 ### Phase 2（1 周）— 合规可提审
 
@@ -637,17 +637,17 @@ xcodebuild -project SplitwiseApp.xcodeproj -scheme SplitwiseApp \
 | I-12 | ❌ | P1 | 语言切换无效；中/繁各 9/208 | `Localizable.xcstrings`, `AppState.swift` |
 | I-13 | ✅ | P1 | 强制样例数据、危险 Reset Demo | Onboarding 可选 + Reset 仅 DEBUG |
 | I-14 | ℹ️ | P3 | JPEG 图标为有损质量项，不是已证实阻断 | 1024×1024、无 alpha；两配置构建成功 |
-| I-15 | ❌ | P2 | 无测试、迁移与容器失败恢复 | 无 Test target；`fatalError` |
+| I-15 | ⚠️ | P2 | 无测试、迁移与容器失败恢复 | 已加 Unit Test target（6 通过）；迁移恢复仍缺 |
 | I-16 | ✅ | P1 | PDF 截断/漏 settlement、CSV 注入 | 全量分页 + settlements + CSV 防护 |
 | I-17 | ✅ | P0 | No Group 错分给全部用户/可保存孤儿 payer | `AddExpenseView` 个人/好友参与者模型 |
 | I-18 | ✅ | P0 | 缺少 Required Reason API 隐私清单 | 已加入 `PrivacyInfo.xcprivacy` (CA92.1) |
 | I-19 | ✅ | P1 | 订阅冷启动不恢复、任意 entitlement 解锁 | 冷启动恢复 + Product ID 白名单 |
 | I-20 | ✅ | P1 | 债务算法不保证最少笔数，Raw 结算不完整 | 诚实文案 + Raw 净额/超额结算 |
 | I-21 | ✅ | P1 | 图表 timeframe/年月/币种/指标口径错误 | Your Share + 换算 + year/month 排序 |
-| I-22 | ❌ | P1 | Archived 与 simplify 开关不影响行为 | `GroupListView.swift`, `GroupDetailView.swift` |
+| I-22 | ✅ | P1 | Archived 与 simplify 开关不影响行为 | Overall 排除归档；关闭则只显示 Raw |
 | I-23 | ✅ | P1 | iPhone 好友直接记账不可达 | `FriendDetailView` 已接 Add Expense Sheet |
 | I-24 | ❌ | P1 | 持久化/重置/导出错误静默吞掉 | 全项目至少 12 处 mutation `try?` |
-| I-25 | ❌ | P2 | 可构建但有警告且无可执行测试基线 | Xcode Debug/Release build；test action 缺失 |
+| I-25 | ⚠️ | P2 | 可构建但有警告且无可执行测试基线 | Unit Test target 已加；警告/CI 仍待 |
 
 ---
 
