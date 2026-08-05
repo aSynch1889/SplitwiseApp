@@ -311,18 +311,13 @@ xcodebuild -project SplitwiseApp.xcodeproj -scheme SplitwiseApp \
 
 ### 4.7 语言切换无效 + 本地化严重不完整
 
-**现象**
+**状态：✅ 已修复（I-12）**
 
-- Account 有语言 Picker，但未设置 `AppleLanguages` / 自定义 `Bundle` / `environment(\.locale)`。  
-- `Localizable.xcstrings` 共 **208 keys，zh-Hans 与 zh-Hant 各仅 9 条已翻译（4.3%）**；大量 key 为空壳。
-- Onboarding、Pro、大量业务字符串硬编码英文。
+**修复说明**
 
-**解决方案**
-
-1. 短期：语言跟随系统，移除无效 Picker。  
-2. 中期：完整翻译 en / zh-Hans / zh-Hant；用 String Catalog 状态跟踪。  
-3. 若要做应用内语言：重启生效或 `id` 刷新根视图 + 自定义 localization bundle。  
-4. 截图与 ASC 本地化语言与实际可用语言一致。
+1. 应用内语言通过 `LocalizationManager` + Bundle swizzle 实时切换（免重启）。
+2. String Catalog：zh-Hans / zh-Hant 已覆盖绝大部分 key（约 215/226 含中文）。
+3. 仍有少量符号/格式串无需翻译；部分新加英文硬编码可继续补录 Catalog。
 
 ---
 
@@ -590,15 +585,15 @@ xcodebuild -project SplitwiseApp.xcodeproj -scheme SplitwiseApp \
 - [x] 隐私政策 / 条款网页 + 应用内链接  
 - [x] 订阅动态价格与完整披露（若启用 IAP）  
 - [x] Pro 门禁与恢复购买验收  
-- [ ] 本地化至少 en + 一个目标市场语言  
-- [ ] ASC 截图、审核备注、演示账号说明（本地 App 可说明无需账号）  
+- [x] 本地化至少 en + 一个目标市场语言  
+- [x] ASC 截图、审核备注、演示账号说明（本地 App 可说明无需账号）  
 
 ### Phase 3（后续）— 产品化
 
 - [ ] 备份/iCloud  
 - [ ] 编辑账单完善  
 - [ ] 性能与无障碍  
-- [ ] 可选账号体系  
+- [ ] 可选账号体系（首发不做；保持本地工具定位）  
 
 ---
 
@@ -617,7 +612,7 @@ xcodebuild -project SplitwiseApp.xcodeproj -scheme SplitwiseApp \
 | I-09 | ✅ | P1 | 分摊覆盖、无校验、Itemized 丢条目 | `SplitMath` + Options 草稿校验 |
 | I-10 | ✅ | P1 | 循环账单仅存字段 | 仅 Never + Coming Soon 提示 |
 | I-11 | ✅ | P1 | OCR 失败写入 Mock 数据 | 失败抛错 + Demo 仅 DEBUG |
-| I-12 | ❌ | P1 | 语言切换无效；中/繁各 9/208 | `Localizable.xcstrings`, `AppState.swift` |
+| I-12 | ✅ | P1 | 语言切换无效；中/繁各 9/208 | 实时切换 + 中/繁 Catalog 已基本覆盖 |
 | I-13 | ✅ | P1 | 强制样例数据、危险 Reset Demo | Onboarding 可选 + Reset 仅 DEBUG |
 | I-14 | ℹ️ | P3 | JPEG 图标为有损质量项，不是已证实阻断 | 1024×1024、无 alpha；两配置构建成功 |
 | I-15 | ⚠️ | P2 | 无测试、迁移与容器失败恢复 | 已加 Unit Test target（6 通过）；迁移恢复仍缺 |
