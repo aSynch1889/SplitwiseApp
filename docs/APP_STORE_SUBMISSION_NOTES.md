@@ -16,7 +16,8 @@
 
 ## 订阅（若启用 IAP）
 
-- Product IDs（当前工程）：`com.splitwise.pro.monthly` / `com.splitwise.pro.yearly`（品牌改名为 BillNest 后将迁移到 `app.billnest.pro.*`）
+- Product IDs（当前工程）：`app.billnest.pro.monthly` / `app.billnest.pro.yearly`
+- Bundle ID：`app.billnest.ios`；显示名：**BillNest**
 - 恢复购买：订阅页 **Restore Purchases**
 - 法律链接：
   - Privacy：https://asynch1889.github.io/BillNest-Legal/privacy.html

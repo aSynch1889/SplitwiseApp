@@ -21,7 +21,7 @@ public struct SplitwiseProView: View {
                                 .foregroundColor(.white)
                         }
 
-                        Text("Splitwise Pro")
+                        Text("BillNest Pro")
                             .font(.system(size: 32, weight: .bold, design: .rounded))
 
                         Text("Unlock high-power features to manage shared expenses like a pro.")
@@ -123,7 +123,7 @@ public struct SplitwiseProView: View {
                 }
             }
             .background(ColorTheme.viewBackground)
-            .navigationTitle("Splitwise Pro")
+            .navigationTitle("BillNest Pro")
             #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)
             #endif

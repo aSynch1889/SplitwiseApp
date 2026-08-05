@@ -21,14 +21,14 @@
       },
       "localizations" : [
         {
-          "description" : "Splitwise Pro Monthly Subscription",
-          "displayName" : "Splitwise Pro Monthly",
+          "description" : "BillNest Pro Monthly Subscription",
+          "displayName" : "BillNest Pro Monthly",
           "locale" : "en_US"
         }
       ],
-      "productID" : "com.splitwise.pro.monthly",
+      "productID" : "app.billnest.pro.monthly",
       "recurringSubscriptionPeriod" : "P1M",
-      "referenceName" : "Splitwise Pro Monthly",
+      "referenceName" : "BillNest Pro Monthly",
       "type" : "RecurringSubscription"
     },
     {
@@ -41,14 +41,14 @@
       "introductoryOffer" : null,
       "localizations" : [
         {
-          "description" : "Splitwise Pro Annual Subscription",
-          "displayName" : "Splitwise Pro Yearly",
+          "description" : "BillNest Pro Annual Subscription",
+          "displayName" : "BillNest Pro Yearly",
           "locale" : "en_US"
         }
       ],
-      "productID" : "com.splitwise.pro.yearly",
+      "productID" : "app.billnest.pro.yearly",
       "recurringSubscriptionPeriod" : "P1Y",
-      "referenceName" : "Splitwise Pro Yearly",
+      "referenceName" : "BillNest Pro Yearly",
       "type" : "RecurringSubscription"
     }
   ],

@@ -24,7 +24,7 @@ public struct LaunchScreenView: View {
                 .opacity(iconOpacity)
 
                 VStack(spacing: 8) {
-                    Text("Splitwise")
+					Text("BillNest")
                         .font(.system(size: 40, weight: .bold, design: .rounded))
                         .foregroundColor(.white)
 

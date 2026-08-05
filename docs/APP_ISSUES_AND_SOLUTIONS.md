@@ -102,33 +102,19 @@ xcodebuild -project SplitwiseApp.xcodeproj -scheme SplitwiseApp \
 
 ### 3.2 品牌与商标：直接使用「Splitwise」命名
 
-**状态：⚠️ 部分修复（I-02）— Phase 0 规划已完成，全量代码替换待 Phase 2**
+**状态：✅ 已修复（I-02）— 用户可见品牌已切换；工程模块名仍为历史 `SplitwiseApp`**
 
-**现象（仍存在）**
+**已完成**
 
-- `CFBundleName`、启动页、导航、Pro 文案、PDF 元数据、StoreKit 商品名均使用 **Splitwise / Splitwise Pro**。
-- Bundle ID：`com.splitwise.ios.app`。
-- README 写「完整复刻 Splitwise」。
+- 显示名 / `CFBundleName` / 启动页 / 主导航 / Pro 文案 / StoreKit 展示名 → **BillNest / BillNest Pro**
+- Bundle ID → `app.billnest.ios`；IAP → `app.billnest.pro.monthly` / `app.billnest.pro.yearly`
+- PDF 元数据此前已为 BillNest；本地化 Catalog 中含 Splitwise 的译文已替换
+- 法律站点已用 BillNest（GitHub Pages）
 
-**Phase 0 定稿方案**
+**仍可选（非上架阻断）**
 
-| 项 | 决策 |
-|----|------|
-| 目标显示名 | **BillNest**（原创 AA 记账，避开 Splitwise 商标） |
-| 新 Bundle ID | `app.billnest.ios`（ASC 新建 App 记录；勿在旧 ID 上硬改已上架包） |
-| IAP Product ID | `app.billnest.pro.monthly` / `app.billnest.pro.yearly` |
-| 文案口径 | 「本地 AA / 分摊记账工具」；禁止「官方复刻 / 兼容 Splitwise」 |
-| 图标与色板 | 保持现有 teal 体系，避免仿官方绿标识别 |
-| 替换范围 | Info.plist、全部 UI 字符串、StoreKit.storekit、PDF 作者、README、工程名（可分步） |
-
-**Phase 2 执行清单（未开始）**
-
-1. 全局字符串与资源替换为 BillNest。
-2. 更新 `project.yml` Bundle ID + 重新 `xcodegen`。
-3. ASC 新建 App + 订阅组；沙盒验证购买。
-4. 法律页与营销材料同步新品牌。
-
-详见下方路线图 Phase 0 勾选「产品改名评估与 Bundle ID 规划」。
+- Swift 类型/目录/仓库名仍含 `SplitwiseApp` / `SplitwiseProView`（内部标识，不出现在商店页）
+- README / 部分 docs 历史叙述可再清 scrub「复刻 Splitwise」
 
 ---
 
@@ -588,7 +574,7 @@ xcodebuild -project SplitwiseApp.xcodeproj -scheme SplitwiseApp \
 | ID | 状态 | 级别 | 问题 | 关键证据 |
 |----|------|------|------|----------|
 | I-01 | ✅ | P0 | currentUserId 随机导致余额错误 | 已持久化 + `resolveCurrentUser` 与 `isCurrentUser` 对齐 |
-| I-02 | ⚠️ | P0 | 商标/品牌 Splitwise | 规划 BillNest；代码全量替换待 Phase 2 |
+| I-02 | ✅ | P0 | 商标/品牌 Splitwise | 用户可见 BillNest；Bundle/IAP ID 已换；模块名可后续再改 |
 | I-03 | ✅ | P0 | isMockPro 默认 true | Release 恒 false；Toggle 仅 DEBUG |
 | I-04 | ✅ | P0 | 无隐私政策/条款可点击链接、价格写死 | GitHub Pages 链接 + StoreKit 动态价 |
 | I-05 | ✅ | P0 | Camera/Face ID/Push 声明与实现不符 | 已删未实现权限与空开关 |

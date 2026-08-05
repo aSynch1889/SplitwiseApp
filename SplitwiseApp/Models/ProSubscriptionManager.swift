@@ -5,8 +5,8 @@ import StoreKit
 public final class ProSubscriptionManager {
     public static let shared = ProSubscriptionManager()
 
-    public static let monthlyProID = "com.splitwise.pro.monthly"
-    public static let yearlyProID = "com.splitwise.pro.yearly"
+    public static let monthlyProID = "app.billnest.pro.monthly"
+    public static let yearlyProID = "app.billnest.pro.yearly"
     public static let allowedProProductIDs: Set<String> = [monthlyProID, yearlyProID]
 
     public var isPro: Bool = false

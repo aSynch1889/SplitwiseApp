@@ -75,7 +75,7 @@ public struct MainView: View {
                 // iPad Adaptive NavigationSplitView
                 NavigationSplitView {
                     List(selection: $selectedSidebarItem) {
-                        Section("Splitwise") {
+                        Section("BillNest") {
                             ForEach(SidebarItem.allCases) { item in
                                 NavigationLink(value: item) {
                                     Label(LocalizedStringKey(item.rawValue), systemImage: item.iconName)
@@ -94,7 +94,7 @@ public struct MainView: View {
                         }
                     }
                     .listStyle(.sidebar)
-                    .navigationTitle("Splitwise")
+                    .navigationTitle("BillNest")
                 } detail: {
                     switch selectedSidebarItem ?? .groups {
                     case .groups:

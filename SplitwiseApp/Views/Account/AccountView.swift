@@ -51,7 +51,7 @@ public struct AccountView: View {
                     .padding(.vertical, 4)
                 }
 
-                // Splitwise Pro Banner
+                // BillNest Pro Banner
                 Section {
                     Button {
                         showingProView = true
@@ -68,7 +68,7 @@ public struct AccountView: View {
 
                             VStack(alignment: .leading, spacing: 2) {
                                 HStack {
-                                    Text("Splitwise Pro")
+                                    Text("BillNest Pro")
                                         .font(.headline)
                                         .foregroundColor(.primary)
                                     if ProSubscriptionManager.shared.isPro {
