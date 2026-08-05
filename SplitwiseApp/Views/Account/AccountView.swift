@@ -25,6 +25,30 @@ public struct AccountView: View {
         currentUsers.first
     }
 
+    private func relativeDateString(for date: Date) -> String {
+        let formatter = RelativeDateTimeFormatter()
+        formatter.unitsStyle = .short
+        return formatter.localizedString(for: date, relativeTo: Date())
+    }
+
+    @ViewBuilder
+    private var syncStatusDetailText: some View {
+        switch cloudSync.syncStatusDetail {
+        case .none:
+            EmptyView()
+        case .error(let message):
+            Text(message)
+        case .syncing:
+            Text("Syncing with iCloud…")
+        case .lastSync(let date):
+            Text("Last sync \(relativeDateString(for: date))")
+        case .privateCloudKit:
+            Text("Private CloudKit database · same Apple ID devices")
+        case .localOnly:
+            Text("Local-only store (CloudKit not active in this session)")
+        }
+    }
+
     public var body: some View {
         NavigationStack {
             Form {
@@ -76,12 +100,12 @@ public struct AccountView: View {
                             ProgressView()
                                 .padding(.trailing, 6)
                         }
-                        Text(cloudSync.accountStatusText)
+                        Text(LocalizedStringKey(cloudSync.accountStatusLocalizationKey))
                             .foregroundColor(.secondary)
                             .multilineTextAlignment(.trailing)
                     }
 
-                    Text(cloudSync.statusDetail)
+                    syncStatusDetailText
                         .font(.caption)
                         .foregroundColor(.secondary)
 
@@ -212,6 +236,7 @@ public struct AccountView: View {
             .navigationTitle("Account")
             .sheet(isPresented: $showingProView) {
                 SplitwiseProView()
+                    .id(loc.currentLanguage)
             }
             .sheet(isPresented: $showingShareBackup) {
                 #if canImport(UIKit)

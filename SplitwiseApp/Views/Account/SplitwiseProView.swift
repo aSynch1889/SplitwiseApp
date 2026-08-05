@@ -74,12 +74,8 @@ public struct SplitwiseProView: View {
                     VStack(spacing: 14) {
                         planCard(
                             title: "Pro Monthly",
-                            price: displayPrice(
-                                for: ProSubscriptionManager.monthlyProID,
-                                fallback: String(localized: "$2.99 / month")
-                            ),
-                            badge: introductoryBadge(for: ProSubscriptionManager.monthlyProID)
-                                ?? String(localized: "Auto-Renewable"),
+                            price: { planPriceView(for: ProSubscriptionManager.monthlyProID, fallback: "$2.99 / month") },
+                            badge: { planBadgeView(for: ProSubscriptionManager.monthlyProID, fallback: "Auto-Renewable") },
                             isPopular: false
                         ) {
                             purchasePlan(productID: ProSubscriptionManager.monthlyProID)
@@ -87,12 +83,8 @@ public struct SplitwiseProView: View {
 
                         planCard(
                             title: "Pro Annual",
-                            price: displayPrice(
-                                for: ProSubscriptionManager.yearlyProID,
-                                fallback: String(localized: "$29.99 / year")
-                            ),
-                            badge: introductoryBadge(for: ProSubscriptionManager.yearlyProID)
-                                ?? String(localized: "Best Value"),
+                            price: { planPriceView(for: ProSubscriptionManager.yearlyProID, fallback: "$29.99 / year") },
+                            badge: { planBadgeView(for: ProSubscriptionManager.yearlyProID, fallback: "Best Value") },
                             isPopular: true
                         ) {
                             purchasePlan(productID: ProSubscriptionManager.yearlyProID)
@@ -172,67 +164,95 @@ public struct SplitwiseProView: View {
         proManager.products.first(where: { $0.id == id })
     }
 
-    private func displayPrice(for productID: String, fallback: String) -> String {
-        guard let product = product(for: productID) else { return fallback }
-        if let subscription = product.subscription {
+    @ViewBuilder
+    private func planPriceView(for productID: String, fallback: LocalizedStringKey) -> some View {
+        if let product = product(for: productID), let subscription = product.subscription {
             let period = subscription.subscriptionPeriod
-            let unitLabel: String
-            switch period.unit {
-            case .day:
-                unitLabel = period.value == 1
-                    ? String(localized: "day")
-                    : String(localized: "\(period.value) days")
-            case .week:
-                unitLabel = period.value == 1
-                    ? String(localized: "week")
-                    : String(localized: "\(period.value) weeks")
-            case .month:
-                unitLabel = period.value == 1
-                    ? String(localized: "month")
-                    : String(localized: "\(period.value) months")
-            case .year:
-                unitLabel = period.value == 1
-                    ? String(localized: "year")
-                    : String(localized: "\(period.value) years")
-            @unknown default:
-                unitLabel = String(localized: "period")
+            HStack(spacing: 4) {
+                Text(product.displayPrice)
+                Text("/")
+                periodUnitText(unit: period.unit, value: period.value)
             }
-            return String(localized: "\(product.displayPrice) / \(unitLabel)")
+        } else if let product = product(for: productID) {
+            Text(product.displayPrice)
+        } else {
+            Text(fallback)
         }
-        return product.displayPrice
     }
 
-    private func introductoryBadge(for productID: String) -> String? {
-        guard let offer = product(for: productID)?.subscription?.introductoryOffer else { return nil }
-        switch offer.paymentMode {
-        case .freeTrial:
-            let period = offer.period
-            let unit: String
-            switch period.unit {
-            case .day:
-                unit = period.value == 1
-                    ? String(localized: "Day")
-                    : String(localized: "\(period.value)-Day")
-            case .week:
-                unit = period.value == 1
-                    ? String(localized: "Week")
-                    : String(localized: "\(period.value)-Week")
-            case .month:
-                unit = period.value == 1
-                    ? String(localized: "Month")
-                    : String(localized: "\(period.value)-Month")
-            case .year:
-                unit = period.value == 1
-                    ? String(localized: "Year")
-                    : String(localized: "\(period.value)-Year")
-            @unknown default:
-                unit = String(localized: "Trial")
+    @ViewBuilder
+    private func periodUnitText(unit: Product.SubscriptionPeriod.Unit, value: Int) -> some View {
+        switch unit {
+        case .day:
+            if value == 1 {
+                Text("day")
+            } else {
+                Text("\(value) days")
             }
-            return String(localized: "\(unit) Free Trial")
-        case .payAsYouGo, .payUpFront:
-            return String(localized: "Intro Offer")
-        default:
-            return String(localized: "Intro Offer")
+        case .week:
+            if value == 1 {
+                Text("week")
+            } else {
+                Text("\(value) weeks")
+            }
+        case .month:
+            if value == 1 {
+                Text("month")
+            } else {
+                Text("\(value) months")
+            }
+        case .year:
+            if value == 1 {
+                Text("year")
+            } else {
+                Text("\(value) years")
+            }
+        @unknown default:
+            Text("period")
+        }
+    }
+
+    @ViewBuilder
+    private func planBadgeView(for productID: String, fallback: LocalizedStringKey) -> some View {
+        if let offer = product(for: productID)?.subscription?.introductoryOffer {
+            switch offer.paymentMode {
+            case .freeTrial:
+                freeTrialBadgeText(period: offer.period)
+            case .payAsYouGo, .payUpFront:
+                Text("Intro Offer")
+            default:
+                Text("Intro Offer")
+            }
+        } else {
+            Text(fallback)
+        }
+    }
+
+    @ViewBuilder
+    private func freeTrialBadgeText(period: Product.SubscriptionPeriod) -> some View {
+        Text("\(localizedTrialUnit(for: period)) Free Trial")
+    }
+
+    private func localizedTrialUnit(for period: Product.SubscriptionPeriod) -> String {
+        switch period.unit {
+        case .day:
+            return period.value == 1
+                ? Bundle.main.localizedString(forKey: "Day", value: nil, table: nil)
+                : String(format: Bundle.main.localizedString(forKey: "%lld-Day", value: nil, table: nil), period.value)
+        case .week:
+            return period.value == 1
+                ? Bundle.main.localizedString(forKey: "Week", value: nil, table: nil)
+                : String(format: Bundle.main.localizedString(forKey: "%lld-Week", value: nil, table: nil), period.value)
+        case .month:
+            return period.value == 1
+                ? Bundle.main.localizedString(forKey: "Month", value: nil, table: nil)
+                : String(format: Bundle.main.localizedString(forKey: "%lld-Month", value: nil, table: nil), period.value)
+        case .year:
+            return period.value == 1
+                ? Bundle.main.localizedString(forKey: "Year", value: nil, table: nil)
+                : String(format: Bundle.main.localizedString(forKey: "%lld-Year", value: nil, table: nil), period.value)
+        @unknown default:
+            return Bundle.main.localizedString(forKey: "Trial", value: nil, table: nil)
         }
     }
 
@@ -258,10 +278,10 @@ public struct SplitwiseProView: View {
         }
     }
 
-    private func planCard(
+    private func planCard<Price: View, Badge: View>(
         title: LocalizedStringKey,
-        price: String,
-        badge: String,
+        @ViewBuilder price: () -> Price,
+        @ViewBuilder badge: () -> Badge,
         isPopular: Bool,
         action: @escaping () -> Void
     ) -> some View {
@@ -273,7 +293,7 @@ public struct SplitwiseProView: View {
                             .font(.headline)
                             .foregroundColor(.primary)
 
-                        Text(badge)
+                        badge()
                             .font(.caption2)
                             .fontWeight(.bold)
                             .padding(.horizontal, 8)
@@ -283,7 +303,7 @@ public struct SplitwiseProView: View {
                             .cornerRadius(6)
                     }
 
-                    Text(price)
+                    price()
                         .font(.title3)
                         .fontWeight(.bold)
                         .foregroundColor(ColorTheme.brandTeal)

@@ -38,7 +38,7 @@ extension Bundle {
         // Redirect only lookups on the main bundle to the selected language's lproj.
         // Sub-bundles (self !== .main) fall straight through to the original impl,
         // which avoids infinite recursion.
-        if self === Bundle.main, language != "en",
+        if self === Bundle.main,
            let lprojPath = Bundle.main.path(forResource: language, ofType: "lproj"),
            let lprojBundle = Bundle(path: lprojPath) {
             return lprojBundle.ln_localizedString(forKey: key, value: value, table: table)

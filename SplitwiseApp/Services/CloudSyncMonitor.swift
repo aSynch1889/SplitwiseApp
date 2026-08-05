@@ -3,6 +3,28 @@ import CloudKit
 import CoreData
 import Observation
 
+public enum ICloudAccountStatus: Equatable {
+    case checking
+    case syncOff
+    case unavailable
+    case ready
+    case signedInRestartRequired
+    case noAccount
+    case restricted
+    case couldNotDetermine
+    case temporarilyUnavailable
+    case unknown
+}
+
+public enum SyncStatusDetail: Equatable {
+    case none
+    case error(String)
+    case syncing
+    case lastSync(Date)
+    case privateCloudKit
+    case localOnly
+}
+
 /// Observes CloudKit account + NSPersistentCloudKitContainer sync events for SwiftData stores.
 @MainActor
 @Observable
@@ -18,13 +40,13 @@ public final class CloudSyncMonitor {
             if isEnabled {
                 refreshAccountStatus()
             } else {
-                accountStatusText = String(localized: "iCloud Sync Off")
+                accountStatus = .syncOff
                 lastErrorMessage = nil
             }
         }
     }
 
-    public var accountStatusText: String = String(localized: "Checking…")
+    public private(set) var accountStatus: ICloudAccountStatus = .checking
     public var isSyncing: Bool = false
     public var lastSyncDate: Date?
     public var lastErrorMessage: String?
@@ -40,6 +62,47 @@ public final class CloudSyncMonitor {
             UserDefaults.standard.set(true, forKey: Self.iCloudEnabledKey)
         }
         self.isEnabled = UserDefaults.standard.bool(forKey: Self.iCloudEnabledKey)
+    }
+
+    public var accountStatusLocalizationKey: String {
+        switch accountStatus {
+        case .checking:
+            return "Checking…"
+        case .syncOff:
+            return "iCloud Sync Off"
+        case .unavailable:
+            return "iCloud Unavailable"
+        case .ready:
+            return "iCloud Ready"
+        case .signedInRestartRequired:
+            return "Signed In — Restart to Sync"
+        case .noAccount:
+            return "Sign in to iCloud in Settings"
+        case .restricted:
+            return "iCloud Restricted"
+        case .couldNotDetermine:
+            return "Could Not Determine iCloud Status"
+        case .temporarilyUnavailable:
+            return "iCloud Temporarily Unavailable"
+        case .unknown:
+            return "Unknown iCloud Status"
+        }
+    }
+
+    public var syncStatusDetail: SyncStatusDetail {
+        if let lastErrorMessage, !lastErrorMessage.isEmpty {
+            return .error(lastErrorMessage)
+        }
+        if isSyncing {
+            return .syncing
+        }
+        if let lastSyncDate {
+            return .lastSync(lastSyncDate)
+        }
+        if isCloudKitStoreActive {
+            return .privateCloudKit
+        }
+        return .localOnly
     }
 
     public func startMonitoring() {
@@ -66,55 +129,36 @@ public final class CloudSyncMonitor {
 
     public func refreshAccountStatus() {
         guard isEnabled else {
-            accountStatusText = String(localized: "iCloud Sync Off")
+            accountStatus = .syncOff
             return
         }
+
+        accountStatus = .checking
 
         CKContainer(identifier: Self.iCloudContainerID).accountStatus { status, error in
             Task { @MainActor in
                 if let error {
-                    self.accountStatusText = String(localized: "iCloud Unavailable")
+                    self.accountStatus = .unavailable
                     self.lastErrorMessage = error.localizedDescription
                     return
                 }
                 switch status {
                 case .available:
-                    self.accountStatusText = self.isCloudKitStoreActive
-                        ? String(localized: "iCloud Ready")
-                        : String(localized: "Signed In — Restart to Sync")
+                    self.accountStatus = self.isCloudKitStoreActive ? .ready : .signedInRestartRequired
                     self.lastErrorMessage = nil
                 case .noAccount:
-                    self.accountStatusText = String(localized: "Sign in to iCloud in Settings")
+                    self.accountStatus = .noAccount
                 case .restricted:
-                    self.accountStatusText = String(localized: "iCloud Restricted")
+                    self.accountStatus = .restricted
                 case .couldNotDetermine:
-                    self.accountStatusText = String(localized: "Could Not Determine iCloud Status")
+                    self.accountStatus = .couldNotDetermine
                 case .temporarilyUnavailable:
-                    self.accountStatusText = String(localized: "iCloud Temporarily Unavailable")
+                    self.accountStatus = .temporarilyUnavailable
                 @unknown default:
-                    self.accountStatusText = String(localized: "Unknown iCloud Status")
+                    self.accountStatus = .unknown
                 }
             }
         }
-    }
-
-    public var statusDetail: String {
-        if let lastErrorMessage, !lastErrorMessage.isEmpty {
-            return lastErrorMessage
-        }
-        if isSyncing {
-            return String(localized: "Syncing with iCloud…")
-        }
-        if let lastSyncDate {
-            let formatter = RelativeDateTimeFormatter()
-            formatter.unitsStyle = .short
-            let relative = formatter.localizedString(for: lastSyncDate, relativeTo: Date())
-            return String(localized: "Last sync \(relative)")
-        }
-        if isCloudKitStoreActive {
-            return String(localized: "Private CloudKit database · same Apple ID devices")
-        }
-        return String(localized: "Local-only store (CloudKit not active in this session)")
     }
 
     private func handleCloudKitEvent(_ notification: Notification) {
