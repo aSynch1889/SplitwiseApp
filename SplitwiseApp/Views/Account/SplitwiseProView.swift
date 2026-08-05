@@ -67,7 +67,7 @@ public struct SplitwiseProView: View {
                     }
                     .padding(.horizontal)
 
-                    // Restore & Mock Demo Switcher
+                    // Restore & legal
                     VStack(spacing: 12) {
                         Button("Restore Purchases") {
                             Task {
@@ -77,6 +77,15 @@ public struct SplitwiseProView: View {
                         .font(.subheadline)
                         .foregroundColor(ColorTheme.brandTeal)
 
+                        if let errorMessage = proManager.errorMessage {
+                            Text(errorMessage)
+                                .font(.caption)
+                                .foregroundColor(.red)
+                                .multilineTextAlignment(.center)
+                                .padding(.horizontal)
+                        }
+
+                        #if DEBUG
                         Toggle("Simulator Mock Pro Mode", isOn: $proManager.isMockPro)
                             .tint(ColorTheme.brandTeal)
                             .padding(.horizontal, 24)
@@ -84,6 +93,7 @@ public struct SplitwiseProView: View {
                             .background(ColorTheme.cardBackground)
                             .cornerRadius(12)
                             .padding(.horizontal)
+                        #endif
 
                         Text("Subscription automatically renews unless cancelled in Apple ID Settings at least 24h before end of period. Terms of Service & Privacy Policy apply.")
                             .font(.caption2)
@@ -175,11 +185,17 @@ public struct SplitwiseProView: View {
     private func purchasePlan(productID: String) {
         if let product = proManager.products.first(where: { $0.id == productID }) {
             Task {
-                _ = try? await proManager.purchase(product)
+                do {
+                    _ = try await proManager.purchase(product)
+                } catch {
+                    proManager.errorMessage = "Purchase failed: \(error.localizedDescription)"
+                }
             }
         } else {
-            // Enable mock Pro for simulator demo
-            proManager.isMockPro = true
+            proManager.errorMessage = "Products unavailable. Please try again later."
+            Task {
+                await proManager.fetchProducts()
+            }
         }
     }
 }

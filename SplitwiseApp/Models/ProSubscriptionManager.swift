@@ -7,6 +7,7 @@ public final class ProSubscriptionManager {
 
     public static let monthlyProID = "com.splitwise.pro.monthly"
     public static let yearlyProID = "com.splitwise.pro.yearly"
+    public static let allowedProProductIDs: Set<String> = [monthlyProID, yearlyProID]
 
     public var isPro: Bool = false
     public var products: [Product] = []
@@ -14,19 +15,32 @@ public final class ProSubscriptionManager {
     public var isLoading: Bool = false
     public var errorMessage: String? = nil
 
-    // Sandbox / Mock override for immediate testing without active App Store Connect Sandbox setup
-    public var isMockPro: Bool = true {
+    /// DEBUG-only override for local testing. Always false in Release builds.
+    #if DEBUG
+    public var isMockPro: Bool = false {
         didSet {
             updateProStatus()
         }
     }
+    #else
+    public var isMockPro: Bool {
+        false
+    }
+    #endif
+
+    private var transactionListener: Task<Void, Never>?
 
     private init() {
         updateProStatus()
-        Task {
+        transactionListener = listenForTransactions()
+        Task { @MainActor in
+            await updatePurchasedIdentifiers()
             await fetchProducts()
-            await listenForTransactions()
         }
+    }
+
+    deinit {
+        transactionListener?.cancel()
     }
 
     @MainActor
@@ -37,6 +51,7 @@ public final class ProSubscriptionManager {
         do {
             let productIDs = [Self.monthlyProID, Self.yearlyProID]
             self.products = try await Product.products(for: productIDs)
+            self.errorMessage = nil
         } catch {
             print("Failed to fetch StoreKit 2 products: \(error.localizedDescription)")
             self.errorMessage = error.localizedDescription
@@ -53,7 +68,11 @@ public final class ProSubscriptionManager {
             await transaction.finish()
             await updatePurchasedIdentifiers()
             return true
-        case .userCancelled, .pending:
+        case .userCancelled:
+            errorMessage = nil
+            return false
+        case .pending:
+            errorMessage = "Purchase is pending approval."
             return false
         @unknown default:
             return false
@@ -62,8 +81,17 @@ public final class ProSubscriptionManager {
 
     @MainActor
     public func restorePurchases() async {
-        try? await AppStore.sync()
-        await updatePurchasedIdentifiers()
+        do {
+            try await AppStore.sync()
+            await updatePurchasedIdentifiers()
+            if !isPro {
+                errorMessage = "No active Pro subscription found."
+            } else {
+                errorMessage = nil
+            }
+        } catch {
+            errorMessage = "Restore failed: \(error.localizedDescription)"
+        }
     }
 
     @MainActor
@@ -72,7 +100,8 @@ public final class ProSubscriptionManager {
         for await result in Transaction.currentEntitlements {
             do {
                 let transaction = try checkVerified(result)
-                if transaction.revocationDate == nil {
+                if transaction.revocationDate == nil,
+                   Self.allowedProProductIDs.contains(transaction.productID) {
                     purchased.insert(transaction.productID)
                 }
             } catch {
@@ -84,8 +113,9 @@ public final class ProSubscriptionManager {
     }
 
     private func listenForTransactions() -> Task<Void, Never> {
-        Task.detached {
+        Task.detached { [weak self] in
             for await result in Transaction.updates {
+                guard let self else { return }
                 do {
                     let transaction = try self.checkVerified(result)
                     await self.updatePurchasedIdentifiers()
@@ -107,6 +137,10 @@ public final class ProSubscriptionManager {
     }
 
     public func updateProStatus() {
+        #if DEBUG
         self.isPro = isMockPro || !purchasedIdentifiers.isEmpty
+        #else
+        self.isPro = !purchasedIdentifiers.isEmpty
+        #endif
     }
 }

@@ -124,37 +124,17 @@ xcodebuild -project SplitwiseApp.xcodeproj -scheme SplitwiseApp \
 
 ### 3.3 Pro 默认开启 + 模拟器 Mock 开关上线可见
 
-**现象**
+**状态：✅ 已修复（I-03）**；Pro 功能门禁（I-08）仍待 Phase 2
 
-```swift
-// ProSubscriptionManager
-public var isMockPro: Bool = true  // 默认 true → isPro 恒为 true
-```
+**现象（历史）**
 
-- 订阅页暴露 `Simulator Mock Pro Mode` Toggle。
-- 产品拉取失败时 `purchasePlan` 直接 `isMockPro = true`。
-- 全项目几乎**没有**基于 `isPro` 的功能门禁（导出/OCR/图表/债务简化均免费可用）。
+- `isMockPro` 默认 `true`，订阅页暴露 Mock Toggle，购买失败路径强制 Mock 解锁。
 
-**后果**
+**修复说明**
 
-- 商业模型失效；审核员可免费使用全部「Pro」能力。
-- 若宣称付费权益，属于**误导性 IAP**（Guideline 3.1.x / 2.3.x）。
-- Mock 开关上架会被视为未完成/测试构建。
-
-**解决方案**
-
-1. Release 构建强制：
-   ```swift
-   #if DEBUG
-   var isMockPro = false // 仅 DEBUG 面板可开
-   #else
-   var isMockPro = false // 永远 false，且 UI 不展示
-   #endif
-   ```
-2. 为 OCR、导出、高级图表、债务简化开关、Itemized 等实现统一 `ProGate`。
-3. 非 Pro 点击进入标准 Paywall（权益对比 + 购买 + 恢复）。
-4. 购买失败时展示错误，**禁止**自动 Mock 解锁。
-5. ASC 中配置真实订阅组、价格、本地化、税务与沙盒账号测试。
+1. Release 下 `isMockPro` 恒为 `false`；DEBUG 默认 `false`，Toggle 仅 `#if DEBUG`。
+2. 产品不可用 / 购买失败时展示错误并重试拉品，**禁止**自动 Mock 解锁。
+3. 顺带完成 I-19：冷启动恢复 entitlement，且仅白名单月/年 Pro Product ID。
 
 ---
 
@@ -445,14 +425,12 @@ Apple 官方依据：[Required Reason API](https://developer.apple.com/documenta
 
 ### 4.11 订阅权益冷启动不会恢复，且任意 IAP 都可解锁 Pro（新增）
 
-**状态：❌ 未修复（I-19）**
+**状态：✅ 已修复（I-19）**
 
-- `ProSubscriptionManager.init()` 只拉产品并监听未来交易，没有启动时调用 `updatePurchasedIdentifiers()`。
-- 一旦关闭 Mock，已有订阅用户冷启动后可能仍显示非 Pro，直到购买、恢复或收到新交易更新。
-- `isPro = !purchasedIdentifiers.isEmpty` 未限定月/年 Pro Product ID；未来任何有效 entitlement 都会解锁 Pro。
-- 购买与恢复错误被 `try?` 吞掉，用户没有可靠反馈。
+**修复说明**
 
-**修复**：启动时遍历 `Transaction.currentEntitlements`；仅接受允许的 Pro ID；保存监听 Task 并明确生命周期；为恢复、待处理、取消、验证失败提供状态与测试。
+- `init` 启动时调用 `updatePurchasedIdentifiers()`；仅接受 `allowedProProductIDs`（月/年）。
+- 持有 `transactionListener` Task；恢复/购买失败写入 `errorMessage` 供 UI 展示。
 
 ---
 
@@ -641,7 +619,7 @@ Apple 官方依据：[Required Reason API](https://developer.apple.com/documenta
 
 - [x] 修复 `currentUserId` 绑定  
 - [x] 修复 No Group/好友 1 对 1 参与者模型，禁止随机 payer 与空 splits
-- [ ] 关闭默认 Mock Pro；隐藏 DEBUG 开关  
+- [x] 关闭默认 Mock Pro；隐藏 DEBUG 开关  
 - [ ] 产品改名评估与 Bundle ID 规划  
 - [ ] OCR 失败禁止 Mock 污染  
 - [ ] 删除或实现 Face ID / 相机 / 推送声明  
@@ -652,7 +630,7 @@ Apple 官方依据：[Required Reason API](https://developer.apple.com/documenta
 - [ ] 多币种统一换算进余额引擎  
 - [ ] 分摊校验与尾差  
 - [ ] 让 Itemized 真正接收 OCR items 并支持逐项归属
-- [ ] 修复订阅冷启动权益与 Product ID 白名单
+- [x] 修复订阅冷启动权益与 Product ID 白名单
 - [ ] 修正文案或更换可证明的债务最少笔数算法
 - [ ] 修复图表 timeframe / 年月排序 / 指标口径
 - [ ] 样例数据可选  
@@ -683,7 +661,7 @@ Apple 官方依据：[Required Reason API](https://developer.apple.com/documenta
 |----|------|------|------|----------|
 | I-01 | ✅ | P0 | currentUserId 随机导致余额错误 | 已持久化 + `resolveCurrentUser` 与 `isCurrentUser` 对齐 |
 | I-02 | ❌ | P0 | 商标/品牌 Splitwise | Release 二进制、Info、Bundle ID、IAP ID |
-| I-03 | ❌ | P0 | isMockPro 默认 true | `ProSubscriptionManager.swift:18` |
+| I-03 | ✅ | P0 | isMockPro 默认 true | Release 恒 false；Toggle 仅 DEBUG |
 | I-04 | ❌ | P0 | 无隐私政策/条款可点击链接、价格写死 | `SplitwiseProView.swift` |
 | I-05 | ❌ | P0 | Camera/Face ID/Push 声明与实现不符 | `Info.plist`, `AccountView.swift` |
 | I-06 | ❌ | P0 | 多币种未换算 | `DebtSimplifier.swift`, `ChartsView.swift` |
@@ -699,7 +677,7 @@ Apple 官方依据：[Required Reason API](https://developer.apple.com/documenta
 | I-16 | ❌ | P1 | PDF 截断/漏 settlement、CSV 注入 | `ExportManager.swift:105` |
 | I-17 | ✅ | P0 | No Group 错分给全部用户/可保存孤儿 payer | `AddExpenseView` 个人/好友参与者模型 |
 | I-18 | ❌ | P0 | 缺少 Required Reason API 隐私清单 | Release App 无 `PrivacyInfo.xcprivacy` |
-| I-19 | ❌ | P1 | 订阅冷启动不恢复、任意 entitlement 解锁 | `ProSubscriptionManager.swift:24-29, 109-110` |
+| I-19 | ✅ | P1 | 订阅冷启动不恢复、任意 entitlement 解锁 | 冷启动恢复 + Product ID 白名单 |
 | I-20 | ❌ | P1 | 债务算法不保证最少笔数，Raw 结算不完整 | `DebtSimplifier.swift` |
 | I-21 | ❌ | P1 | 图表 timeframe/年月/币种/指标口径错误 | `ChartsView.swift:51-223` |
 | I-22 | ❌ | P1 | Archived 与 simplify 开关不影响行为 | `GroupListView.swift`, `GroupDetailView.swift` |
