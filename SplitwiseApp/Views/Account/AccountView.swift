@@ -155,7 +155,7 @@ public struct AccountView: View {
                         Text("Light Mode").tag("light")
                         Text("Dark Mode").tag("dark")
                     } label: {
-                        Label("Appearance", systemImage: "moon.phase.5")
+                        Label("Appearance", systemImage: "circle.lefthalf.filled")
                     }
 
                     NavigationLink {

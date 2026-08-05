@@ -3,14 +3,14 @@ import SwiftData
 
 @Model
 public final class User: Identifiable {
-    public var id: UUID
-    public var name: String
-    public var email: String
-    public var phone: String
-    public var avatarName: String
-    public var defaultCurrency: String
-    public var isCurrentUser: Bool
-    public var createdAt: Date
+    public var id: UUID = UUID()
+    public var name: String = ""
+    public var email: String = ""
+    public var phone: String = ""
+    public var avatarName: String = "person.crop.circle.fill"
+    public var defaultCurrency: String = "USD"
+    public var isCurrentUser: Bool = false
+    public var createdAt: Date = Date()
 
     public init(
         id: UUID = UUID(),

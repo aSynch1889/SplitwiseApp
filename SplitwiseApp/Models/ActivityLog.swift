@@ -12,15 +12,15 @@ public enum ActivityType: String, Codable, CaseIterable {
 
 @Model
 public final class ActivityLog: Identifiable {
-    public var id: UUID
-    public var typeRaw: String
-    public var actorId: UUID
-    public var actorName: String
-    public var title: String
-    public var details: String
+    public var id: UUID = UUID()
+    public var typeRaw: String = ActivityType.addedExpense.rawValue
+    public var actorId: UUID = UUID()
+    public var actorName: String = ""
+    public var title: String = ""
+    public var details: String = ""
     public var groupId: UUID?
     public var expenseId: UUID?
-    public var timestamp: Date
+    public var timestamp: Date = Date()
 
     public var type: ActivityType {
         get { ActivityType(rawValue: typeRaw) ?? .addedExpense }

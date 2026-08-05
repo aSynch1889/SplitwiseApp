@@ -3,15 +3,15 @@ import SwiftData
 
 @Model
 public final class Settlement: Identifiable {
-    public var id: UUID
-    public var payerId: UUID
-    public var payeeId: UUID
-    public var amount: Double
-    public var currency: String
+    public var id: UUID = UUID()
+    public var payerId: UUID = UUID()
+    public var payeeId: UUID = UUID()
+    public var amount: Double = 0
+    public var currency: String = "USD"
     public var groupId: UUID?
-    public var paymentMethod: String // "Cash", "PayPal", "Venmo", "Bank Transfer"
-    public var notes: String
-    public var date: Date
+    public var paymentMethod: String = "Cash" // "Cash", "PayPal", "Venmo", "Bank Transfer"
+    public var notes: String = ""
+    public var date: Date = Date()
 
     public init(
         id: UUID = UUID(),

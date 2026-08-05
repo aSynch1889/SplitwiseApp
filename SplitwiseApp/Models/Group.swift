@@ -21,16 +21,16 @@ public enum GroupType: String, Codable, CaseIterable, Identifiable {
 
 @Model
 public final class Group: Identifiable {
-    public var id: UUID
-    public var name: String
-    public var groupTypeRaw: String
-    public var coverImageName: String
+    public var id: UUID = UUID()
+    public var name: String = ""
+    public var groupTypeRaw: String = GroupType.other.rawValue
+    public var coverImageName: String = "folder.fill"
     /// Encoded `[UUID]` for CloudKit-safe sync (transformable arrays are fragile across devices).
-    public var memberIdsData: Data
-    public var defaultCurrency: String
-    public var simplifyDebts: Bool
-    public var isArchived: Bool
-    public var createdAt: Date
+    public var memberIdsData: Data = Data()
+    public var defaultCurrency: String = "USD"
+    public var simplifyDebts: Bool = true
+    public var isArchived: Bool = false
+    public var createdAt: Date = Date()
 
     public var groupType: GroupType {
         get { GroupType(rawValue: groupTypeRaw) ?? .other }

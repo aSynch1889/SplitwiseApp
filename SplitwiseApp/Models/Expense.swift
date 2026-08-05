@@ -56,20 +56,20 @@ public enum RepeatFrequency: String, Codable, CaseIterable, Identifiable {
 
 @Model
 public final class Expense: Identifiable {
-    public var id: UUID
-    public var title: String
-    public var amount: Double
-    public var currency: String
-    public var payerId: UUID
+    public var id: UUID = UUID()
+    public var title: String = ""
+    public var amount: Double = 0
+    public var currency: String = "USD"
+    public var payerId: UUID = UUID()
     public var groupId: UUID?
-    public var splitMethodRaw: String
-    public var categoryRaw: String
-    public var splitsData: Data // Encoded [ExpenseSplit]
+    public var splitMethodRaw: String = SplitMethod.equal.rawValue
+    public var categoryRaw: String = ExpenseCategory.general.rawValue
+    public var splitsData: Data = Data() // Encoded [ExpenseSplit]
     public var receiptImageData: Data?
-    public var notes: String
-    public var date: Date
-    public var repeatFrequencyRaw: String
-    public var createdAt: Date
+    public var notes: String = ""
+    public var date: Date = Date()
+    public var repeatFrequencyRaw: String = RepeatFrequency.never.rawValue
+    public var createdAt: Date = Date()
 
     public var splitMethod: SplitMethod {
         get { SplitMethod(rawValue: splitMethodRaw) ?? .equal }
