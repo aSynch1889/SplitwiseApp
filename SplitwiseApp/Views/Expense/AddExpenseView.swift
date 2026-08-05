@@ -12,10 +12,13 @@ public struct AddExpenseView: View {
     public var preselectedGroup: Group? = nil
     /// When set (e.g. from FriendDetail), No Group mode is locked to this 1-on-1 friend.
     public var preselectedFriend: User? = nil
+    /// When set, the form edits this expense instead of creating a new one.
+    public var editingExpense: Expense? = nil
 
-    public init(preselectedGroup: Group? = nil, preselectedFriend: User? = nil) {
+    public init(preselectedGroup: Group? = nil, preselectedFriend: User? = nil, editingExpense: Expense? = nil) {
         self.preselectedGroup = preselectedGroup
         self.preselectedFriend = preselectedFriend
+        self.editingExpense = editingExpense
     }
 
     @Query private var groups: [Group]
@@ -235,7 +238,7 @@ public struct AddExpenseView: View {
                         .lineLimit(3)
                 }
             }
-            .navigationTitle("Add Expense")
+            .navigationTitle(editingExpense == nil ? "Add Expense" : "Edit Expense")
             #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)
             #endif
@@ -332,6 +335,23 @@ public struct AddExpenseView: View {
     }
 
     private func configureInitialSelection() {
+        if let expense = editingExpense {
+            title = expense.title
+            amount = expense.amount
+            currency = expense.currency
+            selectedCategory = expense.category
+            selectedGroupId = expense.groupId
+            payerId = expense.payerId
+            splitMethod = expense.splitMethod
+            splits = expense.splits
+            receiptImageData = expense.receiptImageData
+            notes = expense.notes
+            date = expense.date
+            repeatFrequency = .never
+            userCustomizedSplits = true
+            return
+        }
+
         if let g = preselectedGroup {
             selectedGroupId = g.id
             currency = g.defaultCurrency
@@ -399,6 +419,42 @@ public struct AddExpenseView: View {
 
         if let message = SplitMath.validationMessage(method: splitMethod, total: amount, splits: splits) {
             saveErrorMessage = message
+            return
+        }
+
+        if let expense = editingExpense {
+            expense.title = title.trimmingCharacters(in: .whitespaces)
+            expense.amount = amount
+            expense.currency = currency
+            expense.payerId = resolvedPayer
+            expense.groupId = selectedGroupId
+            expense.splitMethod = splitMethod
+            expense.category = selectedCategory
+            expense.splits = splits
+            expense.receiptImageData = receiptImageData
+            expense.notes = notes.trimmingCharacters(in: .whitespaces)
+            expense.date = date
+            expense.repeatFrequency = .never
+
+            if let me = users.first(where: { $0.id == appState.currentUserId }) ?? currentUser {
+                let log = ActivityLog(
+                    type: .updatedExpense,
+                    actorId: me.id,
+                    actorName: me.name,
+                    title: "\(me.name) updated \"\(expense.title)\"",
+                    details: "\(CurrencyFormatter.format(amount, currency: currency))",
+                    groupId: selectedGroupId,
+                    expenseId: expense.id
+                )
+                modelContext.insert(log)
+            }
+
+            do {
+                try modelContext.save()
+                dismiss()
+            } catch {
+                saveErrorMessage = "Failed to update expense: \(error.localizedDescription)"
+            }
             return
         }
 

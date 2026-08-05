@@ -46,6 +46,7 @@
 		BD4EA6149047B72602CAC136 /* LaunchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF9F4588529F53E8FFBC3B3 /* LaunchScreenView.swift */; };
 		C035D75A6323DC56E30BAD08 /* SettleUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252393345A60DFAC29B3781B /* SettleUpView.swift */; };
 		C4CE77BDD783CEC676420916 /* SplitwiseProView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276917BAD86EDB1E73F7C5E1 /* SplitwiseProView.swift */; };
+		C5ED27D17091C71A9A54CE99 /* BackupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D012A0CCCF30294D761EAEA /* BackupManager.swift */; };
 		C83011606FC24FA420DE4A88 /* DebtSimplifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C805858CFE508930F72957DD /* DebtSimplifier.swift */; };
 		CEE287407A942073CA2CE815 /* CreateGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7F26B85E1ECACD432E58D9 /* CreateGroupView.swift */; };
 		DB1C6D6F2E6049A1D317B046 /* ExpenseDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83AF2179F158E9A861F2C99 /* ExpenseDetailView.swift */; };
@@ -93,6 +94,7 @@
 		40F0421F024AB86BC7D926B9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		442E38856B7F52F915B131D4 /* CurrencyPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyPicker.swift; sourceTree = "<group>"; };
 		4B86614DA51BD09683BB6850 /* SplitwiseApp.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = SplitwiseApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4D012A0CCCF30294D761EAEA /* BackupManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupManager.swift; sourceTree = "<group>"; };
 		52ABC5F522B760F050206C36 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		541CBE2CEC80D5BDA31EE249 /* ActivityFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFeedView.swift; sourceTree = "<group>"; };
 		5F4EFE3DACE2FA771F7175A5 /* ExportManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportManager.swift; sourceTree = "<group>"; };
@@ -237,6 +239,7 @@
 		9A07EF826E87FF144ED13E30 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				4D012A0CCCF30294D761EAEA /* BackupManager.swift */,
 				C805858CFE508930F72957DD /* DebtSimplifier.swift */,
 				5F4EFE3DACE2FA771F7175A5 /* ExportManager.swift */,
 				65B340D776FB8417C6A2BC48 /* ReceiptScannerService.swift */,
@@ -448,6 +451,7 @@
 				32358EED3652B26D8A920B55 /* AddExpenseView.swift in Sources */,
 				A154205A19BE822835F7DA29 /* AddFriendView.swift in Sources */,
 				5D25717089853C183E07495A /* AppState.swift in Sources */,
+				C5ED27D17091C71A9A54CE99 /* BackupManager.swift in Sources */,
 				A21C5C574EF82002F884082C /* BalanceBadge.swift in Sources */,
 				F7D634B0A76F808AE180BCF4 /* Bundle+Localization.swift in Sources */,
 				62B1F8334F1D058992CFDCB1 /* CategoryIconView.swift in Sources */,

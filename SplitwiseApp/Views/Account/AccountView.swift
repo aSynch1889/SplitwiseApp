@@ -1,5 +1,9 @@
 import SwiftUI
 import SwiftData
+import UniformTypeIdentifiers
+#if canImport(UIKit)
+import UIKit
+#endif
 
 public struct AccountView: View {
     @Environment(AppState.self) private var appState
@@ -10,6 +14,10 @@ public struct AccountView: View {
 
     @State private var showingProView = false
     @State private var showingResetConfirm = false
+    @State private var showingShareBackup = false
+    @State private var backupShareItems: [Any] = []
+    @State private var showingImportPicker = false
+    @State private var backupMessage: String?
 
     private var currentUser: User? {
         currentUsers.first
@@ -133,6 +141,18 @@ public struct AccountView: View {
                         Label("Terms of Service", systemImage: "doc.text.fill")
                     }
 
+                    Button {
+                        exportBackup()
+                    } label: {
+                        Label("Export Local Backup (JSON)", systemImage: "externaldrive.badge.timemachine")
+                    }
+
+                    Button {
+                        showingImportPicker = true
+                    } label: {
+                        Label("Restore Backup (Replace All)", systemImage: "arrow.clockwise.icloud")
+                    }
+
                     #if DEBUG
                     Button(role: .destructive) {
                         showingResetConfirm = true
@@ -146,6 +166,32 @@ public struct AccountView: View {
             .navigationTitle("Account")
             .sheet(isPresented: $showingProView) {
                 SplitwiseProView()
+            }
+            .sheet(isPresented: $showingShareBackup) {
+                #if canImport(UIKit)
+                ActivityViewControllerWrapper(activityItems: backupShareItems)
+                #endif
+            }
+            .fileImporter(
+                isPresented: $showingImportPicker,
+                allowedContentTypes: [.json],
+                allowsMultipleSelection: false
+            ) { result in
+                switch result {
+                case .success(let urls):
+                    guard let url = urls.first else { return }
+                    importBackup(from: url)
+                case .failure(let error):
+                    backupMessage = "Import failed: \(error.localizedDescription)"
+                }
+            }
+            .alert("Backup", isPresented: Binding(
+                get: { backupMessage != nil },
+                set: { if !$0 { backupMessage = nil } }
+            )) {
+                Button("OK", role: .cancel) { backupMessage = nil }
+            } message: {
+                Text(backupMessage ?? "")
             }
             #if DEBUG
             .confirmationDialog(
@@ -162,6 +208,31 @@ public struct AccountView: View {
         }
     }
 
+    private func exportBackup() {
+        do {
+            let data = try BackupManager.exportSnapshot(context: modelContext)
+            let url = FileManager.default.temporaryDirectory.appendingPathComponent("BillNest-Backup.json")
+            try data.write(to: url, options: .atomic)
+            backupShareItems = [url]
+            showingShareBackup = true
+        } catch {
+            backupMessage = "Export failed: \(error.localizedDescription)"
+        }
+    }
+
+    private func importBackup(from url: URL) {
+        do {
+            let accessed = url.startAccessingSecurityScopedResource()
+            defer { if accessed { url.stopAccessingSecurityScopedResource() } }
+            let data = try Data(contentsOf: url)
+            try BackupManager.importSnapshot(data: data, context: modelContext, replaceExisting: true)
+            appState.resolveCurrentUser(from: modelContext)
+            backupMessage = "Backup restored successfully."
+        } catch {
+            backupMessage = "Restore failed: \(error.localizedDescription)"
+        }
+    }
+
     #if DEBUG
     private func resetDemoData() {
         do {
@@ -174,7 +245,7 @@ public struct AccountView: View {
             SampleData.populateIfEmpty(context: modelContext)
             appState.resolveCurrentUser(from: modelContext)
         } catch {
-            print("Reset demo data failed: \(error)")
+            backupMessage = "Reset demo data failed: \(error.localizedDescription)"
         }
     }
     #endif

@@ -335,16 +335,12 @@ xcodebuild -project SplitwiseApp.xcodeproj -scheme SplitwiseApp \
 
 ### 4.9 删除账单无动态日志 / 编辑能力弱
 
-**现象**
+**状态：✅ 已修复**
 
-- `ExpenseDetailView` 可删除，但不写 `ActivityLog.deletedExpense`。  
-- 编辑账单能力不完整（若仅有详情只读+删除）。  
-- 删除后余额变化无审计。
+**修复说明**
 
-**解决方案**
-
-- 删除/编辑前后写 Activity；支持撤销（短时）或软删除。  
-- 完善 Edit Expense 与分摊再平衡。
+- 详情页提供 Edit Expense（复用 `AddExpenseView(editingExpense:)`）。
+- 删除/编辑写入 `ActivityLog`；保存失败提示错误且不关闭页面。
 
 ---
 
@@ -444,8 +440,7 @@ xcodebuild -project SplitwiseApp.xcodeproj -scheme SplitwiseApp \
 
 ### 5.1 无网络同步与备份
 
-- 卸载/换机数据全丢。  
-- **方案**：iCloud（SwiftData + CloudKit）、导出备份 JSON、或「导出全部 CSV」。
+- **状态：⚠️ 部分修复** — Account 提供本地 JSON 导出/整库恢复；完整 iCloud/CloudKit 仍可后续。
 
 ### 5.2 无单元测试 / UI 测试
 
@@ -590,10 +585,10 @@ xcodebuild -project SplitwiseApp.xcodeproj -scheme SplitwiseApp \
 
 ### Phase 3（后续）— 产品化
 
-- [ ] 备份/iCloud  
-- [ ] 编辑账单完善  
-- [ ] 性能与无障碍  
-- [ ] 可选账号体系（首发不做；保持本地工具定位）  
+- [x] 备份/iCloud（本地 JSON 导出/恢复；完整 iCloud 同步仍可选后续）  
+- [x] 编辑账单完善  
+- [x] 性能与无障碍（关键详情页无障碍标签；列表性能优化可继续）  
+- [x] 可选账号体系（首发不做；保持本地工具定位）
 
 ---
 

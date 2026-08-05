@@ -15,6 +15,8 @@ public struct ExpenseDetailView: View {
 
     @State private var showingReceiptZoom = false
     @State private var showingDeleteAlert = false
+    @State private var showingEdit = false
+    @State private var actionError: String?
 
     private var payer: User? {
         users.first(where: { $0.id == expense.payerId })
@@ -23,7 +25,6 @@ public struct ExpenseDetailView: View {
     public var body: some View {
         ScrollView {
             VStack(spacing: 20) {
-                // Category Icon & Header
                 VStack(spacing: 12) {
                     CategoryIconView(category: expense.category, size: 64)
 
@@ -45,11 +46,11 @@ public struct ExpenseDetailView: View {
                 .background(ColorTheme.cardBackground)
                 .cornerRadius(16)
 
-                // Paid By Info Card
                 HStack(spacing: 14) {
                     Image(systemName: "person.circle.fill")
                         .font(.system(size: 32))
                         .foregroundColor(ColorTheme.brandTeal)
+                        .accessibilityHidden(true)
 
                     VStack(alignment: .leading, spacing: 2) {
                         Text("Paid By")
@@ -64,8 +65,8 @@ public struct ExpenseDetailView: View {
                 .padding(16)
                 .background(ColorTheme.cardBackground)
                 .cornerRadius(14)
+                .accessibilityElement(children: .combine)
 
-                // Splits Breakdown Section
                 VStack(alignment: .leading, spacing: 12) {
                     HStack {
                         Text("Splits Breakdown (\(expense.splitMethod.rawValue))")
@@ -87,10 +88,10 @@ public struct ExpenseDetailView: View {
                         .padding(12)
                         .background(ColorTheme.cardBackground)
                         .cornerRadius(10)
+                        .accessibilityElement(children: .combine)
                     }
                 }
 
-                // Receipt Preview Section
                 #if canImport(UIKit)
                 if let data = expense.receiptImageData, let uiImage = UIImage(data: data) {
                     VStack(alignment: .leading, spacing: 10) {
@@ -102,6 +103,7 @@ public struct ExpenseDetailView: View {
                             .scaledToFit()
                             .frame(maxHeight: 250)
                             .cornerRadius(12)
+                            .accessibilityLabel("Attached receipt image")
                             .onTapGesture {
                                 showingReceiptZoom = true
                             }
@@ -109,7 +111,6 @@ public struct ExpenseDetailView: View {
                 }
                 #endif
 
-                // Notes Section
                 if !expense.notes.isEmpty {
                     VStack(alignment: .leading, spacing: 8) {
                         Text("Notes")
@@ -124,7 +125,19 @@ public struct ExpenseDetailView: View {
                     }
                 }
 
-                // Delete Expense Button
+                Button {
+                    showingEdit = true
+                } label: {
+                    Label("Edit Expense", systemImage: "pencil")
+                        .font(.headline)
+                        .foregroundColor(ColorTheme.brandTeal)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 14)
+                        .background(ColorTheme.brandTeal.opacity(0.12))
+                        .cornerRadius(12)
+                }
+                .accessibilityHint("Opens the expense editor")
+
                 Button(role: .destructive) {
                     showingDeleteAlert = true
                 } label: {
@@ -136,7 +149,7 @@ public struct ExpenseDetailView: View {
                         .background(Color.red.opacity(0.1))
                         .cornerRadius(12)
                 }
-                .padding(.top, 10)
+                .padding(.top, 4)
             }
             .padding()
         }
@@ -152,6 +165,17 @@ public struct ExpenseDetailView: View {
             Button("Cancel", role: .cancel) {}
         } message: {
             Text("Are you sure you want to delete this expense? This action cannot be undone.")
+        }
+        .alert("Could Not Save", isPresented: Binding(
+            get: { actionError != nil },
+            set: { if !$0 { actionError = nil } }
+        )) {
+            Button("OK", role: .cancel) { actionError = nil }
+        } message: {
+            Text(actionError ?? "")
+        }
+        .sheet(isPresented: $showingEdit) {
+            AddExpenseView(editingExpense: expense)
         }
         .sheet(isPresented: $showingReceiptZoom) {
             #if canImport(UIKit)
@@ -176,8 +200,27 @@ public struct ExpenseDetailView: View {
     }
 
     private func deleteExpense() {
+        let title = expense.title
+        let groupId = expense.groupId
+        let expenseId = expense.id
+        if let me = users.first(where: { $0.id == appState.currentUserId }) {
+            let log = ActivityLog(
+                type: .deletedExpense,
+                actorId: me.id,
+                actorName: me.name,
+                title: "\(me.name) deleted \"\(title)\"",
+                details: "Expense removed",
+                groupId: groupId,
+                expenseId: expenseId
+            )
+            modelContext.insert(log)
+        }
         modelContext.delete(expense)
-        try? modelContext.save()
-        dismiss()
+        do {
+            try modelContext.save()
+            dismiss()
+        } catch {
+            actionError = "Failed to delete expense: \(error.localizedDescription)"
+        }
     }
 }
