@@ -34,5 +34,6 @@ public struct LanguageSelectionView: View {
             }
         }
         .navigationTitle("Language")
+        .hidesTabBarWhenPushed()
     }
 }

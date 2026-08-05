@@ -91,6 +91,7 @@ public struct FriendDetailView: View {
         #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
         #endif
+        .hidesTabBarWhenPushed()
         .sheet(isPresented: $showingSettleUp) {
             SettleUpView(targetPayee: friend)
         }

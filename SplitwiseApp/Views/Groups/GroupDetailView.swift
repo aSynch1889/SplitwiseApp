@@ -70,6 +70,7 @@ public struct GroupDetailView: View {
                 }
             }
         }
+        .hidesTabBarWhenPushed()
         .sheet(isPresented: $showingAddExpense) {
             AddExpenseView(preselectedGroup: group)
         }

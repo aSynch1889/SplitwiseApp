@@ -158,6 +158,7 @@ public struct ExpenseDetailView: View {
         #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
         #endif
+        .hidesTabBarWhenPushed()
         .alert("Delete Expense?", isPresented: $showingDeleteAlert) {
             Button("Delete", role: .destructive) {
                 deleteExpense()
