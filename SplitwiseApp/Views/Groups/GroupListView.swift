@@ -124,7 +124,8 @@ public struct GroupListView: View {
         let balances = DebtSimplifier.calculateNetBalances(
             members: groupMembers,
             expenses: groupExpenses,
-            settlements: groupSettlements
+            settlements: groupSettlements,
+            baseCurrency: group.defaultCurrency
         )
         let myNet = balances[appState.currentUserId] ?? 0.0
 
@@ -201,7 +202,8 @@ public struct GroupListView: View {
         let balances = DebtSimplifier.calculateNetBalances(
             members: users,
             expenses: expenses,
-            settlements: settlements
+            settlements: settlements,
+            baseCurrency: appState.selectedCurrency
         )
         return balances[appState.currentUserId] ?? 0.0
     }

@@ -24,7 +24,7 @@ public struct SimplifyDebtsView: View {
                                 .font(.headline)
                         }
 
-                        Text("Debt simplification calculates net balances to reduce the total number of transactions between group members.")
+                        Text("Debt simplification nets balances to reduce transfers between members (greedy heuristic; not a proven global minimum). Amounts are converted to the group currency using in-app static rates (not live FX).")
                             .font(.subheadline)
                             .foregroundColor(.secondary)
                     }

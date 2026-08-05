@@ -186,25 +186,17 @@ xcodebuild -project SplitwiseApp.xcodeproj -scheme SplitwiseApp \
 
 ### 3.6 债务计算不支持多币种混合
 
-**现象**
+**状态：✅ 已修复（I-06）** — 短期静态汇率表方案
 
-- `DebtSimplifier` 直接对 `expense.amount` / `settlement.amount` 做加减，**不看 currency**。
-- 用户可在账单级选不同币种；群组有 `defaultCurrency`。
-- 图表 `totalSpent` 亦直接 `sum(amount)`，跨币种数字无意义。
+**修复说明**
 
-**后果**
+1. `DebtSimplifier.calculateNetBalances` / `simplifyDebts` / `computeRawPairwiseDebts` 统一先换算到 `baseCurrency`（群组默认币或 App 所选币种）。
+2. 群组列表、群组详情、Overall Balance、好友净额均走换算。
+3. 汇率源为 `CurrencyFormatter.conversionRatesToUSD` 静态表；Simplify 文案标明「非实时」。
 
-- 东京旅行（USD）+ 房租（USD）尚可；一旦混入 JPY/CNY，余额与「简化债务」错误。
-- 「实时汇率」实为 `CurrencyFormatter` 内写死静态表，且未接入余额引擎。
+**仍待中期**
 
-**解决方案**
-
-1. 引擎层统一：所有金额先换算到 **群组基准币种** 再算净额。
-2. 换算源：
-   - 短期：App 内手动汇率表 + 时间戳标注「非实时」。
-   - 中期：接入公开汇率 API，并缓存；失败回退上次缓存。
-3. UI 明确展示：余额币种、换算提示、无法换算时的错误态。
-4. 禁止在未换算时跨币种相加（断言/过滤 + 单元测试）。
+- 接入公开汇率 API + 缓存回退。
 
 ---
 
@@ -425,14 +417,13 @@ xcodebuild -project SplitwiseApp.xcodeproj -scheme SplitwiseApp \
 
 ### 4.12 “最少笔数”算法与 Raw Debts 结果不可靠（新增）
 
-**状态：❌ 未修复（I-20）**
+**状态：✅ 已修复（I-20）** — 采用「减少转账」诚实文案 + Raw 结算修正
 
-- 当前是排序后双指针贪心，不是 Min-Cost Flow，也不保证全局最少笔数。
-- 反例：债权 `[3, 2]`、债务 `[2, 2, 1]` 时当前算法产生 4 笔，最优只需 3 笔。
-- `computeRawPairwiseDebts()` 仅在已有同向直接债务时扣减 settlement；超额还款、反向债务和净额抵消会被忽略。
-- 分摊合计不等于账单金额时，净余额不守恒，而简化循环会静默丢掉未匹配残差。
+**修复说明**
 
-**修复**：若只承诺“减少转账”则修正文案；若承诺最少笔数，采用可证明/可验证算法并限制群组规模。所有入口先验证 `sum(splits) == amount` 与净额守恒。
+1. Simplify UI 改为说明 greedy 启发式、非全局最少笔数证明。
+2. `computeRawPairwiseDebts`：结算超额产生反向债权；对向边先净额抵消；金额先换算到基准币。
+3. 未改用 Min-Cost Flow（群组规模小场景 greedy 可接受）。
 
 ---
 
@@ -616,11 +607,11 @@ xcodebuild -project SplitwiseApp.xcodeproj -scheme SplitwiseApp \
 
 ### Phase 1（3–5 天）— 可演示正确性
 
-- [ ] 多币种统一换算进余额引擎  
+- [x] 多币种统一换算进余额引擎  
 - [ ] 分摊校验与尾差  
 - [ ] 让 Itemized 真正接收 OCR items 并支持逐项归属
 - [x] 修复订阅冷启动权益与 Product ID 白名单
-- [ ] 修正文案或更换可证明的债务最少笔数算法
+- [x] 修正文案或更换可证明的债务最少笔数算法
 - [ ] 修复图表 timeframe / 年月排序 / 指标口径
 - [ ] 样例数据可选  
 - [ ] 基础单元测试（DebtSimplifier + Split）  
@@ -653,7 +644,7 @@ xcodebuild -project SplitwiseApp.xcodeproj -scheme SplitwiseApp \
 | I-03 | ✅ | P0 | isMockPro 默认 true | Release 恒 false；Toggle 仅 DEBUG |
 | I-04 | ❌ | P0 | 无隐私政策/条款可点击链接、价格写死 | `SplitwiseProView.swift` |
 | I-05 | ✅ | P0 | Camera/Face ID/Push 声明与实现不符 | 已删未实现权限与空开关 |
-| I-06 | ❌ | P0 | 多币种未换算 | `DebtSimplifier.swift`, `ChartsView.swift` |
+| I-06 | ✅ | P0 | 多币种未换算 | 余额引擎统一换算到基准币 |
 | I-07 | ❌ | P1 | 邀请/协同虚假承诺 | `AddFriendView.swift` |
 | I-08 | ❌ | P1 | Pro 无门禁 | 全 Views |
 | I-09 | ❌ | P1 | 分摊覆盖、无校验、Itemized 丢条目 | `AddExpenseView.swift:187-224`, `SplitOptionsView.swift` |
@@ -667,7 +658,7 @@ xcodebuild -project SplitwiseApp.xcodeproj -scheme SplitwiseApp \
 | I-17 | ✅ | P0 | No Group 错分给全部用户/可保存孤儿 payer | `AddExpenseView` 个人/好友参与者模型 |
 | I-18 | ✅ | P0 | 缺少 Required Reason API 隐私清单 | 已加入 `PrivacyInfo.xcprivacy` (CA92.1) |
 | I-19 | ✅ | P1 | 订阅冷启动不恢复、任意 entitlement 解锁 | 冷启动恢复 + Product ID 白名单 |
-| I-20 | ❌ | P1 | 债务算法不保证最少笔数，Raw 结算不完整 | `DebtSimplifier.swift` |
+| I-20 | ✅ | P1 | 债务算法不保证最少笔数，Raw 结算不完整 | 诚实文案 + Raw 净额/超额结算 |
 | I-21 | ❌ | P1 | 图表 timeframe/年月/币种/指标口径错误 | `ChartsView.swift:51-223` |
 | I-22 | ❌ | P1 | Archived 与 simplify 开关不影响行为 | `GroupListView.swift`, `GroupDetailView.swift` |
 | I-23 | ✅ | P1 | iPhone 好友直接记账不可达 | `FriendDetailView` 已接 Add Expense Sheet |

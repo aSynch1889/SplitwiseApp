@@ -165,7 +165,8 @@ public struct GroupDetailView: View {
         let netBalances = DebtSimplifier.calculateNetBalances(
             members: groupMembers,
             expenses: groupExpenses,
-            settlements: groupSettlements
+            settlements: groupSettlements,
+            baseCurrency: group.defaultCurrency
         )
 
         return VStack(alignment: .leading, spacing: 10) {

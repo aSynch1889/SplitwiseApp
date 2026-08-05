@@ -187,24 +187,38 @@ public struct FriendDetailView: View {
     private func calculateNetWithFriend() -> Double {
         var net: Double = 0.0
         let myId = appState.currentUserId
+        let displayCurrency = appState.selectedCurrency
 
         for expense in expenses {
             if expense.payerId == myId {
                 if let friendSplit = expense.splits.first(where: { $0.userId == friend.id }) {
-                    net += friendSplit.amount
+                    net += CurrencyFormatter.convert(
+                        amount: friendSplit.amount,
+                        from: expense.currency,
+                        to: displayCurrency
+                    )
                 }
             } else if expense.payerId == friend.id {
                 if let mySplit = expense.splits.first(where: { $0.userId == myId }) {
-                    net -= mySplit.amount
+                    net -= CurrencyFormatter.convert(
+                        amount: mySplit.amount,
+                        from: expense.currency,
+                        to: displayCurrency
+                    )
                 }
             }
         }
 
         for settlement in settlements {
+            let amount = CurrencyFormatter.convert(
+                amount: settlement.amount,
+                from: settlement.currency,
+                to: displayCurrency
+            )
             if settlement.payerId == myId && settlement.payeeId == friend.id {
-                net += settlement.amount
+                net += amount
             } else if settlement.payerId == friend.id && settlement.payeeId == myId {
-                net -= settlement.amount
+                net -= amount
             }
         }
 
