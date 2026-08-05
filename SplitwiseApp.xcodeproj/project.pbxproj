@@ -53,6 +53,7 @@
 		EBE8D53EE7941D50480C825A /* LanguageSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC54C3499774669A612005F /* LanguageSelectionView.swift */; };
 		EC5DC8D565C1A8333424CB09 /* FriendDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8405A287DA35F59D60F2B9 /* FriendDetailView.swift */; };
 		F7D634B0A76F808AE180BCF4 /* Bundle+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3E915707ECD333AADE1162 /* Bundle+Localization.swift */; };
+		FFC4F99ECC6C0A0BBCF67F91 /* SplitMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = B017574B45A045817433FF08 /* SplitMath.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -91,6 +92,7 @@
 		A6305BEE5EA67EB8E0E5E0FC /* CurrencyFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyFormatter.swift; sourceTree = "<group>"; };
 		AEC54C3499774669A612005F /* LanguageSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelectionView.swift; sourceTree = "<group>"; };
 		AECE8BB1918D85239CA87247 /* ColorTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTheme.swift; sourceTree = "<group>"; };
+		B017574B45A045817433FF08 /* SplitMath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitMath.swift; sourceTree = "<group>"; };
 		B2A1CCD39794D4FF69694DBF /* SimplifyDebtsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplifyDebtsView.swift; sourceTree = "<group>"; };
 		BFD039E08E4A9D049E10D84A /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		C5E092EF0322B30A1007F725 /* SplitOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitOptionsView.swift; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 			children = (
 				AECE8BB1918D85239CA87247 /* ColorTheme.swift */,
 				A6305BEE5EA67EB8E0E5E0FC /* CurrencyFormatter.swift */,
+				B017574B45A045817433FF08 /* SplitMath.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -418,6 +421,7 @@
 				C035D75A6323DC56E30BAD08 /* SettleUpView.swift in Sources */,
 				6DD1B3327852C584B1D709C2 /* Settlement.swift in Sources */,
 				0EB2AD830629576DABEE07D1 /* SimplifyDebtsView.swift in Sources */,
+				FFC4F99ECC6C0A0BBCF67F91 /* SplitMath.swift in Sources */,
 				3C46D5BEDD88A6DB4B2EDF3E /* SplitOptionsView.swift in Sources */,
 				0EBDD0978DFA8F075D612F19 /* SplitwiseApp.swift in Sources */,
 				C4CE77BDD783CEC676420916 /* SplitwiseProView.swift in Sources */,

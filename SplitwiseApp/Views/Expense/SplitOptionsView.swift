@@ -10,17 +10,22 @@ public struct SplitOptionsView: View {
     @Binding public var splitMethod: SplitMethod
     @Binding public var splits: [ExpenseSplit]
 
+    @State private var draftMethod: SplitMethod = .equal
     @State private var tempSplits: [ExpenseSplit] = []
+    @State private var validationError: String?
+
+    private var canSaveSplit: Bool {
+        SplitMath.isValid(method: draftMethod, total: totalAmount, splits: tempSplits)
+    }
 
     public var body: some View {
         NavigationStack {
             VStack(spacing: 0) {
-                // Split Method Switcher Tabs
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 8) {
                         ForEach(SplitMethod.allCases) { method in
                             Button {
-                                splitMethod = method
+                                draftMethod = method
                                 recalculateSplits(for: method)
                             } label: {
                                 HStack(spacing: 4) {
@@ -33,8 +38,8 @@ public struct SplitOptionsView: View {
                                 }
                                 .padding(.horizontal, 14)
                                 .padding(.vertical, 8)
-                                .background(splitMethod == method ? ColorTheme.brandTeal : ColorTheme.cardBackground)
-                                .foregroundColor(splitMethod == method ? .white : .primary)
+                                .background(draftMethod == method ? ColorTheme.brandTeal : ColorTheme.cardBackground)
+                                .foregroundColor(draftMethod == method ? .white : .primary)
                                 .cornerRadius(20)
                             }
                         }
@@ -46,10 +51,9 @@ public struct SplitOptionsView: View {
 
                 Divider()
 
-                // Active Split Configuration View
                 ScrollView {
                     VStack(spacing: 16) {
-                        switch splitMethod {
+                        switch draftMethod {
                         case .equal:
                             equalSplitView
                         case .exact:
@@ -71,29 +75,50 @@ public struct SplitOptionsView: View {
             .navigationBarTitleDisplayMode(.inline)
             #endif
             .onAppear {
+                draftMethod = splitMethod
                 if splits.isEmpty {
-                    recalculateSplits(for: splitMethod)
+                    recalculateSplits(for: draftMethod)
                 } else {
                     tempSplits = splits
                 }
             }
             .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Cancel") { dismiss() }
+                }
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Save Split") {
+                        guard canSaveSplit else {
+                            validationError = SplitMath.validationMessage(
+                                method: draftMethod,
+                                total: totalAmount,
+                                splits: tempSplits
+                            )
+                            return
+                        }
+                        splitMethod = draftMethod
                         splits = tempSplits
                         dismiss()
                     }
                     .fontWeight(.bold)
                     .foregroundColor(ColorTheme.brandTeal)
+                    .disabled(!canSaveSplit)
                 }
+            }
+            .alert("Invalid Split", isPresented: Binding(
+                get: { validationError != nil },
+                set: { if !$0 { validationError = nil } }
+            )) {
+                Button("OK", role: .cancel) { validationError = nil }
+            } message: {
+                Text(validationError ?? "")
             }
         }
     }
 
-    // MARK: - 1. Equal Split View
     private var equalSplitView: some View {
         VStack(spacing: 12) {
-            Text("Split Equally (\(CurrencyFormatter.format(totalAmount / Double(max(1, members.count)), currency: currency)) / person)")
+            Text("Split Equally (remainder cents assigned to first members)")
                 .font(.headline)
                 .foregroundColor(.secondary)
 
@@ -114,7 +139,6 @@ public struct SplitOptionsView: View {
         }
     }
 
-    // MARK: - 2. Exact Amounts View
     private var exactSplitView: some View {
         let currentSum = tempSplits.reduce(0.0) { $0 + $1.amount }
         let remaining = totalAmount - currentSum
@@ -152,7 +176,6 @@ public struct SplitOptionsView: View {
         }
     }
 
-    // MARK: - 3. Percentage View
     private var percentageSplitView: some View {
         let currentPct = tempSplits.reduce(0.0) { $0 + $1.percentage }
 
@@ -196,14 +219,13 @@ public struct SplitOptionsView: View {
         }
     }
 
-    // MARK: - 4. Shares View
     private var sharesSplitView: some View {
         let totalShares = tempSplits.reduce(0) { $0 + $1.shares }
 
         return VStack(spacing: 12) {
             Text("Total Shares: \(totalShares)")
                 .font(.subheadline)
-                .foregroundColor(.secondary)
+                .foregroundColor(totalShares > 0 ? .secondary : ColorTheme.owesOrange)
 
             ForEach(0..<tempSplits.count, id: \.self) { i in
                 HStack {
@@ -226,7 +248,6 @@ public struct SplitOptionsView: View {
         }
     }
 
-    // MARK: - 5. Itemized View (Splitwise Pro Feature)
     private var itemizedSplitView: some View {
         VStack(spacing: 12) {
             HStack {
@@ -235,6 +256,10 @@ public struct SplitOptionsView: View {
                 Text("Itemized Receipt Breakdown")
                     .font(.headline)
             }
+
+            Text("Assign items from OCR or Options. Save requires item totals to match the expense.")
+                .font(.caption)
+                .foregroundColor(.secondary)
 
             ForEach(tempSplits) { split in
                 VStack(alignment: .leading, spacing: 8) {
@@ -258,6 +283,10 @@ public struct SplitOptionsView: View {
                                     .font(.caption)
                             }
                         }
+                    } else {
+                        Text("No items assigned yet")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
                     }
                 }
                 .padding(12)
@@ -267,30 +296,63 @@ public struct SplitOptionsView: View {
         }
     }
 
-    // MARK: - Calculation Helpers
     private func recalculateSplits(for method: SplitMethod) {
-        let count = Double(max(1, members.count))
-        let equalShare = totalAmount / count
-
-        tempSplits = members.map { member in
-            ExpenseSplit(
-                userId: member.id,
-                userName: member.name,
-                amount: (method == .equal) ? equalShare : (totalAmount / count),
-                percentage: (100.0 / count),
-                shares: 1,
-                paidShare: 0.0
-            )
+        switch method {
+        case .equal:
+            tempSplits = SplitMath.buildEqualSplits(members: members, total: totalAmount, payerId: nil)
+        case .shares:
+            tempSplits = members.map {
+                ExpenseSplit(userId: $0.id, userName: $0.name, amount: 0, percentage: 0, shares: 1)
+            }
+            recalculateShares()
+        case .itemized:
+            if tempSplits.contains(where: { ($0.itemizedItems ?? []).isEmpty == false }) {
+                // Keep existing item assignments when switching back to itemized.
+                return
+            }
+            let count = Double(max(1, members.count))
+            tempSplits = members.map { member in
+                ExpenseSplit(
+                    userId: member.id,
+                    userName: member.name,
+                    amount: totalAmount / count,
+                    percentage: 100.0 / count,
+                    shares: 1,
+                    paidShare: 0.0
+                )
+            }
+        default:
+            let count = Double(max(1, members.count))
+            tempSplits = members.map { member in
+                ExpenseSplit(
+                    userId: member.id,
+                    userName: member.name,
+                    amount: totalAmount / count,
+                    percentage: 100.0 / count,
+                    shares: 1,
+                    paidShare: 0.0
+                )
+            }
         }
     }
 
     private func recalculateShares() {
         let totalShares = tempSplits.reduce(0) { $0 + $1.shares }
-        guard totalShares > 0 else { return }
+        guard totalShares > 0 else {
+            for i in 0..<tempSplits.count {
+                tempSplits[i].amount = 0
+            }
+            return
+        }
 
+        let amounts = SplitMath.equalAmounts(total: totalAmount, count: totalShares)
+        // Map share units to amounts: distribute by share count using proportional cents.
+        var cursor = 0
         for i in 0..<tempSplits.count {
-            let portion = Double(tempSplits[i].shares) / Double(totalShares)
-            tempSplits[i].amount = totalAmount * portion
+            let shareCount = tempSplits[i].shares
+            let slice = amounts[cursor..<(cursor + shareCount)]
+            tempSplits[i].amount = slice.reduce(0, +)
+            cursor += shareCount
         }
     }
 }

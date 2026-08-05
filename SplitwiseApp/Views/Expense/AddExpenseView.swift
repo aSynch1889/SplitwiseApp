@@ -39,6 +39,8 @@ public struct AddExpenseView: View {
     @State private var showingSplitOptions = false
     @State private var showingReceiptPicker = false
     @State private var saveErrorMessage: String?
+    @State private var userCustomizedSplits = false
+    @State private var pendingOCRItems: [ItemizedSplit] = []
 
     private var currentUser: User? {
         users.first(where: { $0.isCurrentUser })
@@ -76,7 +78,7 @@ public struct AddExpenseView: View {
         guard let payerId, groupMembers.contains(where: { $0.id == payerId }) else { return false }
         guard !splits.isEmpty else { return false }
         guard splits.allSatisfy({ split in groupMembers.contains(where: { $0.id == split.userId }) }) else { return false }
-        return true
+        return SplitMath.isValid(method: splitMethod, total: amount, splits: splits)
     }
 
     public var body: some View {
@@ -237,23 +239,33 @@ public struct AddExpenseView: View {
             }
             .onChange(of: selectedGroupId) { _, newValue in
                 if newValue != nil {
-                    // Leaving individual mode — clear friend selection unless locked.
                     if preselectedFriend == nil {
                         selectedFriendId = nil
                     }
                 }
+                userCustomizedSplits = false
                 ensureValidPayer()
                 recalculateSplits()
             }
             .onChange(of: selectedFriendId) { _, _ in
+                userCustomizedSplits = false
                 ensureValidPayer()
                 recalculateSplits()
             }
             .onChange(of: amount) { _, _ in
-                recalculateSplits()
+                if !userCustomizedSplits || splitMethod == .equal {
+                    recalculateSplits()
+                }
             }
             .onChange(of: payerId) { _, _ in
-                recalculateSplits()
+                if !userCustomizedSplits {
+                    recalculateSplits()
+                } else {
+                    // Update paidShare only.
+                    for i in splits.indices {
+                        splits[i].paidShare = (splits[i].userId == payerId) ? amount : 0
+                    }
+                }
             }
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
@@ -276,7 +288,9 @@ public struct AddExpenseView: View {
             } message: {
                 Text(saveErrorMessage ?? "")
             }
-            .sheet(isPresented: $showingSplitOptions) {
+            .sheet(isPresented: $showingSplitOptions, onDismiss: {
+                userCustomizedSplits = true
+            }) {
                 SplitOptionsView(
                     totalAmount: amount,
                     currency: currency,
@@ -294,7 +308,18 @@ public struct AddExpenseView: View {
                         amount = scanned.totalAmount
                     }
                     splitMethod = .itemized
-                    recalculateSplits()
+                    pendingOCRItems = scanned.lineItems
+                    userCustomizedSplits = true
+                    if scanned.lineItems.isEmpty {
+                        recalculateSplits()
+                    } else {
+                        splits = SplitMath.applyItemizedItems(
+                            scanned.lineItems,
+                            to: groupMembers,
+                            total: amount > 0 ? amount : scanned.totalAmount,
+                            payerId: payerId ?? currentUser?.id
+                        )
+                    }
                 }
             }
         }
@@ -330,26 +355,29 @@ public struct AddExpenseView: View {
             return
         }
 
-        let count = Double(members.count)
-        let equalShare = amount / count
         let resolvedPayer = payerId ?? currentUser?.id
 
-        splits = members.map { member in
-            let isPayer = (member.id == resolvedPayer)
-            return ExpenseSplit(
-                userId: member.id,
-                userName: member.name,
-                amount: equalShare,
-                percentage: (100.0 / count),
-                shares: 1,
-                paidShare: isPayer ? amount : 0.0
+        if splitMethod == .itemized, !pendingOCRItems.isEmpty {
+            splits = SplitMath.applyItemizedItems(
+                pendingOCRItems,
+                to: members,
+                total: amount,
+                payerId: resolvedPayer
             )
+            return
         }
+
+        splits = SplitMath.buildEqualSplits(
+            members: members,
+            total: amount,
+            payerId: resolvedPayer
+        )
     }
 
     private func saveExpense() {
         guard canSave, let resolvedPayer = payerId ?? currentUser?.id else {
-            saveErrorMessage = "Missing current user or payer. Please set up your profile and try again."
+            saveErrorMessage = SplitMath.validationMessage(method: splitMethod, total: amount, splits: splits)
+                ?? "Missing current user or payer. Please set up your profile and try again."
             return
         }
 
@@ -360,6 +388,11 @@ public struct AddExpenseView: View {
 
         guard !splits.isEmpty else {
             saveErrorMessage = "At least one participant is required."
+            return
+        }
+
+        if let message = SplitMath.validationMessage(method: splitMethod, total: amount, splits: splits) {
+            saveErrorMessage = message
             return
         }
 

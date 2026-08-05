@@ -275,27 +275,14 @@ xcodebuild -project SplitwiseApp.xcodeproj -scheme SplitwiseApp \
 
 ### 4.3 分摊逻辑与校验不完整
 
-**现象（`AddExpenseView` / `SplitOptionsView`）**
+**状态：✅ 已修复（I-09）**
 
-- 切换金额/群组时 `recalculateSplits()` 常重置为 **Equal**，可能覆盖用户在 Options 里配置的 Exact/%/Shares。
-- Exact 模式是否强制「分摊合计 = 总额」需在 UI 层严格校验（Save 前）。
-- Percentage 需强制合计 100%。
-- Itemized OCR 结果与成员归属未完成「逐项指派」闭环时，易产生金额不一致。
-- 角分（0.01）舍入在 Equal 模式未做「差额补到最后一人」的稳健策略（部分场景有，需统一）。
-- OCR 回调只使用 `title` 与 `totalAmount`，`lineItems` 被完全丢弃；随后仅创建等额 splits，却把方法标成 Itemized。
-- 切换分摊方法时直接修改父级 `splitMethod`；若用户下滑取消 Sheet，方法可能已变但 splits 未提交。
-- Shares 全部设为 0 时，计算函数直接返回，旧的金额仍可被保存。
+**修复说明**
 
-**解决方案**
-
-1. 拆分「默认初始化 splits」与「用户已自定义 splits」状态；仅在成员集合变化时重算。
-2. Save 按钮 `disabled` 条件绑定校验函数：
-   - Equal：自动修复尾差  
-   - Exact：`abs(sum - total) < 0.01`  
-   - %：`abs(sum% - 100) < 0.01`  
-   - Shares：总份数 > 0  
-   - Itemized：各项归属完整且合计匹配  
-3. 用属性测试 / 单元测试覆盖样例金额（3 人、7 人、奇数分）。
+1. 新增 `SplitMath`：Equal 尾差分厘、Exact/%/Shares/Itemized 校验、OCR 条目分配。
+2. `SplitOptionsView` 使用草稿 `draftMethod`，取消 Sheet 不污染父级；Save 前强制校验。
+3. `AddExpenseView` 区分成员变化重算与用户自定义 splits；OCR `lineItems` 写入 Itemized 归属。
+4. Save 绑定 `SplitMath.isValid`。
 
 ---
 
@@ -607,8 +594,8 @@ xcodebuild -project SplitwiseApp.xcodeproj -scheme SplitwiseApp \
 ### Phase 1（3–5 天）— 可演示正确性
 
 - [x] 多币种统一换算进余额引擎  
-- [ ] 分摊校验与尾差  
-- [ ] 让 Itemized 真正接收 OCR items 并支持逐项归属
+- [x] 分摊校验与尾差  
+- [x] 让 Itemized 真正接收 OCR items 并支持逐项归属
 - [x] 修复订阅冷启动权益与 Product ID 白名单
 - [x] 修正文案或更换可证明的债务最少笔数算法
 - [x] 修复图表 timeframe / 年月排序 / 指标口径
@@ -646,7 +633,7 @@ xcodebuild -project SplitwiseApp.xcodeproj -scheme SplitwiseApp \
 | I-06 | ✅ | P0 | 多币种未换算 | 余额引擎统一换算到基准币 |
 | I-07 | ❌ | P1 | 邀请/协同虚假承诺 | `AddFriendView.swift` |
 | I-08 | ❌ | P1 | Pro 无门禁 | 全 Views |
-| I-09 | ❌ | P1 | 分摊覆盖、无校验、Itemized 丢条目 | `AddExpenseView.swift:187-224`, `SplitOptionsView.swift` |
+| I-09 | ✅ | P1 | 分摊覆盖、无校验、Itemized 丢条目 | `SplitMath` + Options 草稿校验 |
 | I-10 | ❌ | P1 | 循环账单仅存字段 | `Expense.swift`, `AddExpenseView.swift` |
 | I-11 | ✅ | P1 | OCR 失败写入 Mock 数据 | 失败抛错 + Demo 仅 DEBUG |
 | I-12 | ❌ | P1 | 语言切换无效；中/繁各 9/208 | `Localizable.xcstrings`, `AppState.swift` |
