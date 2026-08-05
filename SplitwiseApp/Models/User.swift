@@ -3,7 +3,7 @@ import SwiftData
 
 @Model
 public final class User: Identifiable {
-    @Attribute(.unique) public var id: UUID
+    public var id: UUID
     public var name: String
     public var email: String
     public var phone: String

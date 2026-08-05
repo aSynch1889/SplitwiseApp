@@ -45,29 +45,50 @@ public final class AppState {
         self.selectedTabRaw = (UserDefaults.standard.object(forKey: "app_selected_tab") as? Int) ?? 0
     }
 
-    /// Resolve `currentUserId` from SwiftData (`User.isCurrentUser`) so balances and "You" labels stay correct across launches.
+    /// Resolve `currentUserId` from SwiftData (`User.isCurrentUser`) so balances and "You" labels stay correct across launches / iCloud merges.
     @MainActor
     public func resolveCurrentUser(from context: ModelContext) {
-        let descriptor = FetchDescriptor<User>(
-            predicate: #Predicate { $0.isCurrentUser }
-        )
-        if let me = try? context.fetch(descriptor).first {
-            if currentUserId != me.id {
-                currentUserId = me.id
+        let allUsers = (try? context.fetch(FetchDescriptor<User>())) ?? []
+        guard !allUsers.isEmpty else { return }
+
+        // Prefer the locally persisted ID after CloudKit merges multiple device profiles.
+        if let matched = allUsers.first(where: { $0.id == currentUserId }) {
+            var changed = false
+            for user in allUsers {
+                let shouldBeCurrent = user.id == matched.id
+                if user.isCurrentUser != shouldBeCurrent {
+                    user.isCurrentUser = shouldBeCurrent
+                    changed = true
+                }
+            }
+            if changed {
+                do { try context.save() } catch {
+                    print("AppState: failed to normalize current user — \(error.localizedDescription)")
+                }
             }
             return
         }
 
-        // Fallback: if a persisted ID still matches a user, adopt it and mark as current.
-        let allUsers = (try? context.fetch(FetchDescriptor<User>())) ?? []
-        if let matched = allUsers.first(where: { $0.id == currentUserId }) {
-            matched.isCurrentUser = true
-            do {
-                try context.save()
-            } catch {
-                print("AppState: failed to mark current user — \(error.localizedDescription)")
+        let flagged = allUsers.filter(\.isCurrentUser)
+        if let me = flagged.sorted(by: { $0.createdAt < $1.createdAt }).first {
+            currentUserId = me.id
+            if flagged.count > 1 {
+                for user in allUsers where user.id != me.id && user.isCurrentUser {
+                    user.isCurrentUser = false
+                }
+                do { try context.save() } catch {
+                    print("AppState: failed to demote extra current users — \(error.localizedDescription)")
+                }
             }
             return
+        }
+
+        if let first = allUsers.sorted(by: { $0.createdAt < $1.createdAt }).first {
+            first.isCurrentUser = true
+            currentUserId = first.id
+            do { try context.save() } catch {
+                print("AppState: failed to mark current user — \(error.localizedDescription)")
+            }
         }
     }
 

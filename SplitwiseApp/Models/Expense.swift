@@ -56,7 +56,7 @@ public enum RepeatFrequency: String, Codable, CaseIterable, Identifiable {
 
 @Model
 public final class Expense: Identifiable {
-    @Attribute(.unique) public var id: UUID
+    public var id: UUID
     public var title: String
     public var amount: Double
     public var currency: String

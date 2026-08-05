@@ -3,7 +3,7 @@ import SwiftData
 
 @Model
 public final class Settlement: Identifiable {
-    @Attribute(.unique) public var id: UUID
+    public var id: UUID
     public var payerId: UUID
     public var payeeId: UUID
     public var amount: Double

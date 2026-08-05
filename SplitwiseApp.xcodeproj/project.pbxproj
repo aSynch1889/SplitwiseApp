@@ -20,6 +20,7 @@
 		23D91D91708B2B23AFF9DE0A /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD039E08E4A9D049E10D84A /* Group.swift */; };
 		241378D658FF05003D655FE8 /* ActivityFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541CBE2CEC80D5BDA31EE249 /* ActivityFeedView.swift */; };
 		286E50CDC3EFF9A6B9ED0E4B /* CurrencyFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6305BEE5EA67EB8E0E5E0FC /* CurrencyFormatter.swift */; };
+		31DAF70BCFB1D6341B420CD1 /* CloudSyncMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6A9A0B7845097926ABC6CB /* CloudSyncMonitor.swift */; };
 		32358EED3652B26D8A920B55 /* AddExpenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2B0A91C6AE57C5A63ABB45 /* AddExpenseView.swift */; };
 		37DED71DAA7716763E2BA975 /* FriendsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04795DBD3F6E5E68F8AA2773 /* FriendsListView.swift */; };
 		3C46D5BEDD88A6DB4B2EDF3E /* SplitOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E092EF0322B30A1007F725 /* SplitOptionsView.swift */; };
@@ -102,6 +103,7 @@
 		665D4BF26327BFACE6AADDFF /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
 		857D66FEFA249437EE31CD1A /* Settlement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settlement.swift; sourceTree = "<group>"; };
 		8E2B0A91C6AE57C5A63ABB45 /* AddExpenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseView.swift; sourceTree = "<group>"; };
+		8E6A9A0B7845097926ABC6CB /* CloudSyncMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudSyncMonitor.swift; sourceTree = "<group>"; };
 		9025C69E6DB254660769F59B /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		90C96711D4AD58B8AD6501B4 /* CategoryIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryIconView.swift; sourceTree = "<group>"; };
 		94F281401753CA8A346BE2E4 /* LocalizationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationManager.swift; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				4D012A0CCCF30294D761EAEA /* BackupManager.swift */,
+				8E6A9A0B7845097926ABC6CB /* CloudSyncMonitor.swift */,
 				C805858CFE508930F72957DD /* DebtSimplifier.swift */,
 				5F4EFE3DACE2FA771F7175A5 /* ExportManager.swift */,
 				65B340D776FB8417C6A2BC48 /* ReceiptScannerService.swift */,
@@ -456,6 +459,7 @@
 				F7D634B0A76F808AE180BCF4 /* Bundle+Localization.swift in Sources */,
 				62B1F8334F1D058992CFDCB1 /* CategoryIconView.swift in Sources */,
 				1F8F43FD49E38AE0F5E29392 /* ChartsView.swift in Sources */,
+				31DAF70BCFB1D6341B420CD1 /* CloudSyncMonitor.swift in Sources */,
 				B8069AB870D2B19061A9C8FF /* ColorTheme.swift in Sources */,
 				CEE287407A942073CA2CE815 /* CreateGroupView.swift in Sources */,
 				286E50CDC3EFF9A6B9ED0E4B /* CurrencyFormatter.swift in Sources */,
@@ -527,6 +531,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SplitwiseApp/BillNest.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_TESTABILITY = YES;
@@ -569,6 +574,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SplitwiseApp/BillNest.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_TESTABILITY = YES;

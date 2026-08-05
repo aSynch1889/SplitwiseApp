@@ -133,7 +133,9 @@ public struct GroupSettingsView: View {
             avatarName: "person.circle.fill"
         )
         modelContext.insert(newUser)
-        group.memberIds.append(newUser.id)
+        var ids = group.memberIds
+        ids.append(newUser.id)
+        group.memberIds = ids
 
         newMemberName = ""
         newMemberEmail = ""
@@ -141,7 +143,9 @@ public struct GroupSettingsView: View {
         do {
             try modelContext.save()
         } catch {
-            group.memberIds.removeAll { $0 == newUser.id }
+            var reverted = group.memberIds
+            reverted.removeAll { $0 == newUser.id }
+            group.memberIds = reverted
             modelContext.delete(newUser)
             saveErrorMessage = error.localizedDescription
         }

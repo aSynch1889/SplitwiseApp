@@ -418,7 +418,14 @@ xcodebuild -project SplitwiseApp.xcodeproj -scheme SplitwiseApp \
 
 ### 5.1 无网络同步与备份
 
-- **状态：⚠️ 部分修复** — Account 提供本地 JSON 导出/整库恢复；完整 iCloud/CloudKit 仍可后续。
+- **状态：✅ 已修复** — 本地 JSON 导出/恢复 + SwiftData 私有 CloudKit（`iCloud.app.billnest.ios`）跨设备同步；Account 可开关，改动需重启生效。
+
+**实现要点**
+
+1. `ModelConfiguration(..., cloudKitDatabase: .private(...))`；失败自动回退本地库。
+2. 去掉各模型 `@Attribute(.unique)`（CloudKit 不兼容）；`Group.memberIds` 改为 Data 编码。
+3. `CloudSyncMonitor` 监听 CloudKit 事件与账号状态；多设备 `isCurrentUser` 冲突由 `resolveCurrentUser` 归一。
+4. 开发者账号需在 Apple Developer / Xcode Signing 启用同名 iCloud Container。
 
 ### 5.2 无单元测试 / UI 测试
 
@@ -562,7 +569,7 @@ xcodebuild -project SplitwiseApp.xcodeproj -scheme SplitwiseApp \
 
 ### Phase 3（后续）— 产品化
 
-- [x] 备份/iCloud（本地 JSON 导出/恢复；完整 iCloud 同步仍可选后续）  
+- [x] 备份/iCloud（本地 JSON + 完整 CloudKit 私有库同步）  
 - [x] 编辑账单完善  
 - [x] 性能与无障碍（关键详情页无障碍标签；列表性能优化可继续）  
 - [x] 可选账号体系（首发不做；保持本地工具定位）

@@ -8,6 +8,7 @@ import UIKit
 public struct AccountView: View {
     @Environment(AppState.self) private var appState
     @Environment(LocalizationManager.self) private var loc
+    @Environment(CloudSyncMonitor.self) private var cloudSync
     @Environment(\.modelContext) private var modelContext
 
     @Query(filter: #Predicate<User> { $0.isCurrentUser }) private var currentUsers: [User]
@@ -18,6 +19,7 @@ public struct AccountView: View {
     @State private var backupShareItems: [Any] = []
     @State private var showingImportPicker = false
     @State private var backupMessage: String?
+    @State private var showingRestartHint = false
 
     private var currentUser: User? {
         currentUsers.first
@@ -49,6 +51,50 @@ public struct AccountView: View {
                         Spacer()
                     }
                     .padding(.vertical, 4)
+                }
+
+                Section {
+                    Toggle(isOn: Binding(
+                        get: { cloudSync.isEnabled },
+                        set: { newValue in
+                            cloudSync.isEnabled = newValue
+                            cloudSync.needsRestartToApply = (newValue != cloudSync.isCloudKitStoreActive)
+                            if cloudSync.needsRestartToApply {
+                                showingRestartHint = true
+                            }
+                            cloudSync.refreshAccountStatus()
+                        }
+                    )) {
+                        Label("iCloud Sync", systemImage: "icloud.fill")
+                    }
+                    .tint(ColorTheme.brandTeal)
+
+                    HStack {
+                        Text("Status")
+                        Spacer()
+                        if cloudSync.isSyncing {
+                            ProgressView()
+                                .padding(.trailing, 6)
+                        }
+                        Text(cloudSync.accountStatusText)
+                            .foregroundColor(.secondary)
+                            .multilineTextAlignment(.trailing)
+                    }
+
+                    Text(cloudSync.statusDetail)
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+
+                    Button {
+                        cloudSync.refreshAccountStatus()
+                        appState.resolveCurrentUser(from: modelContext)
+                    } label: {
+                        Label("Refresh Sync Status", systemImage: "arrow.triangle.2.circlepath")
+                    }
+                } header: {
+                    Text("iCloud")
+                } footer: {
+                    Text("Syncs groups, expenses, settlements, and activity to your private iCloud (CloudKit) for devices signed into the same Apple ID. JSON export remains available as an offline backup.")
                 }
 
                 // BillNest Pro Banner
@@ -193,6 +239,11 @@ public struct AccountView: View {
             } message: {
                 Text(backupMessage ?? "")
             }
+            .alert("Restart Required", isPresented: $showingRestartHint) {
+                Button("OK", role: .cancel) {}
+            } message: {
+                Text("iCloud Sync settings apply the next time you launch BillNest. Fully quit the app, then open it again.")
+            }
             #if DEBUG
             .confirmationDialog(
                 "Reset all data and reload sample demo content?",
@@ -205,6 +256,9 @@ public struct AccountView: View {
                 Button("Cancel", role: .cancel) {}
             }
             #endif
+            .onAppear {
+                cloudSync.refreshAccountStatus()
+            }
         }
     }
 

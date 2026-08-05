@@ -5,7 +5,7 @@
 
 ## 产品定位
 
-本地优先的 AA / 分摊记账工具。无账号、无云同步、无需演示账号。
+本地优先的 AA / 分摊记账工具。无自建账号体系；可选 **iCloud（CloudKit 私有库）** 在同一 Apple ID 设备间同步。默认开启，可在 Account 关闭（重启生效）。另支持 JSON 本地备份。
 
 ## 审核账号
 
@@ -13,6 +13,7 @@
 
 1. Onboarding 选择 **Start Blank** 或 **Load Sample Data**
 2. 创建群组 / 添加本地联系人 → 记一笔 Equal 分摊 → 查看余额 → Settle Up 记录还款
+3.（可选）Account → iCloud Sync 查看状态；真机需 Signing 启用容器 `iCloud.app.billnest.ios`
 
 ## 订阅（若启用 IAP）
 

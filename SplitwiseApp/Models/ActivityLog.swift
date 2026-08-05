@@ -12,7 +12,7 @@ public enum ActivityType: String, Codable, CaseIterable {
 
 @Model
 public final class ActivityLog: Identifiable {
-    @Attribute(.unique) public var id: UUID
+    public var id: UUID
     public var typeRaw: String
     public var actorId: UUID
     public var actorName: String

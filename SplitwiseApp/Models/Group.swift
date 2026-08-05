@@ -21,11 +21,12 @@ public enum GroupType: String, Codable, CaseIterable, Identifiable {
 
 @Model
 public final class Group: Identifiable {
-    @Attribute(.unique) public var id: UUID
+    public var id: UUID
     public var name: String
     public var groupTypeRaw: String
     public var coverImageName: String
-    public var memberIds: [UUID]
+    /// Encoded `[UUID]` for CloudKit-safe sync (transformable arrays are fragile across devices).
+    public var memberIdsData: Data
     public var defaultCurrency: String
     public var simplifyDebts: Bool
     public var isArchived: Bool
@@ -34,6 +35,15 @@ public final class Group: Identifiable {
     public var groupType: GroupType {
         get { GroupType(rawValue: groupTypeRaw) ?? .other }
         set { groupTypeRaw = newValue.rawValue }
+    }
+
+    public var memberIds: [UUID] {
+        get {
+            (try? JSONDecoder().decode([UUID].self, from: memberIdsData)) ?? []
+        }
+        set {
+            memberIdsData = (try? JSONEncoder().encode(newValue)) ?? Data()
+        }
     }
 
     public init(
@@ -51,7 +61,7 @@ public final class Group: Identifiable {
         self.name = name
         self.groupTypeRaw = groupType.rawValue
         self.coverImageName = coverImageName
-        self.memberIds = memberIds
+        self.memberIdsData = (try? JSONEncoder().encode(memberIds)) ?? Data()
         self.defaultCurrency = defaultCurrency
         self.simplifyDebts = simplifyDebts
         self.isArchived = isArchived
