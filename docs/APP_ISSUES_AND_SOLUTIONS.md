@@ -429,14 +429,13 @@ xcodebuild -project SplitwiseApp.xcodeproj -scheme SplitwiseApp \
 
 ### 4.13 图表的时间、币种与“个人消费”语义错误（新增）
 
-**状态：❌ 未修复（I-21）**
+**状态：✅ 已修复（I-21）**
 
-- 总额/分类/群组图直接累加不同币种。
-- “Total Spending” 累加所有群组完整账单，而不是当前用户的 share，容易被理解为个人消费。
-- 月度趋势忽略已选 timeframe，始终使用全部 expenses。
-- 只用 `MMM` 分组会把不同年份同月合并，并按月份文本字母顺序排序。
+**修复说明**
 
-**修复**：先定义“个人应付 / 本人垫付 / 群组总支出”指标；统一汇率基准；以 `DateComponents(year, month)` 分组排序；所有图共享同一过滤结果。
+1. 指标口径改为「当前用户分摊份额（Your Share）」，不再累加整笔群组账单。
+2. 金额统一换算到 `appState.selectedCurrency`。
+3. 月度趋势使用 `filteredExpenses`（尊重 timeframe），按 `year+month` 分组并按时间排序。
 
 ---
 
@@ -612,7 +611,7 @@ xcodebuild -project SplitwiseApp.xcodeproj -scheme SplitwiseApp \
 - [ ] 让 Itemized 真正接收 OCR items 并支持逐项归属
 - [x] 修复订阅冷启动权益与 Product ID 白名单
 - [x] 修正文案或更换可证明的债务最少笔数算法
-- [ ] 修复图表 timeframe / 年月排序 / 指标口径
+- [x] 修复图表 timeframe / 年月排序 / 指标口径
 - [ ] 样例数据可选  
 - [ ] 基础单元测试（DebtSimplifier + Split）  
 - [ ] 导出完整性（31+ 条、settlements、CSV 注入）
@@ -659,7 +658,7 @@ xcodebuild -project SplitwiseApp.xcodeproj -scheme SplitwiseApp \
 | I-18 | ✅ | P0 | 缺少 Required Reason API 隐私清单 | 已加入 `PrivacyInfo.xcprivacy` (CA92.1) |
 | I-19 | ✅ | P1 | 订阅冷启动不恢复、任意 entitlement 解锁 | 冷启动恢复 + Product ID 白名单 |
 | I-20 | ✅ | P1 | 债务算法不保证最少笔数，Raw 结算不完整 | 诚实文案 + Raw 净额/超额结算 |
-| I-21 | ❌ | P1 | 图表 timeframe/年月/币种/指标口径错误 | `ChartsView.swift:51-223` |
+| I-21 | ✅ | P1 | 图表 timeframe/年月/币种/指标口径错误 | Your Share + 换算 + year/month 排序 |
 | I-22 | ❌ | P1 | Archived 与 simplify 开关不影响行为 | `GroupListView.swift`, `GroupDetailView.swift` |
 | I-23 | ✅ | P1 | iPhone 好友直接记账不可达 | `FriendDetailView` 已接 Add Expense Sheet |
 | I-24 | ❌ | P1 | 持久化/重置/导出错误静默吞掉 | 全项目至少 12 处 mutation `try?` |

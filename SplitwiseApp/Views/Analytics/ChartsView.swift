@@ -16,11 +16,17 @@ public struct ChartsView: View {
         public var id: String { rawValue }
     }
 
+    private struct MonthBucket: Identifiable {
+        let id: String
+        let sortKey: Date
+        let label: String
+        let amount: Double
+    }
+
     public var body: some View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 20) {
-                    // Timeframe Selector
                     Picker("Timeframe", selection: $selectedTimeframe) {
                         ForEach(Timeframe.allCases) { tf in
                             Text(tf.rawValue).tag(tf)
@@ -29,16 +35,9 @@ public struct ChartsView: View {
                     .pickerStyle(.segmented)
                     .padding(.horizontal)
 
-                    // Total Spent Headline Card
                     totalSpentCard
-
-                    // Chart 1: Category Breakdown (SectorMark / Pie Chart)
                     categoryPieChartCard
-
-                    // Chart 2: Monthly Spend Trend (LineMark & PointMark)
                     monthlyTrendChartCard
-
-                    // Chart 3: Group Spending Comparison (BarMark)
                     groupBarChartCard
                 }
                 .padding(.vertical)
@@ -48,17 +47,31 @@ public struct ChartsView: View {
         }
     }
 
-    private var totalSpentCard: some View {
-        let total = filteredExpenses.reduce(0.0) { $0 + $1.amount }
+    /// Current user's share of expenses in the selected timeframe, converted to app currency.
+    private var myShareTotal: Double {
+        filteredExpenses.reduce(0.0) { partial, expense in
+            let myShare = expense.splits.first(where: { $0.userId == appState.currentUserId })?.amount ?? 0
+            return partial + CurrencyFormatter.convert(
+                amount: myShare,
+                from: expense.currency,
+                to: appState.selectedCurrency
+            )
+        }
+    }
 
-        return VStack(alignment: .leading, spacing: 6) {
-            Text("Total Spending")
+    private var totalSpentCard: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Text("Your Share of Spending")
                 .font(.subheadline)
                 .foregroundColor(.secondary)
 
-            Text(CurrencyFormatter.format(total, currency: appState.selectedCurrency))
+            Text(CurrencyFormatter.format(myShareTotal, currency: appState.selectedCurrency))
                 .font(.system(size: 32, weight: .bold, design: .rounded))
                 .foregroundColor(ColorTheme.brandTeal)
+
+            Text("Amounts converted to \(appState.selectedCurrency) using in-app static rates.")
+                .font(.caption2)
+                .foregroundColor(.secondary)
         }
         .padding()
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -67,14 +80,22 @@ public struct ChartsView: View {
         .padding(.horizontal)
     }
 
-    // MARK: - Category Donut / Pie Chart
     private var categoryPieChartCard: some View {
         let categoryTotals = Dictionary(grouping: filteredExpenses, by: { $0.category })
-            .mapValues { expenses in expenses.reduce(0.0) { $0 + $1.amount } }
+            .mapValues { items in
+                items.reduce(0.0) { partial, expense in
+                    let myShare = expense.splits.first(where: { $0.userId == appState.currentUserId })?.amount ?? 0
+                    return partial + CurrencyFormatter.convert(
+                        amount: myShare,
+                        from: expense.currency,
+                        to: appState.selectedCurrency
+                    )
+                }
+            }
             .sorted { $0.value > $1.value }
 
         return VStack(alignment: .leading, spacing: 14) {
-            Text("Category Breakdown")
+            Text("Your Share by Category")
                 .font(.headline)
 
             if categoryTotals.isEmpty {
@@ -115,12 +136,11 @@ public struct ChartsView: View {
         .padding(.horizontal)
     }
 
-    // MARK: - Monthly Trend Chart
     private var monthlyTrendChartCard: some View {
         let monthlyData = computeMonthlyData()
 
         return VStack(alignment: .leading, spacing: 14) {
-            Text("Monthly Spend Trend")
+            Text("Monthly Trend (Your Share)")
                 .font(.headline)
 
             if monthlyData.isEmpty {
@@ -128,23 +148,23 @@ public struct ChartsView: View {
                     .font(.caption)
                     .foregroundColor(.secondary)
             } else {
-                Chart(monthlyData, id: \.month) { item in
+                Chart(monthlyData) { item in
                     LineMark(
-                        x: .value("Month", item.month),
+                        x: .value("Month", item.label),
                         y: .value("Amount", item.amount)
                     )
                     .foregroundStyle(ColorTheme.brandTeal)
                     .interpolationMethod(.catmullRom)
 
                     AreaMark(
-                        x: .value("Month", item.month),
+                        x: .value("Month", item.label),
                         y: .value("Amount", item.amount)
                     )
                     .foregroundStyle(ColorTheme.brandTeal.opacity(0.15))
                     .interpolationMethod(.catmullRom)
 
                     PointMark(
-                        x: .value("Month", item.month),
+                        x: .value("Month", item.label),
                         y: .value("Amount", item.amount)
                     )
                     .foregroundStyle(ColorTheme.brandTeal)
@@ -158,17 +178,24 @@ public struct ChartsView: View {
         .padding(.horizontal)
     }
 
-    // MARK: - Group Bar Chart
     private var groupBarChartCard: some View {
         let groupTotals = Dictionary(grouping: filteredExpenses, by: { $0.groupId })
             .map { (groupId, items) -> (name: String, amount: Double) in
                 let groupName = groups.first(where: { $0.id == groupId })?.name ?? "No Group"
-                return (groupName, items.reduce(0.0) { $0 + $1.amount })
+                let amount = items.reduce(0.0) { partial, expense in
+                    let myShare = expense.splits.first(where: { $0.userId == appState.currentUserId })?.amount ?? 0
+                    return partial + CurrencyFormatter.convert(
+                        amount: myShare,
+                        from: expense.currency,
+                        to: appState.selectedCurrency
+                    )
+                }
+                return (groupName, amount)
             }
             .sorted { $0.amount > $1.amount }
 
         return VStack(alignment: .leading, spacing: 14) {
-            Text("Spending by Group")
+            Text("Your Share by Group")
                 .font(.headline)
 
             if groupTotals.isEmpty {
@@ -210,16 +237,32 @@ public struct ChartsView: View {
         }
     }
 
-    private func computeMonthlyData() -> [(month: String, amount: Double)] {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM"
+    private func computeMonthlyData() -> [MonthBucket] {
+        let cal = Calendar.current
+        let labelFormatter = DateFormatter()
+        labelFormatter.dateFormat = "MMM yyyy"
 
-        let grouped = Dictionary(grouping: expenses) { expense -> String in
-            dateFormatter.string(from: expense.date)
+        let grouped = Dictionary(grouping: filteredExpenses) { expense -> Date in
+            let comps = cal.dateComponents([.year, .month], from: expense.date)
+            return cal.date(from: comps) ?? expense.date
         }
 
-        return grouped.map { (month, items) in
-            (month, items.reduce(0.0) { $0 + $1.amount })
-        }.sorted { $0.month < $1.month }
+        return grouped.map { (monthStart, items) in
+            let amount = items.reduce(0.0) { partial, expense in
+                let myShare = expense.splits.first(where: { $0.userId == appState.currentUserId })?.amount ?? 0
+                return partial + CurrencyFormatter.convert(
+                    amount: myShare,
+                    from: expense.currency,
+                    to: appState.selectedCurrency
+                )
+            }
+            return MonthBucket(
+                id: labelFormatter.string(from: monthStart),
+                sortKey: monthStart,
+                label: labelFormatter.string(from: monthStart),
+                amount: amount
+            )
+        }
+        .sorted { $0.sortKey < $1.sortKey }
     }
 }
