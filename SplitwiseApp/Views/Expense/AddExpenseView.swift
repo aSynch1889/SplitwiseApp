@@ -225,10 +225,11 @@ public struct AddExpenseView: View {
                     DatePicker("Date", selection: $date, displayedComponents: [.date])
 
                     Picker("Repeat", selection: $repeatFrequency) {
-                        ForEach(RepeatFrequency.allCases) { freq in
-                            Text(LocalizedStringKey(freq.rawValue)).tag(freq)
-                        }
+                        Text(LocalizedStringKey(RepeatFrequency.never.rawValue)).tag(RepeatFrequency.never)
                     }
+                    Text("Weekly / Monthly / Yearly recurrence is Coming Soon and will not auto-create expenses yet.")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
 
                     TextField("Notes (optional)", text: $notes, axis: .vertical)
                         .lineLimit(3)

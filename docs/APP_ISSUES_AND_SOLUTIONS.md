@@ -242,19 +242,11 @@ xcodebuild -project SplitwiseApp.xcodeproj -scheme SplitwiseApp \
 
 ### 4.1 无账号体系，但文案承诺「邀请加入 Splitwise」
 
-**现象**
+**状态：✅ 已修复（I-07）** — 路线 A 诚实本地工具
 
-- `AddFriendView` 提示可发邮件邀请好友加入，实际只本地 `insert User`。
-- 无登录、无多人实时同步、无冲突合并。
+**修复说明**
 
-**解决方案（二选一）**
-
-| 路线 | 做法 |
-|------|------|
-| **A. 诚实的本地工具** | 删除「邀请加入」文案；改为「添加本地联系人/参与方」；分享用导出 PDF/链接文本 |
-| **B. 真协同产品** | 账号（Sign in with Apple）、云库（CloudKit/自建后端）、邀请链接、权限与冲突解决 |
-
-首发建议 **路线 A**，显著降低范围与审核复杂度。
+- `AddFriendView` 改为「Local Contact」说明：仅本机参与方，无云邀请/多人同步。
 
 ---
 
@@ -286,28 +278,21 @@ xcodebuild -project SplitwiseApp.xcodeproj -scheme SplitwiseApp \
 
 ### 4.4 循环账单 `RepeatFrequency` 仅为展示字段
 
-**现象**
+**状态：✅ 已修复（I-10）** — 短期方案
 
-- 模型有 `weekly/monthly/yearly`，保存后 **无调度、无自动生成后续账单**。
+**修复说明**
 
-**解决方案**
-
-- 短期：UI 标注「Coming Soon」或移除选项。  
-- 中期：用 `BGAppRefresh` / 本地通知 + 打开 App 时补生成，或 EventKit 式规则引擎。
+- 新增账单仅保留 `Never`；UI 标明 Weekly/Monthly/Yearly 为 Coming Soon，不会自动生成后续账单。
 
 ---
 
 ### 4.5 结清（Settle Up）不唤起真实支付
 
-**现象**
+**状态：✅ 已修复（文案诚实化）**
 
-- 支持记录 Cash/PayPal/Venmo/微信/支付宝等 **记账备注**，但不跳转支付、不验证到账。
+**修复说明**
 
-**解决方案**
-
-- 文案改为「记录一笔已发生的还款」。  
-- 可选：深度链接到 Venmo/PayPal（能力有限且地区差异大）。  
-- 切勿宣传「一键支付结清」。
+- 导航标题为「Record a Payment」；补充说明仅记录已发生还款，不转账、不到账校验。
 
 ---
 
@@ -627,10 +612,10 @@ xcodebuild -project SplitwiseApp.xcodeproj -scheme SplitwiseApp \
 | I-04 | ✅ | P0 | 无隐私政策/条款可点击链接、价格写死 | GitHub Pages 链接 + StoreKit 动态价 |
 | I-05 | ✅ | P0 | Camera/Face ID/Push 声明与实现不符 | 已删未实现权限与空开关 |
 | I-06 | ✅ | P0 | 多币种未换算 | 余额引擎统一换算到基准币 |
-| I-07 | ❌ | P1 | 邀请/协同虚假承诺 | `AddFriendView.swift` |
+| I-07 | ✅ | P1 | 邀请/协同虚假承诺 | 改为本地联系人说明 |
 | I-08 | ✅ | P1 | Pro 无门禁 | `ProAccess` 统一门禁 + Paywall |
 | I-09 | ✅ | P1 | 分摊覆盖、无校验、Itemized 丢条目 | `SplitMath` + Options 草稿校验 |
-| I-10 | ❌ | P1 | 循环账单仅存字段 | `Expense.swift`, `AddExpenseView.swift` |
+| I-10 | ✅ | P1 | 循环账单仅存字段 | 仅 Never + Coming Soon 提示 |
 | I-11 | ✅ | P1 | OCR 失败写入 Mock 数据 | 失败抛错 + Demo 仅 DEBUG |
 | I-12 | ❌ | P1 | 语言切换无效；中/繁各 9/208 | `Localizable.xcstrings`, `AppState.swift` |
 | I-13 | ✅ | P1 | 强制样例数据、危险 Reset Demo | Onboarding 可选 + Reset 仅 DEBUG |

@@ -66,6 +66,12 @@ public struct SettleUpView: View {
 
                     TextField("Notes", text: $notes)
                 }
+
+                Section {
+                    Text("This records a repayment that already happened. BillNest does not send money or verify payment apps.")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                }
             }
             .navigationTitle("Record a Payment")
             #if os(iOS)

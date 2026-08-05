@@ -32,10 +32,10 @@ public struct AddFriendView: View {
                         HStack {
                             Image(systemName: "info.circle.fill")
                                 .foregroundColor(ColorTheme.brandTeal)
-                            Text("Splitwise Invite")
+                            Text("Local Contact")
                                 .fontWeight(.semibold)
                         }
-                        Text("An email invitation can be sent so your friend can join Splitwise and track shared expenses with you.")
+                        Text("Friends are stored only on this device as local participants for splitting expenses. There is no cloud invite or multi-user sync in this version.")
                             .font(.caption)
                             .foregroundColor(.secondary)
                     }
@@ -70,7 +70,12 @@ public struct AddFriendView: View {
             avatarName: "person.circle.fill"
         )
         modelContext.insert(friend)
-        try? modelContext.save()
-        dismiss()
+        do {
+            try modelContext.save()
+            dismiss()
+        } catch {
+            // Keep sheet open so the user can retry.
+            print("Failed to save friend: \(error)")
+        }
     }
 }
