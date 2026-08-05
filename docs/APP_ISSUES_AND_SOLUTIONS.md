@@ -302,7 +302,7 @@ xcodebuild -project SplitwiseApp.xcodeproj -scheme SplitwiseApp \
 **修复说明**
 
 1. 应用内语言通过 `LocalizationManager` + Bundle swizzle 实时切换（免重启）。
-2. String Catalog：zh-Hans / zh-Hant 已覆盖绝大部分 key（约 215/226 含中文）。
+2. String Catalog：`en` / `ja` / `ko` / `zh-Hans` / `zh-Hant` 均已 **286/286（100%）** 覆盖。
 3. 仍有少量符号/格式串无需翻译；部分新加英文硬编码可继续补录 Catalog。
 
 ---
