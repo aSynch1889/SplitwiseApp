@@ -37,3 +37,21 @@ generate_xcodeproj.py
 
 # App Store Connect CLI 本地产物
 .asc/
+design_assets/appicon_candidates/A_ribbon_nest_gold_coin.png
+design_assets/appicon_candidates/B_glass_nest_silver_coin.png
+design_assets/appicon_candidates/C_frosted_equal_split.png
+design_assets/appicon_candidates/sf_symbols/01_equal_circle.png
+design_assets/appicon_candidates/sf_symbols/02_equal_circle_fill.png
+design_assets/appicon_candidates/sf_symbols/03_divide_circle.png
+design_assets/appicon_candidates/sf_symbols/04_chart_pie.png
+design_assets/appicon_candidates/sf_symbols/05_person_2.png
+design_assets/appicon_candidates/sf_symbols/06_dollarsign_circle.png
+design_assets/appicon_candidates/sf_symbols/07_square_split.png
+design_assets/appicon_candidates/sf_symbols/08_creditcard.png
+design_assets/appicon_candidates/sf_symbols/09_plus_minus.png
+design_assets/appicon_candidates/sf_symbols/10_arrow_branch.png
+design_assets/appicon_candidates/sf_symbols/10_arrow_triangle_branch.png
+design_assets/appicon_candidates/sf_symbols/11_banknote.png
+design_assets/appicon_candidates/sf_symbols/11_circle_grid_2x2.png
+design_assets/appicon_candidates/sf_symbols/12_banknote.png
+design_assets/appicon_candidates/sf_symbols/12_yensign_circle.png

@@ -54,6 +54,31 @@ asc builds update --app "6798151983" --build-number "1" --version "1.0.0" --uses
 
 > 若 Build 是在添加该键之前上传的，需 **重新 Archive 上传**，或用上述 `asc builds update` 补标记。
 
+## 签名 / iCloud 容器（Provisioning profile failed qualification）
+
+若 Archive 报错：`Profile doesn't support the iCloud.app.billnest.ios iCloud Container`：
+
+**原因**：`BillNest.entitlements` 声明了 CloudKit 容器，但 Apple Developer 后台尚未 **注册并绑定** 该容器到 App ID `app.billnest.ios`，自动生成的描述文件不含此 entitlement。
+
+**修复（任选其一，推荐 A）：**
+
+### A. Xcode（最快）
+
+1. 打开 `SplitwiseApp.xcodeproj` → Target **BillNest** → **Signing & Capabilities**
+2. 确认 Team 为 `R9TC286V25`，Bundle ID `app.billnest.ios`
+3. 若无 **iCloud**：点 **+ Capability** → **iCloud**
+4. 勾选 **CloudKit**（不要勾 iCloud Documents / Key-value storage，工程未使用 KVS）
+5. Containers 点 **+** → 输入/选择 **`iCloud.app.billnest.ios`**（不存在时 Xcode 可代为注册）
+6. **Product → Clean Build Folder**，再 Archive
+
+### B. Apple Developer 网页
+
+1. [Identifiers → iCloud Containers](https://developer.apple.com/account/resources/identifiers/list/cloudContainer) → **+** → Identifier: `iCloud.app.billnest.ios`
+2. [Identifiers → App IDs](https://developer.apple.com/account/resources/identifiers/list) → `app.billnest.ios` → **iCloud** → Configure → 勾选该容器 → Save
+3. Xcode 刷新 Signing（或删除旧 Distribution Profile 后重新 Archive）
+
+**工程侧**：容器 ID 与 `CloudSyncMonitor.iCloudContainerID` / `BillNest.entitlements` 一致；已移除未使用的 `ubiquity-kvstore-identifier`。
+
 ## 阻断项（`asc review doctor`）
 
 1. **上传构建**：Xcode Archive → Distribute App → App Store Connect，处理完成后在 1.0 版本选中该 Build  

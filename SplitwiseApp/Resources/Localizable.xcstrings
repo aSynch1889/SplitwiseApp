@@ -9755,6 +9755,7 @@
       }
     },
     "Reset & Load Sample" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -9789,6 +9790,7 @@
       }
     },
     "Reset all data and reload sample demo content?" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -9823,6 +9825,7 @@
       }
     },
     "Reset demo data failed: %@" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -9857,6 +9860,7 @@
       }
     },
     "Reset Demo Sample Data" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -10231,6 +10235,7 @@
       }
     },
     "Scan Sample Receipt (Debug Demo)" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -11018,6 +11023,7 @@
       }
     },
     "Simulator Mock Pro Mode" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
