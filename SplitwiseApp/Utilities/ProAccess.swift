@@ -11,7 +11,7 @@ public enum ProFeature: String, CaseIterable, Identifiable {
 
     public var id: String { rawValue }
 
-    public var title: String {
+    public var title: LocalizedStringKey {
         switch self {
         case .receiptOCR: return "Receipt OCR"
         case .exportReports: return "PDF & CSV Export"
@@ -21,7 +21,7 @@ public enum ProFeature: String, CaseIterable, Identifiable {
         }
     }
 
-    public var subtitle: String {
+    public var subtitle: LocalizedStringKey {
         switch self {
         case .receiptOCR: return "Scan receipts with on-device Vision OCR."
         case .exportReports: return "Export group statements as PDF or CSV."

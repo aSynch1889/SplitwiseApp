@@ -72,7 +72,7 @@ public final class ProSubscriptionManager {
             errorMessage = nil
             return false
         case .pending:
-            errorMessage = "Purchase is pending approval."
+            errorMessage = String(localized: "Purchase is pending approval.")
             return false
         @unknown default:
             return false
@@ -85,12 +85,12 @@ public final class ProSubscriptionManager {
             try await AppStore.sync()
             await updatePurchasedIdentifiers()
             if !isPro {
-                errorMessage = "No active Pro subscription found."
+                errorMessage = String(localized: "No active Pro subscription found.")
             } else {
                 errorMessage = nil
             }
         } catch {
-            errorMessage = "Restore failed: \(error.localizedDescription)"
+            errorMessage = String(localized: "Restore failed: \(error.localizedDescription)")
         }
     }
 

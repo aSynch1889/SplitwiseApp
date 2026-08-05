@@ -32,14 +32,38 @@ public struct SplitwiseProView: View {
                     }
                     .padding(.top, 10)
 
-                    // Pro Features List
+                    // Pro Features List — pass LocalizedStringKey literals (not String vars)
                     VStack(alignment: .leading, spacing: 16) {
-                        proFeatureRow(icon: "doc.text.viewfinder", title: "OCR Receipt Scanning", desc: "Scan receipts automatically with Vision AI and convert items to split expenses.")
-                        proFeatureRow(icon: "dollarsign.arrow.circlepath", title: "Multi-Currency Conversion", desc: "Convert amounts across 10+ currencies using in-app rates.")
-                        proFeatureRow(icon: "doc.badge.plus", title: "PDF & CSV Statements", desc: "Export high-quality PDF reports for taxes, business trips, and roommates.")
-                        proFeatureRow(icon: "chart.pie.fill", title: "Advanced Analytics Charts", desc: "Detailed monthly spending trends and category insights with Swift Charts.")
-                        proFeatureRow(icon: "arrow.triangle.merge", title: "Debt Simplification", desc: "Reduce transfers for your groups using balance netting.")
-                        proFeatureRow(icon: "nosign", title: "Ad-Free Experience", desc: "Enjoy clean, distraction-free expense tracking.")
+                        proFeatureRow(
+                            icon: "doc.text.viewfinder",
+                            title: "OCR Receipt Scanning",
+                            desc: "Scan receipts automatically with Vision AI and convert items to split expenses."
+                        )
+                        proFeatureRow(
+                            icon: "dollarsign.arrow.circlepath",
+                            title: "Multi-Currency Conversion",
+                            desc: "Convert amounts across 10+ currencies using in-app rates."
+                        )
+                        proFeatureRow(
+                            icon: "doc.badge.plus",
+                            title: "PDF & CSV Statements",
+                            desc: "Export high-quality PDF reports for taxes, business trips, and roommates."
+                        )
+                        proFeatureRow(
+                            icon: "chart.pie.fill",
+                            title: "Advanced Analytics Charts",
+                            desc: "Detailed monthly spending trends and category insights with Swift Charts."
+                        )
+                        proFeatureRow(
+                            icon: "arrow.triangle.merge",
+                            title: "Debt Simplification",
+                            desc: "Reduce transfers for your groups using balance netting."
+                        )
+                        proFeatureRow(
+                            icon: "nosign",
+                            title: "Ad-Free Experience",
+                            desc: "Enjoy clean, distraction-free expense tracking."
+                        )
                     }
                     .padding()
                     .background(ColorTheme.cardBackground)
@@ -52,9 +76,10 @@ public struct SplitwiseProView: View {
                             title: "Pro Monthly",
                             price: displayPrice(
                                 for: ProSubscriptionManager.monthlyProID,
-                                fallback: "$2.99 / month"
+                                fallback: String(localized: "$2.99 / month")
                             ),
-                            badge: introductoryBadge(for: ProSubscriptionManager.monthlyProID) ?? "Auto-Renewable",
+                            badge: introductoryBadge(for: ProSubscriptionManager.monthlyProID)
+                                ?? String(localized: "Auto-Renewable"),
                             isPopular: false
                         ) {
                             purchasePlan(productID: ProSubscriptionManager.monthlyProID)
@@ -64,9 +89,10 @@ public struct SplitwiseProView: View {
                             title: "Pro Annual",
                             price: displayPrice(
                                 for: ProSubscriptionManager.yearlyProID,
-                                fallback: "$29.99 / year"
+                                fallback: String(localized: "$29.99 / year")
                             ),
-                            badge: introductoryBadge(for: ProSubscriptionManager.yearlyProID) ?? "Best Value",
+                            badge: introductoryBadge(for: ProSubscriptionManager.yearlyProID)
+                                ?? String(localized: "Best Value"),
                             isPopular: true
                         ) {
                             purchasePlan(productID: ProSubscriptionManager.yearlyProID)
@@ -152,13 +178,26 @@ public struct SplitwiseProView: View {
             let period = subscription.subscriptionPeriod
             let unitLabel: String
             switch period.unit {
-            case .day: unitLabel = period.value == 1 ? "day" : "\(period.value) days"
-            case .week: unitLabel = period.value == 1 ? "week" : "\(period.value) weeks"
-            case .month: unitLabel = period.value == 1 ? "month" : "\(period.value) months"
-            case .year: unitLabel = period.value == 1 ? "year" : "\(period.value) years"
-            @unknown default: unitLabel = "period"
+            case .day:
+                unitLabel = period.value == 1
+                    ? String(localized: "day")
+                    : String(localized: "\(period.value) days")
+            case .week:
+                unitLabel = period.value == 1
+                    ? String(localized: "week")
+                    : String(localized: "\(period.value) weeks")
+            case .month:
+                unitLabel = period.value == 1
+                    ? String(localized: "month")
+                    : String(localized: "\(period.value) months")
+            case .year:
+                unitLabel = period.value == 1
+                    ? String(localized: "year")
+                    : String(localized: "\(period.value) years")
+            @unknown default:
+                unitLabel = String(localized: "period")
             }
-            return "\(product.displayPrice) / \(unitLabel)"
+            return String(localized: "\(product.displayPrice) / \(unitLabel)")
         }
         return product.displayPrice
     }
@@ -170,21 +209,34 @@ public struct SplitwiseProView: View {
             let period = offer.period
             let unit: String
             switch period.unit {
-            case .day: unit = period.value == 1 ? "Day" : "\(period.value)-Day"
-            case .week: unit = period.value == 1 ? "Week" : "\(period.value)-Week"
-            case .month: unit = period.value == 1 ? "Month" : "\(period.value)-Month"
-            case .year: unit = period.value == 1 ? "Year" : "\(period.value)-Year"
-            @unknown default: unit = "Trial"
+            case .day:
+                unit = period.value == 1
+                    ? String(localized: "Day")
+                    : String(localized: "\(period.value)-Day")
+            case .week:
+                unit = period.value == 1
+                    ? String(localized: "Week")
+                    : String(localized: "\(period.value)-Week")
+            case .month:
+                unit = period.value == 1
+                    ? String(localized: "Month")
+                    : String(localized: "\(period.value)-Month")
+            case .year:
+                unit = period.value == 1
+                    ? String(localized: "Year")
+                    : String(localized: "\(period.value)-Year")
+            @unknown default:
+                unit = String(localized: "Trial")
             }
-            return "\(unit) Free Trial"
+            return String(localized: "\(unit) Free Trial")
         case .payAsYouGo, .payUpFront:
-            return "Intro Offer"
+            return String(localized: "Intro Offer")
         default:
-            return "Intro Offer"
+            return String(localized: "Intro Offer")
         }
     }
 
-    private func proFeatureRow(icon: String, title: String, desc: String) -> some View {
+    private func proFeatureRow(icon: String, title: LocalizedStringKey, desc: LocalizedStringKey) -> some View {
         HStack(alignment: .top, spacing: 14) {
             ZStack {
                 Circle()
@@ -206,7 +258,13 @@ public struct SplitwiseProView: View {
         }
     }
 
-    private func planCard(title: String, price: String, badge: String, isPopular: Bool, action: @escaping () -> Void) -> some View {
+    private func planCard(
+        title: LocalizedStringKey,
+        price: String,
+        badge: String,
+        isPopular: Bool,
+        action: @escaping () -> Void
+    ) -> some View {
         Button(action: action) {
             HStack {
                 VStack(alignment: .leading, spacing: 4) {
@@ -253,11 +311,13 @@ public struct SplitwiseProView: View {
                 do {
                     _ = try await proManager.purchase(product)
                 } catch {
-                    proManager.errorMessage = "Purchase failed: \(error.localizedDescription)"
+                    proManager.errorMessage = String(
+                        localized: "Purchase failed: \(error.localizedDescription)"
+                    )
                 }
             }
         } else {
-            proManager.errorMessage = "Products unavailable. Please try again later."
+            proManager.errorMessage = String(localized: "Products unavailable. Please try again later.")
             Task {
                 await proManager.fetchProducts()
             }
