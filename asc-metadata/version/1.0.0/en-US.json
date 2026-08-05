@@ -1,0 +1,8 @@
+{
+  "description": "BillNest is a local-first shared expense app for roommates, trips, couples, and groups. Track who paid what, split fairly, and settle up without a social network account.\n\nKEY FEATURES\n• Groups & friends for AA / bill splitting\n• Five split modes: Equal, Exact, Percentage, Shares, Itemized\n• Balance overview and settle-up payment records\n• Optional iCloud sync (CloudKit private database) across your Apple devices\n• JSON backup export & restore\n• Multi-language: English, 简体中文, 繁體中文, 日本語, 한국어\n\nBILLNEST PRO (OPTIONAL SUBSCRIPTION)\n• On-device Vision OCR receipt scanning\n• Itemized receipt assignment\n• Advanced analytics charts\n• PDF & CSV statement export\n• Debt simplification tools\n\nHONEST LOCAL TOOL\n• No BillNest account or cloud social invites\n• FX uses in-app static rates (not live market quotes)\n• Settle Up records repayments; it does not send money\n• Recurring expenses: Coming Soon (not auto-created yet)\n\nPrivacy Policy: https://asynch1889.github.io/BillNest-Legal/privacy.html\nTerms of Use: https://asynch1889.github.io/BillNest-Legal/terms.html",
+  "keywords": "split bills,expenses,AA,roommates,travel,settle up,shared costs,budget",
+  "marketingUrl": "https://asynch1889.github.io/BillNest-Legal/",
+  "promotionalText": "Local-first bill splitting with optional iCloud sync and Pro OCR, charts, and exports.",
+  "supportUrl": "https://github.com/aSynch1889/BillNest-Legal/issues",
+  "whatsNew": "Initial App Store release of BillNest — local AA expense tracking, optional iCloud sync, and BillNest Pro features."
+}

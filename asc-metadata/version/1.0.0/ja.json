@@ -1,0 +1,8 @@
+{
+  "description": "BillNest はルームシェア・旅行・カップル・グループ向けのローカル優先割り勘アプリです。誰がいくら払ったかを記録し、公平に分割して精算できます。SNS アカウントは不要です。\n\n主な機能\n• グループと友だちのローカル記帳\n• 5 つの分割モード：均等・金額指定・％・シェア・明細\n• 残高一覧と精算（返済）記録\n• 任意の iCloud 同期（CloudKit プライベート DB）\n• JSON バックアップの書き出し／復元\n• 多言語：英語・簡体字・繁体字・日本語・韓国語\n\nBillNest Pro（任意サブスクリプション）\n• 端末上 Vision OCR レシートスキャン\n• 明細割り振り\n• 高度な分析チャート\n• PDF / CSV 明細書書き出し\n• 債務簡易化ツール\n\n正直な位置づけ\n• BillNest 独自アカウントや他ユーザーへのクラウド招待はありません\n• 為替はアプリ内固定レート（リアルタイム相場ではありません）\n• 精算は返済記録のみで送金しません\n• 繰り返し支出は近日公開（自動作成は未対応）\n\nプライバシーポリシー: https://asynch1889.github.io/BillNest-Legal/privacy.html\n利用規約: https://asynch1889.github.io/BillNest-Legal/terms.html",
+  "keywords": "割り勘,精算,家計,旅行,ルームシェア,共有支出,AA",
+  "marketingUrl": "https://asynch1889.github.io/BillNest-Legal/",
+  "promotionalText": "ローカル優先の割り勘。任意の iCloud 同期と Pro の OCR・チャート・書き出し。",
+  "supportUrl": "https://github.com/aSynch1889/BillNest-Legal/issues",
+  "whatsNew": "BillNest 初回リリース。ローカル割り勘、任意の iCloud 同期、BillNest Pro 機能。"
+}

@@ -1,0 +1,8 @@
+{
+  "description": "BillNest 是一款本機優先的 AA／分攤記帳應用，適合合租、旅行、情侶與聚會。記錄誰付了錢、如何分攤、如何結清，無需社交帳號。\n\n主要功能\n• 群組與好友本機記帳\n• 五種分攤：均分、精確金額、百分比、份額、分項\n• 餘額總覽與結清還款紀錄\n• 可選 iCloud 同步（CloudKit 私有庫）跨你的 Apple 裝置\n• JSON 備份匯出與還原\n• 多語系：英語、簡體中文、繁體中文、日語、韓語\n\nBillNest Pro（可選訂閱）\n• 裝置端 Vision OCR 收據掃描\n• 分項收據分配\n• 進階分析圖表\n• PDF／CSV 報表匯出\n• 債務簡化工具\n\n誠實說明\n• 無 BillNest 自建帳號或多使用者雲邀請\n• 匯率為應用程式內靜態表，非即時牌價\n• 結清僅記錄還款，不發起真實轉帳\n• 循環帳單即將推出，目前不會自動建立\n\n隱私權政策：https://asynch1889.github.io/BillNest-Legal/privacy-zh.html\n服務條款：https://asynch1889.github.io/BillNest-Legal/terms-zh.html",
+  "keywords": "AA記帳,分帳,合租,旅行記帳,結清,共同支出,帳單分攤",
+  "marketingUrl": "https://asynch1889.github.io/BillNest-Legal/",
+  "promotionalText": "本機優先 AA 記帳，可選 iCloud 同步；Pro 支援 OCR、圖表與匯出。",
+  "supportUrl": "https://github.com/aSynch1889/BillNest-Legal/issues",
+  "whatsNew": "BillNest 首發上架：本機 AA 記帳、可選 iCloud 同步，以及 BillNest Pro 能力。"
+}

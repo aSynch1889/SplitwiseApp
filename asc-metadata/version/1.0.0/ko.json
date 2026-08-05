@@ -1,0 +1,8 @@
+{
+  "description": "BillNest는 룸메이트, 여행, 커플, 모임을 위한 로컬 우선 더치페이/분담 가계부입니다. 누가 얼마를 냈는지 기록하고 공정하게 나누며 정산하세요. SNS 계정은 필요 없습니다.\n\n주요 기능\n• 그룹과 친구 로컬 기록\n• 5가지 분담: 균등, 금액 지정, %, 지분, 항목별\n• 잔액 요약과 정산(상환) 기록\n• 선택적 iCloud 동기화(CloudKit 개인 DB)\n• JSON 백업 내보내기/복원\n• 다국어: 영어, 간체, 번체, 일본어, 한국어\n\nBillNest Pro(선택 구독)\n• 기기 내 Vision OCR 영수증 스캔\n• 항목별 영수증 배정\n• 고급 분석 차트\n• PDF/CSV 명세서 내보내기\n• 부채 단순화 도구\n\n솔직한 안내\n• BillNest 자체 계정이나 타인 클라우드 초대 없음\n• 환율은 앱 내 고정 환율(실시간 시세 아님)\n• 정산은 상환 기록만 하며 송금하지 않음\n• 반복 지출은 곧 제공(자동 생성 미지원)\n\n개인정보 처리방침: https://asynch1889.github.io/BillNest-Legal/privacy.html\n이용약관: https://asynch1889.github.io/BillNest-Legal/terms.html",
+  "keywords": "더치페이,정산,가계부,여행,룸메이트,공동지출,분담",
+  "marketingUrl": "https://asynch1889.github.io/BillNest-Legal/",
+  "promotionalText": "로컬 우선 더치페이. 선택적 iCloud 동기화와 Pro OCR·차트·내보내기.",
+  "supportUrl": "https://github.com/aSynch1889/BillNest-Legal/issues",
+  "whatsNew": "BillNest 첫 출시: 로컬 더치페이, 선택적 iCloud 동기화, BillNest Pro 기능."
+}
