@@ -20,7 +20,7 @@
 | 年龄分级 | ✅ 全 NONE / false |
 | 内容版权声明 | ✅ 不使用第三方内容 |
 | Copyright | ✅ `2026 BillNest` |
-| 加密 | ✅ 工程 `ITSAppUsesNonExemptEncryption=false`（豁免，无需 ASC 声明） |
+| 加密 | ✅ `Info.plist` + Build Setting `ITSAppUsesNonExemptEncryption=NO`；上传 Build 后需 ASC 侧确认 |
 | 审核联系人 + 备注 | ✅（复用开发者联系方式；无登录账号） |
 | 订阅组 BillNest Pro | ✅ |
 | `app.billnest.pro.monthly` @ $2.99 | ✅ READY_TO_SUBMIT |
@@ -29,6 +29,30 @@
 | 构建 Archive 上传并选中 | ❌ **提交阻断** |
 | App Privacy（隐私营养标签） | ⚠️ 请在 ASC 网页确认并发布 |
 | 订阅促销图（可选） | ⚠️ 建议补正式截图（当前为占位图） |
+
+## 出口合规（Export Compliance）
+
+工程已配置 **仅使用豁免加密**（HTTPS / 系统 API，无自研加密）：
+
+- `SplitwiseApp/App/Info.plist` → `ITSAppUsesNonExemptEncryption` = `false`
+- `project.yml` → `INFOPLIST_KEY_ITSAppUsesNonExemptEncryption: NO`
+
+**上传 Build 后必须在 ASC 标记合规**（否则版本页会提示「缺少出口合规证明」）：
+
+```bash
+# 方式 1：CLI（Build 处理完成后）
+asc builds update --app "6798151983" --latest --uses-non-exempt-encryption=false
+
+# 或指定 build number
+asc builds update --app "6798151983" --build-number "1" --version "1.0.0" --uses-non-exempt-encryption=false
+```
+
+**方式 2：ASC 网页** → TestFlight / 版本 → 选中 Build → **Manage Export Compliance** →  
+「Is your app designed to use cryptography?」→ **No**（或 Yes + 仅标准 exempt 加密）
+
+**Xcode 上传时**：Organizer → Distribute → 若询问 Export Compliance，选 **No / uses only exempt encryption**。
+
+> 若 Build 是在添加该键之前上传的，需 **重新 Archive 上传**，或用上述 `asc builds update` 补标记。
 
 ## 阻断项（`asc review doctor`）
 

@@ -34,3 +34,6 @@ Icon
 
 # Script generators
 generate_xcodeproj.py
+
+# App Store Connect CLI 本地产物
+.asc/

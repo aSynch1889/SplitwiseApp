@@ -38,6 +38,7 @@ targets:
         SWIFT_EMIT_LOC_STRINGS: YES
         GENERATE_INFOPLIST_FILE: NO
         INFOPLIST_FILE: SplitwiseApp/App/Info.plist
+        INFOPLIST_KEY_ITSAppUsesNonExemptEncryption: NO
         CODE_SIGN_ENTITLEMENTS: SplitwiseApp/BillNest.entitlements
         ENABLE_USER_SCRIPT_SANDBOXING: NO
         ENABLE_TESTABILITY: YES
