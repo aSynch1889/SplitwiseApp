@@ -56,8 +56,13 @@ public struct ExpenseDetailView: View {
                         Text("Paid By")
                             .font(.caption)
                             .foregroundColor(.secondary)
-                        Text(payer?.id == appState.currentUserId ? "You paid \(CurrencyFormatter.format(expense.amount, currency: expense.currency))" : "\(payer?.name ?? "Someone") paid \(CurrencyFormatter.format(expense.amount, currency: expense.currency))")
-                            .font(.headline)
+                        if payer?.id == appState.currentUserId {
+                            Text("You paid \(CurrencyFormatter.format(expense.amount, currency: expense.currency))")
+                                .font(.headline)
+                        } else {
+                            Text("\(payer?.name ?? String(localized: "Someone")) paid \(CurrencyFormatter.format(expense.amount, currency: expense.currency))")
+                                .font(.headline)
+                        }
                     }
 
                     Spacer()
@@ -221,7 +226,7 @@ public struct ExpenseDetailView: View {
             try modelContext.save()
             dismiss()
         } catch {
-            actionError = "Failed to delete expense: \(error.localizedDescription)"
+            actionError = String(localized: "Failed to delete expense: \(error.localizedDescription)")
         }
     }
 }

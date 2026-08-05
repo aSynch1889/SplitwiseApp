@@ -75,15 +75,15 @@ public enum SplitMath {
         guard isValid(method: method, total: total, splits: splits) else {
             switch method {
             case .exact:
-                return "Exact amounts must sum to the expense total."
+                return String(localized: "Exact amounts must sum to the expense total.")
             case .percentage:
-                return "Percentages must total 100%."
+                return String(localized: "Percentages must total 100%.")
             case .shares:
-                return "Total shares must be greater than zero."
+                return String(localized: "Total shares must be greater than zero.")
             case .itemized:
-                return "Itemized assignments must match the expense total."
+                return String(localized: "Itemized assignments must match the expense total.")
             case .equal:
-                return "Equal split amounts are inconsistent with the total."
+                return String(localized: "Equal split amounts are inconsistent with the total.")
             }
         }
         return nil

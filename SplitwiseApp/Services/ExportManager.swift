@@ -16,7 +16,7 @@ public enum ExportManager {
     }
 
     public static func generateCSV(groupName: String, members: [User], expenses: [Expense], settlements: [Settlement]) -> String {
-        var csv = "Date,Type,Category,Description,Amount,Currency,Payer,Splits & Notes\n"
+        var csv = String(localized: "Date,Type,Category,Description,Amount,Currency,Payer,Splits & Notes") + "\n"
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
 
@@ -24,10 +24,10 @@ public enum ExportManager {
 
         for expense in expenses {
             let dateStr = dateFormatter.string(from: expense.date)
-            let payerName = memberDict[expense.payerId] ?? "Unknown"
+            let payerName = memberDict[expense.payerId] ?? String(localized: "Unknown")
             csv += [
                 csvField(dateStr),
-                csvField("Expense"),
+                csvField(String(localized: "Expense")),
                 csvField(expense.category.rawValue),
                 csvField(expense.title),
                 csvField(String(expense.amount)),
@@ -39,14 +39,14 @@ public enum ExportManager {
 
         for settlement in settlements {
             let dateStr = dateFormatter.string(from: settlement.date)
-            let payerName = memberDict[settlement.payerId] ?? "Unknown"
-            let payeeName = memberDict[settlement.payeeId] ?? "Unknown"
-            let desc = "\(payerName) paid \(payeeName) via \(settlement.paymentMethod)"
+            let payerName = memberDict[settlement.payerId] ?? String(localized: "Unknown")
+            let payeeName = memberDict[settlement.payeeId] ?? String(localized: "Unknown")
+            let desc = String(localized: "\(payerName) paid \(payeeName) via \(settlement.paymentMethod)")
 
             csv += [
                 csvField(dateStr),
-                csvField("Settlement"),
-                csvField("General"),
+                csvField(String(localized: "Settlement")),
+                csvField(String(localized: "General")),
                 csvField(desc),
                 csvField(String(settlement.amount)),
                 csvField(settlement.currency),
@@ -98,26 +98,28 @@ public enum ExportManager {
             dateFormatter.dateFormat = "MM/dd/yyyy"
 
             func drawTableHeader(at y: CGFloat) {
-                ("Date" as NSString).draw(at: CGPoint(x: 40, y: y), withAttributes: boldAttr)
-                ("Description" as NSString).draw(at: CGPoint(x: 120, y: y), withAttributes: boldAttr)
-                ("Category" as NSString).draw(at: CGPoint(x: 300, y: y), withAttributes: boldAttr)
-                ("Paid By" as NSString).draw(at: CGPoint(x: 420, y: y), withAttributes: boldAttr)
-                ("Amount" as NSString).draw(at: CGPoint(x: 520, y: y), withAttributes: boldAttr)
+                (String(localized: "Date") as NSString).draw(at: CGPoint(x: 40, y: y), withAttributes: boldAttr)
+                (String(localized: "Description") as NSString).draw(at: CGPoint(x: 120, y: y), withAttributes: boldAttr)
+                (String(localized: "Category") as NSString).draw(at: CGPoint(x: 300, y: y), withAttributes: boldAttr)
+                (String(localized: "Paid By") as NSString).draw(at: CGPoint(x: 420, y: y), withAttributes: boldAttr)
+                (String(localized: "Amount") as NSString).draw(at: CGPoint(x: 520, y: y), withAttributes: boldAttr)
             }
 
             func drawPageChrome(isFirstPage: Bool, yOffset: inout CGFloat) {
                 context.beginPage()
                 if isFirstPage {
-                    let titleText = "\(groupName) - Expense Report" as NSString
+                    let titleText = String(localized: "\(groupName) - Expense Report") as NSString
                     titleText.draw(at: CGPoint(x: 40, y: 40), withAttributes: titleAttributes)
 
-                    let dateRangeText = "Export Date: \(DateFormatter.localizedString(from: Date(), dateStyle: .medium, timeStyle: .none))" as NSString
+                    let exportDate = DateFormatter.localizedString(from: Date(), dateStyle: .medium, timeStyle: .none)
+                    let dateRangeText = String(localized: "Export Date: \(exportDate)") as NSString
                     dateRangeText.draw(at: CGPoint(x: 40, y: 72), withAttributes: subtitleAttributes)
 
                     let convertedTotal = expenses.reduce(0.0) {
                         $0 + CurrencyFormatter.convert(amount: $1.amount, from: $1.currency, to: currency)
                     }
-                    let totalText = "Total Group Spending (\(currency), static rates): \(CurrencyFormatter.format(convertedTotal, currency: currency))" as NSString
+                    let totalFormatted = CurrencyFormatter.format(convertedTotal, currency: currency)
+                    let totalText = String(localized: "Total Group Spending (\(currency), static rates): \(totalFormatted)") as NSString
                     totalText.draw(at: CGPoint(x: 40, y: 95), withAttributes: subtitleAttributes)
 
                     let path = UIBezierPath()
@@ -131,7 +133,7 @@ public enum ExportManager {
                     drawTableHeader(at: yOffset)
                     yOffset += 20
                 } else {
-                    let continued = "\(groupName) - continued" as NSString
+                    let continued = String(localized: "\(groupName) - continued") as NSString
                     continued.draw(at: CGPoint(x: 40, y: topContentY), withAttributes: subtitleAttributes)
                     yOffset = topContentY + 24
                     drawTableHeader(at: yOffset)
@@ -155,7 +157,7 @@ public enum ExportManager {
                 let dateStr = dateFormatter.string(from: expense.date) as NSString
                 let titleSub = String(expense.title.prefix(25)) as NSString
                 let catSub = String(expense.category.rawValue.prefix(15)) as NSString
-                let payerName = String((memberDict[expense.payerId] ?? "User").prefix(12)) as NSString
+                let payerName = String((memberDict[expense.payerId] ?? String(localized: "User")).prefix(12)) as NSString
                 let converted = CurrencyFormatter.convert(amount: expense.amount, from: expense.currency, to: currency)
                 let amtStr = CurrencyFormatter.format(converted, currency: currency) as NSString
 
@@ -170,14 +172,14 @@ public enum ExportManager {
             if !settlements.isEmpty {
                 ensureSpace(36)
                 yOffset += 10
-                ("Settlements" as NSString).draw(at: CGPoint(x: 40, y: yOffset), withAttributes: boldAttr)
+                (String(localized: "Settlements") as NSString).draw(at: CGPoint(x: 40, y: yOffset), withAttributes: boldAttr)
                 yOffset += 20
 
                 for settlement in settlements {
                     ensureSpace()
                     let dateStr = dateFormatter.string(from: settlement.date) as NSString
-                    let payerName = memberDict[settlement.payerId] ?? "User"
-                    let payeeName = memberDict[settlement.payeeId] ?? "User"
+                    let payerName = memberDict[settlement.payerId] ?? String(localized: "User")
+                    let payeeName = memberDict[settlement.payeeId] ?? String(localized: "User")
                     let desc = String("\(payerName) → \(payeeName)".prefix(25)) as NSString
                     let method = String(settlement.paymentMethod.prefix(15)) as NSString
                     let converted = CurrencyFormatter.convert(
@@ -190,7 +192,7 @@ public enum ExportManager {
                     dateStr.draw(at: CGPoint(x: 40, y: yOffset), withAttributes: bodyAttr)
                     desc.draw(at: CGPoint(x: 120, y: yOffset), withAttributes: bodyAttr)
                     method.draw(at: CGPoint(x: 300, y: yOffset), withAttributes: bodyAttr)
-                    ("Settlement" as NSString).draw(at: CGPoint(x: 420, y: yOffset), withAttributes: bodyAttr)
+                    (String(localized: "Settlement") as NSString).draw(at: CGPoint(x: 420, y: yOffset), withAttributes: bodyAttr)
                     amtStr.draw(at: CGPoint(x: 520, y: yOffset), withAttributes: bodyAttr)
                     yOffset += 18
                 }

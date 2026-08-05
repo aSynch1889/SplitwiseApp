@@ -143,7 +143,11 @@ public struct GroupDetailView: View {
                 }
             } label: {
                 HStack(spacing: 4) {
-                    Label(group.simplifyDebts ? "Simplify" : "Balances", systemImage: "arrow.triangle.merge")
+                    if group.simplifyDebts {
+                        Label("Simplify", systemImage: "arrow.triangle.merge")
+                    } else {
+                        Label("Balances", systemImage: "arrow.triangle.merge")
+                    }
                     if group.simplifyDebts && !ProAccess.isPro {
                         ProBadge()
                     }

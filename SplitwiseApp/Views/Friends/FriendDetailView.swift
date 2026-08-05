@@ -147,7 +147,9 @@ public struct FriendDetailView: View {
                     .font(.body)
                     .fontWeight(.semibold)
 
-                Text(isMePayer ? "You paid \(CurrencyFormatter.format(expense.amount, currency: expense.currency))" : "\(friend.name) paid \(CurrencyFormatter.format(expense.amount, currency: expense.currency))")
+                Text(isMePayer
+                       ? String(localized: "You paid \(CurrencyFormatter.format(expense.amount, currency: expense.currency))")
+                       : String(localized: "\(friend.name) paid \(CurrencyFormatter.format(expense.amount, currency: expense.currency))"))
                     .font(.caption)
                     .foregroundColor(.secondary)
             }

@@ -403,17 +403,17 @@ public struct AddExpenseView: View {
     private func saveExpense() {
         guard canSave, let resolvedPayer = payerId ?? currentUser?.id else {
             saveErrorMessage = SplitMath.validationMessage(method: splitMethod, total: amount, splits: splits)
-                ?? "Missing current user or payer. Please set up your profile and try again."
+                ?? String(localized: "Missing current user or payer. Please set up your profile and try again.")
             return
         }
 
         guard groupMembers.contains(where: { $0.id == resolvedPayer }) else {
-            saveErrorMessage = "Payer is not a participant of this expense."
+            saveErrorMessage = String(localized: "Payer is not a participant of this expense.")
             return
         }
 
         guard !splits.isEmpty else {
-            saveErrorMessage = "At least one participant is required."
+            saveErrorMessage = String(localized: "At least one participant is required.")
             return
         }
 
@@ -453,7 +453,7 @@ public struct AddExpenseView: View {
                 try modelContext.save()
                 dismiss()
             } catch {
-                saveErrorMessage = "Failed to update expense: \(error.localizedDescription)"
+                saveErrorMessage = String(localized: "Failed to update expense: \(error.localizedDescription)")
             }
             return
         }
@@ -492,7 +492,7 @@ public struct AddExpenseView: View {
             try modelContext.save()
             dismiss()
         } catch {
-            saveErrorMessage = "Failed to save expense: \(error.localizedDescription)"
+            saveErrorMessage = String(localized: "Failed to save expense: \(error.localizedDescription)")
         }
     }
 }

@@ -32,7 +32,7 @@ public struct GroupSettingsView: View {
 
                     Picker("Type", selection: $groupType) {
                         ForEach(GroupType.allCases) { type in
-                            Label(type.rawValue, systemImage: type.iconName).tag(type)
+                            Label(LocalizedStringKey(type.rawValue), systemImage: type.iconName).tag(type)
                         }
                     }
 

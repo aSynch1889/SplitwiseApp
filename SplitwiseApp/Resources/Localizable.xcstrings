@@ -171,6 +171,40 @@
         }
       }
     },
+    "%@ / %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ / %@"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ / %@"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ / %@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ / %@"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ / %@"
+          }
+        }
+      }
+    },
     "%@ • %@": {
       "localizations": {
         "en": {
@@ -201,6 +235,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "%@ • %@"
+          }
+        }
+      }
+    },
+    "%@ Free Trial": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ Free Trial"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ 無料トライアル"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ 무료 체험"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@免费试用"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@免費試用"
           }
         }
       }
@@ -341,6 +409,40 @@
         }
       }
     },
+    "%lld days": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld days"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 日"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld일"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 天"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 天"
+          }
+        }
+      }
+    },
     "%lld members": {
       "localizations": {
         "en": {
@@ -371,6 +473,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "%lld 名成員"
+          }
+        }
+      }
+    },
+    "%lld months": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld months"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld か月"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld개월"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 个月"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 個月"
           }
         }
       }
@@ -443,6 +579,210 @@
         }
       }
     },
+    "%lld weeks": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld weeks"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 週"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld주"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 周"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 週"
+          }
+        }
+      }
+    },
+    "%lld years": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld years"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 年"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld년"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 年"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 年"
+          }
+        }
+      }
+    },
+    "%lld-Day": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld-Day"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 日間"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld일"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 天"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 天"
+          }
+        }
+      }
+    },
+    "%lld-Month": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld-Month"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld か月"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld개월"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 个月"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 個月"
+          }
+        }
+      }
+    },
+    "%lld-Week": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld-Week"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 週間"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld주"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 周"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 週"
+          }
+        }
+      }
+    },
+    "%lld-Year": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld-Year"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 年間"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld년"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 年"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 年"
+          }
+        }
+      }
+    },
     "• %@": {
       "localizations": {
         "en": {
@@ -507,6 +847,74 @@
           "stringUnit": {
             "state": "translated",
             "value": "• 已啟用簡化"
+          }
+        }
+      }
+    },
+    "$2.99 / month": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "$2.99 / month"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "$2.99 / 月"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "$2.99 / 월"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "$2.99 / 月"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "$2.99 / 月"
+          }
+        }
+      }
+    },
+    "$29.99 / year": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "$29.99 / year"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "$29.99 / 年"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "$29.99 / 년"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "$29.99 / 年"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "$29.99 / 年"
           }
         }
       }
@@ -745,6 +1153,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "動態"
+          }
+        }
+      }
+    },
+    "Ad-Free Experience": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ad-Free Experience"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "広告なし体験"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "광고 없는 경험"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无广告体验"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "無廣告體驗"
           }
         }
       }
@@ -1087,6 +1529,74 @@
           "stringUnit": {
             "state": "translated",
             "value": "新增於 %@"
+          }
+        }
+      }
+    },
+    "Advanced Analytics Charts": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Advanced Analytics Charts"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "高度な分析チャート"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "고급 분석 차트"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "高级分析图表"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "進階分析圖表"
+          }
+        }
+      }
+    },
+    "Advanced Charts": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Advanced Charts"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "高度なチャート"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "고급 차트"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "高级图表"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "進階圖表"
           }
         }
       }
@@ -1535,6 +2045,40 @@
         }
       }
     },
+    "Assign receipt line items to members.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Assign receipt line items to members."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "レシート明細をメンバーに割り当てます。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "영수증 항목을 멤버에게 지정합니다."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "将小票条目分配给成员。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "將收據項目分配給成員。"
+          }
+        }
+      }
+    },
     "Assigned Total: %@": {
       "localizations": {
         "en": {
@@ -1705,6 +2249,40 @@
         }
       }
     },
+    "Auto-Renewable": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Auto-Renewable"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自動更新"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "자동 갱신"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自动续订"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自動續訂"
+          }
+        }
+      }
+    },
     "Automatically combines debts to minimize the total number of transactions.": {
       "localizations": {
         "en": {
@@ -1803,6 +2381,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "餘額"
+          }
+        }
+      }
+    },
+    "Best Value": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Best Value"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "最もお得"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "최고의 가치"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "超值优选"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "超值首選"
           }
         }
       }
@@ -1966,13 +2578,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "类别"
+            "value": "分类"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "類別"
+            "value": "分類"
           }
         }
       }
@@ -2110,6 +2722,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "關閉"
+          }
+        }
+      }
+    },
+    "Convert amounts across 10+ currencies using in-app rates.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Convert amounts across 10+ currencies using in-app rates."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "アプリ内レートで 10 以上の通貨の金額を換算します。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "앱 내 환율로 10개 이상 통화 금액을 환산합니다."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用应用内汇率在 10+ 种货币间换算金额。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用應用程式內匯率在 10+ 種貨幣間換算金額。"
           }
         }
       }
@@ -2489,6 +3135,109 @@
         }
       }
     },
+    "day": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "day"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "日"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "일"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "天"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "天"
+          }
+        }
+      }
+    },
+    "Day": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Day"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "日"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "일"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "天"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "天"
+          }
+        }
+      }
+    },
+    "days": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "days"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "日"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "일"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "天"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "天"
+          }
+        }
+      }
+    },
     "Debt Options": {
       "localizations": {
         "en": {
@@ -2797,6 +3546,40 @@
         }
       }
     },
+    "Detailed monthly spending trends and category insights with Swift Charts.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detailed monthly spending trends and category insights with Swift Charts."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Swift Charts で月次支出トレンドとカテゴリの洞察を表示します。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Swift Charts로 월별 지출 추이와 카테고리 인사이트를 제공합니다."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用 Swift Charts 展示详细月度支出趋势与分类洞察。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用 Swift Charts 展示詳細月度支出趨勢與分類洞察。"
+          }
+        }
+      }
+    },
     "Details": {
       "localizations": {
         "en": {
@@ -2998,6 +3781,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "英語"
+          }
+        }
+      }
+    },
+    "Enjoy clean, distraction-free expense tracking.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enjoy clean, distraction-free expense tracking."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "すっきりした、気が散らない支出管理を楽しめます。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "깔끔하고 방해 없는 지출 관리를 즐기세요."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "享受简洁、无干扰的记账体验。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "享受簡潔、無干擾的記帳體驗。"
           }
         }
       }
@@ -3271,6 +4088,74 @@
           "stringUnit": {
             "state": "translated",
             "value": "匯出失敗"
+          }
+        }
+      }
+    },
+    "Export group statements as PDF or CSV.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Export group statements as PDF or CSV."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "グループ明細書を PDF または CSV で書き出します。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "그룹 명세서를 PDF 또는 CSV로 내보냅니다."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "将群组账单导出为 PDF 或 CSV。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "將群組對帳單匯出為 PDF 或 CSV。"
+          }
+        }
+      }
+    },
+    "Export high-quality PDF reports for taxes, business trips, and roommates.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Export high-quality PDF reports for taxes, business trips, and roommates."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "税務・出張・ルームメイト向けに高品質な PDF レポートを書き出します。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "세금, 출장, 룸메이트용 고품질 PDF 보고서를 내보냅니다."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "导出高质量 PDF 报告，适用于报税、出差与合租。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "匯出高品質 PDF 報告，適用於報稅、出差與合租。"
           }
         }
       }
@@ -3663,25 +4548,25 @@
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "その他"
+            "value": "一般"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "기타"
+            "value": "일반"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "其他"
+            "value": "常规"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "其他"
+            "value": "一般"
           }
         }
       }
@@ -4366,6 +5251,40 @@
         }
       }
     },
+    "Intro Offer": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intro Offer"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "お試しオファー"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "소개 특가"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "优惠入门价"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "優惠入門價"
+          }
+        }
+      }
+    },
     "Invalid Split": {
       "localizations": {
         "en": {
@@ -4430,6 +5349,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "收據逐項明細"
+          }
+        }
+      }
+    },
+    "Itemized Splits": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Itemized Splits"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "明細ごとの割り勘"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "항목별 분담"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "按条目分摊"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "依項目分攤"
           }
         }
       }
@@ -4808,6 +5761,40 @@
         }
       }
     },
+    "month": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "month"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "月"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "월"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "月"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "月"
+          }
+        }
+      }
+    },
     "Month": {
       "localizations": {
         "en": {
@@ -4946,6 +5933,75 @@
         }
       }
     },
+    "months": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "months"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "か月"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "개월"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "个月"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "個月"
+          }
+        }
+      }
+    },
+    "Multi-Currency Conversion": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Multi-Currency Conversion"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "多通貨換算"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "다중 통화 환산"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "多币种换算"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "多幣別換算"
+          }
+        }
+      }
+    },
     "Name": {
       "localizations": {
         "en": {
@@ -5079,6 +6135,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "下一步"
+          }
+        }
+      }
+    },
+    "No active Pro subscription found.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No active Pro subscription found."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "有効な Pro サブスクリプションが見つかりません。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "활성 Pro 구독을 찾을 수 없습니다."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未找到有效的 Pro 订阅。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "找不到有效的 Pro 訂閱。"
           }
         }
       }
@@ -5559,6 +6649,40 @@
         }
       }
     },
+    "OCR Receipt Scanning": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OCR Receipt Scanning"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OCR レシートスキャン"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OCR 영수증 스캔"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OCR 小票扫描"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OCR 收據掃描"
+          }
+        }
+      }
+    },
     "OK": {
       "localizations": {
         "en": {
@@ -5968,6 +7092,108 @@
         }
       }
     },
+    "PDF & CSV Export": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PDF & CSV Export"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PDF / CSV 書き出し"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PDF 및 CSV 내보내기"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PDF 与 CSV 导出"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PDF 與 CSV 匯出"
+          }
+        }
+      }
+    },
+    "PDF & CSV Statements": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PDF & CSV Statements"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PDF / CSV 明細書"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PDF 및 CSV 명세서"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PDF 与 CSV 账单"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PDF 與 CSV 對帳單"
+          }
+        }
+      }
+    },
+    "period": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "period"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "期間"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "기간"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "周期"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "週期"
+          }
+        }
+      }
+    },
     "Phone Number (optional)": {
       "localizations": {
         "en": {
@@ -6100,6 +7326,176 @@
           "stringUnit": {
             "state": "translated",
             "value": "PRO"
+          }
+        }
+      }
+    },
+    "Pro Annual": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pro Annual"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pro 年額"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pro 연간"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pro 年付"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pro 年繳"
+          }
+        }
+      }
+    },
+    "Pro Monthly": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pro Monthly"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pro 月額"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pro 월간"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pro 月付"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pro 月繳"
+          }
+        }
+      }
+    },
+    "Products unavailable. Please try again later.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Products unavailable. Please try again later."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "商品を取得できません。しばらくしてからもう一度お試しください。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "상품을 불러올 수 없습니다. 나중에 다시 시도하세요."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法获取商品，请稍后重试。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "無法取得商品，請稍後再試。"
+          }
+        }
+      }
+    },
+    "Purchase failed: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Purchase failed: %@"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "購入に失敗しました: %@"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "구매 실패: %@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "购买失败：%@"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "購買失敗：%@"
+          }
+        }
+      }
+    },
+    "Purchase is pending approval.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Purchase is pending approval."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "購入は承認待ちです。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "구매가 승인 대기 중입니다."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "购买正在等待批准。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "購買正在等待核准。"
           }
         }
       }
@@ -6343,6 +7739,40 @@
         }
       }
     },
+    "Receipt OCR": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Receipt OCR"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "レシート OCR"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "영수증 OCR"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "小票 OCR"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "收據 OCR"
+          }
+        }
+      }
+    },
     "Receipt OCR, Currency Rates, PDF Exports & Charts": {
       "localizations": {
         "en": {
@@ -6475,6 +7905,74 @@
           "stringUnit": {
             "state": "translated",
             "value": "記錄一筆付款"
+          }
+        }
+      }
+    },
+    "Reduce transfers for your groups using balance netting.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reduce transfers for your groups using balance netting."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "残高の相殺によりグループの送金回数を減らします。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "잔액 상계로 그룹의 이체 횟수를 줄입니다."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "通过余额轧差减少群组转账次数。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "透過餘額軋差減少群組轉帳次數。"
+          }
+        }
+      }
+    },
+    "Reduce transfers with simplified balances.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reduce transfers with simplified balances."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "簡易化した残高で送金回数を減らします。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "단순화된 잔액으로 이체 횟수를 줄입니다."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "通过简化余额减少转账次数。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "透過簡化餘額減少轉帳次數。"
           }
         }
       }
@@ -6854,6 +8352,40 @@
         }
       }
     },
+    "Restore failed: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restore failed: %@"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "復元に失敗しました: %@"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "복원 실패: %@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "恢复失败：%@"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "恢復失敗：%@"
+          }
+        }
+      }
+    },
     "Restore Purchases": {
       "localizations": {
         "en": {
@@ -7020,6 +8552,74 @@
           "stringUnit": {
             "state": "translated",
             "value": "掃描失敗"
+          }
+        }
+      }
+    },
+    "Scan receipts automatically with Vision AI and convert items to split expenses.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scan receipts automatically with Vision AI and convert items to split expenses."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vision AI でレシートを自動スキャンし、項目を割り勘に変換します。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vision AI로 영수증을 자동 스캔하고 항목을 분담 지출로 변환합니다."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用 Vision AI 自动扫描小票，并将条目转为分摊账单。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用 Vision AI 自動掃描收據，並將項目轉為分攤帳單。"
+          }
+        }
+      }
+    },
+    "Scan receipts with on-device Vision OCR.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scan receipts with on-device Vision OCR."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "端末上の Vision OCR でレシートをスキャンします。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "기기 내 Vision OCR로 영수증을 스캔합니다."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用设备端 Vision OCR 扫描小票。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用裝置端 Vision OCR 掃描收據。"
           }
         }
       }
@@ -8807,6 +10407,40 @@
         }
       }
     },
+    "Trial": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trial"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "トライアル"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "체험"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "试用"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "試用"
+          }
+        }
+      }
+    },
     "Type": {
       "localizations": {
         "en": {
@@ -9047,6 +10681,108 @@
         }
       }
     },
+    "View category, trend, and group analytics.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "View category, trend, and group analytics."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "カテゴリ・トレンド・グループ分析を表示します。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "카테고리, 추이, 그룹 분석을 확인합니다."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "查看分类、趋势与群组分析。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "查看分類、趨勢與群組分析。"
+          }
+        }
+      }
+    },
+    "week": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "week"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "週"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "주"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "周"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "週"
+          }
+        }
+      }
+    },
+    "Week": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Week"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "週"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "주"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "周"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "週"
+          }
+        }
+      }
+    },
     "Weekly": {
       "extractionState": "stale",
       "localizations": {
@@ -9112,6 +10848,41 @@
           "stringUnit": {
             "state": "translated",
             "value": "每週 / 每月 / 每年循環即將推出，目前不會自動建立帳單。"
+          }
+        }
+      }
+    },
+    "weeks": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "weeks"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "週"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "주"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "周"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "週"
           }
         }
       }
@@ -9218,6 +10989,74 @@
         }
       }
     },
+    "year": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "year"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "年"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "년"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "年"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "年"
+          }
+        }
+      }
+    },
+    "Year": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Year"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "年"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "년"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "年"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "年"
+          }
+        }
+      }
+    },
     "Yearly": {
       "extractionState": "stale",
       "localizations": {
@@ -9249,6 +11088,41 @@
           "stringUnit": {
             "state": "translated",
             "value": "每年"
+          }
+        }
+      }
+    },
+    "years": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "years"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "年"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "년"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "年"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "年"
           }
         }
       }
@@ -9765,1872 +11639,2212 @@
         }
       }
     },
-    "OCR Receipt Scanning": {
+    "Checking…": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "OCR Receipt Scanning"
+            "value": "Checking…"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "OCR レシートスキャン"
+            "value": "確認中…"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "OCR 영수증 스캔"
+            "value": "확인 중…"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "OCR 小票扫描"
+            "value": "检查中…"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "OCR 收據掃描"
+            "value": "檢查中…"
           }
         }
       }
     },
-    "Scan receipts automatically with Vision AI and convert items to split expenses.": {
+    "iCloud Sync Off": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Scan receipts automatically with Vision AI and convert items to split expenses."
+            "value": "iCloud Sync Off"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vision AI でレシートを自動スキャンし、項目を割り勘に変換します。"
+            "value": "iCloud 同期オフ"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vision AI로 영수증을 자동 스캔하고 항목을 분담 지출로 변환합니다."
+            "value": "iCloud 동기화 꺼짐"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "使用 Vision AI 自动扫描小票，并将条目转为分摊账单。"
+            "value": "iCloud 同步已关闭"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "使用 Vision AI 自動掃描收據，並將項目轉為分攤帳單。"
+            "value": "iCloud 同步已關閉"
           }
         }
       }
     },
-    "Multi-Currency Conversion": {
+    "iCloud Unavailable": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Multi-Currency Conversion"
+            "value": "iCloud Unavailable"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "多通貨換算"
+            "value": "iCloud を利用できません"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "다중 통화 환산"
+            "value": "iCloud 사용 불가"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "多币种换算"
+            "value": "iCloud 不可用"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "多幣別換算"
+            "value": "iCloud 無法使用"
           }
         }
       }
     },
-    "Convert amounts across 10+ currencies using in-app rates.": {
+    "iCloud Ready": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Convert amounts across 10+ currencies using in-app rates."
+            "value": "iCloud Ready"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "アプリ内レートで 10 以上の通貨の金額を換算します。"
+            "value": "iCloud 準備完了"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "앱 내 환율로 10개 이상 통화 금액을 환산합니다."
+            "value": "iCloud 준비됨"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "使用应用内汇率在 10+ 种货币间换算金额。"
+            "value": "iCloud 已就绪"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "使用應用程式內匯率在 10+ 種貨幣間換算金額。"
+            "value": "iCloud 已就緒"
           }
         }
       }
     },
-    "PDF & CSV Statements": {
+    "Signed In — Restart to Sync": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "PDF & CSV Statements"
+            "value": "Signed In — Restart to Sync"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "PDF / CSV 明細書"
+            "value": "サインイン済み — 再起動で同期"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "PDF 및 CSV 명세서"
+            "value": "로그인됨 — 다시 시작 후 동기화"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "PDF 与 CSV 账单"
+            "value": "已登录 — 重启后同步"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "PDF 與 CSV 對帳單"
+            "value": "已登入 — 重新啟動後同步"
           }
         }
       }
     },
-    "Export high-quality PDF reports for taxes, business trips, and roommates.": {
+    "Sign in to iCloud in Settings": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Export high-quality PDF reports for taxes, business trips, and roommates."
+            "value": "Sign in to iCloud in Settings"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "税務・出張・ルームメイト向けに高品質な PDF レポートを書き出します。"
+            "value": "設定で iCloud にサインイン"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "세금, 출장, 룸메이트용 고품질 PDF 보고서를 내보냅니다."
+            "value": "설정에서 iCloud에 로그인"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "导出高质量 PDF 报告，适用于报税、出差与合租。"
+            "value": "请在设置中登录 iCloud"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "匯出高品質 PDF 報告，適用於報稅、出差與合租。"
+            "value": "請在設定中登入 iCloud"
           }
         }
       }
     },
-    "Advanced Analytics Charts": {
+    "iCloud Restricted": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Advanced Analytics Charts"
+            "value": "iCloud Restricted"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "高度な分析チャート"
+            "value": "iCloud が制限されています"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "고급 분석 차트"
+            "value": "iCloud 제한됨"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "高级分析图表"
+            "value": "iCloud 受限"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "進階分析圖表"
+            "value": "iCloud 受限"
           }
         }
       }
     },
-    "Detailed monthly spending trends and category insights with Swift Charts.": {
+    "Could Not Determine iCloud Status": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Detailed monthly spending trends and category insights with Swift Charts."
+            "value": "Could Not Determine iCloud Status"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Swift Charts で月次支出トレンドとカテゴリの洞察を表示します。"
+            "value": "iCloud 状態を確認できません"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Swift Charts로 월별 지출 추이와 카테고리 인사이트를 제공합니다."
+            "value": "iCloud 상태를 확인할 수 없음"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "使用 Swift Charts 展示详细月度支出趋势与分类洞察。"
+            "value": "无法确定 iCloud 状态"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "使用 Swift Charts 展示詳細月度支出趨勢與分類洞察。"
+            "value": "無法判斷 iCloud 狀態"
           }
         }
       }
     },
-    "Reduce transfers for your groups using balance netting.": {
+    "iCloud Temporarily Unavailable": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Reduce transfers for your groups using balance netting."
+            "value": "iCloud Temporarily Unavailable"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "残高の相殺によりグループの送金回数を減らします。"
+            "value": "iCloud は一時的に利用できません"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "잔액 상계로 그룹의 이체 횟수를 줄입니다."
+            "value": "iCloud를 일시적으로 사용할 수 없음"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "通过余额轧差减少群组转账次数。"
+            "value": "iCloud 暂时不可用"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "透過餘額軋差減少群組轉帳次數。"
+            "value": "iCloud 暫時無法使用"
           }
         }
       }
     },
-    "Ad-Free Experience": {
+    "Unknown iCloud Status": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ad-Free Experience"
+            "value": "Unknown iCloud Status"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "広告なし体験"
+            "value": "不明な iCloud 状態"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "광고 없는 경험"
+            "value": "알 수 없는 iCloud 상태"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "无广告体验"
+            "value": "未知 iCloud 状态"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "無廣告體驗"
+            "value": "未知 iCloud 狀態"
           }
         }
       }
     },
-    "Enjoy clean, distraction-free expense tracking.": {
+    "Syncing with iCloud…": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Enjoy clean, distraction-free expense tracking."
+            "value": "Syncing with iCloud…"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "すっきりした、気が散らない支出管理を楽しめます。"
+            "value": "iCloud と同期中…"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "깔끔하고 방해 없는 지출 관리를 즐기세요."
+            "value": "iCloud와 동기화 중…"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "享受简洁、无干扰的记账体验。"
+            "value": "正在与 iCloud 同步…"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "享受簡潔、無干擾的記帳體驗。"
+            "value": "正在與 iCloud 同步…"
           }
         }
       }
     },
-    "Pro Monthly": {
+    "Last sync %@": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pro Monthly"
+            "value": "Last sync %@"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pro 月額"
+            "value": "最終同期 %@"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pro 월간"
+            "value": "최근 동기화 %@"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pro 月付"
+            "value": "上次同步 %@"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pro 月繳"
+            "value": "上次同步 %@"
           }
         }
       }
     },
-    "Pro Annual": {
+    "Private CloudKit database · same Apple ID devices": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pro Annual"
+            "value": "Private CloudKit database · same Apple ID devices"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pro 年額"
+            "value": "プライベート CloudKit ・同一 Apple ID のデバイス"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pro 연간"
+            "value": "개인 CloudKit 데이터베이스 · 동일 Apple ID 기기"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pro 年付"
+            "value": "私人 CloudKit 数据库 · 同一 Apple ID 设备"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pro 年繳"
+            "value": "私人 CloudKit 資料庫 · 同一 Apple ID 裝置"
           }
         }
       }
     },
-    "$2.99 / month": {
+    "Local-only store (CloudKit not active in this session)": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "$2.99 / month"
+            "value": "Local-only store (CloudKit not active in this session)"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "$2.99 / 月"
+            "value": "ローカル専用ストア（このセッションでは CloudKit 非使用）"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "$2.99 / 월"
+            "value": "로컬 전용 저장소 (이 세션에서 CloudKit 비활성)"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "$2.99 / 月"
+            "value": "仅本地存储（本会话未启用 CloudKit）"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "$2.99 / 月"
+            "value": "僅本機儲存（本工作階段未啟用 CloudKit）"
           }
         }
       }
     },
-    "$29.99 / year": {
+    "Import failed: %@": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "$29.99 / year"
+            "value": "Import failed: %@"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "$29.99 / 年"
+            "value": "インポート失敗: %@"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "$29.99 / 년"
+            "value": "가져오기 실패: %@"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "$29.99 / 年"
+            "value": "导入失败：%@"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "$29.99 / 年"
+            "value": "匯入失敗：%@"
           }
         }
       }
     },
-    "Auto-Renewable": {
+    "Export failed: %@": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Auto-Renewable"
+            "value": "Export failed: %@"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "自動更新"
+            "value": "書き出し失敗: %@"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "자동 갱신"
+            "value": "내보내기 실패: %@"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "自动续订"
+            "value": "导出失败：%@"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "自動續訂"
+            "value": "匯出失敗：%@"
           }
         }
       }
     },
-    "Best Value": {
+    "Backup restored successfully.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Best Value"
+            "value": "Backup restored successfully."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "最もお得"
+            "value": "バックアップを復元しました。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "최고의 가치"
+            "value": "백업을 복원했습니다."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "超值优选"
+            "value": "备份已成功恢复。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "超值首選"
+            "value": "備份已成功還原。"
           }
         }
       }
     },
-    "day": {
+    "Reset demo data failed: %@": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "day"
+            "value": "Reset demo data failed: %@"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "日"
+            "value": "デモデータのリセットに失敗: %@"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "일"
+            "value": "데모 데이터 재설정 실패: %@"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "天"
+            "value": "重置演示数据失败：%@"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "天"
+            "value": "重設示範資料失敗：%@"
           }
         }
       }
     },
-    "days": {
+    "Payer is not a participant of this expense.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "days"
+            "value": "Payer is not a participant of this expense."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "日"
+            "value": "支払者がこの支出の参加者ではありません。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "일"
+            "value": "결제자가 이 지출의 참여자가 아닙니다."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "天"
+            "value": "付款人不是这笔账单的参与者。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "天"
+            "value": "付款人不是這筆帳單的參與者。"
           }
         }
       }
     },
-    "week": {
+    "At least one participant is required.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "week"
+            "value": "At least one participant is required."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "週"
+            "value": "少なくとも 1 人の参加者が必要です。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "주"
+            "value": "최소 한 명의 참여자가 필요합니다."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "周"
+            "value": "至少需要一名参与者。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "週"
+            "value": "至少需要一名參與者。"
           }
         }
       }
     },
-    "weeks": {
+    "Missing current user or payer. Please set up your profile and try again.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "weeks"
+            "value": "Missing current user or payer. Please set up your profile and try again."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "週"
+            "value": "現在のユーザーまたは支払者がありません。プロフィールを設定して再試行してください。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "주"
+            "value": "현재 사용자 또는 결제자가 없습니다. 프로필을 설정한 뒤 다시 시도하세요."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "周"
+            "value": "缺少当前用户或付款人。请设置个人资料后重试。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "週"
+            "value": "缺少目前使用者或付款人。請設定個人資料後再試。"
           }
         }
       }
     },
-    "month": {
+    "Failed to update expense: %@": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "month"
+            "value": "Failed to update expense: %@"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "月"
+            "value": "支出の更新に失敗: %@"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "월"
+            "value": "지출 업데이트 실패: %@"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "月"
+            "value": "更新账单失败：%@"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "月"
+            "value": "更新帳單失敗：%@"
           }
         }
       }
     },
-    "months": {
+    "Failed to save expense: %@": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "months"
+            "value": "Failed to save expense: %@"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "か月"
+            "value": "支出の保存に失敗: %@"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "개월"
+            "value": "지출 저장 실패: %@"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "个月"
+            "value": "保存账单失败：%@"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "個月"
+            "value": "儲存帳單失敗：%@"
           }
         }
       }
     },
-    "year": {
+    "Failed to delete expense: %@": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "year"
+            "value": "Failed to delete expense: %@"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "年"
+            "value": "支出の削除に失敗: %@"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "년"
+            "value": "지출 삭제 실패: %@"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "年"
+            "value": "删除账单失败：%@"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "年"
+            "value": "刪除帳單失敗：%@"
           }
         }
       }
     },
-    "years": {
+    "Exact amounts must sum to the expense total.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "years"
+            "value": "Exact amounts must sum to the expense total."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "年"
+            "value": "正確な金額の合計は支出総額と一致する必要があります。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "년"
+            "value": "정확한 금액의 합계가 지출 총액과 같아야 합니다."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "年"
+            "value": "精确金额之和必须等于账单总额。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "年"
+            "value": "精確金額之和必須等於帳單總額。"
           }
         }
       }
     },
-    "period": {
+    "Percentages must total 100%.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "period"
+            "value": "Percentages must total 100%."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "期間"
+            "value": "パーセンテージの合計は 100% である必要があります。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "기간"
+            "value": "비율의 합은 100%여야 합니다."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "周期"
+            "value": "百分比合计必须为 100%。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "週期"
+            "value": "百分比合計必須為 100%。"
           }
         }
       }
     },
-    "Day": {
+    "Total shares must be greater than zero.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Day"
+            "value": "Total shares must be greater than zero."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "日"
+            "value": "シェア合計は 0 より大きい必要があります。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "일"
+            "value": "총 지분은 0보다 커야 합니다."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "天"
+            "value": "份额总数必须大于零。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "天"
+            "value": "份額總數必須大於零。"
           }
         }
       }
     },
-    "Week": {
+    "Itemized assignments must match the expense total.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Week"
+            "value": "Itemized assignments must match the expense total."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "週"
+            "value": "明細割り当ての合計は支出総額と一致する必要があります。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "주"
+            "value": "항목별 배정 합계가 지출 총액과 일치해야 합니다."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "周"
+            "value": "分项金额合计必须等于账单总额。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "週"
+            "value": "分項金額合計必須等於帳單總額。"
           }
         }
       }
     },
-    "Year": {
+    "Equal split amounts are inconsistent with the total.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Year"
+            "value": "Equal split amounts are inconsistent with the total."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "年"
+            "value": "均等割の金額が合計と一致しません。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "년"
+            "value": "균등 분담 금액이 총액과 일치하지 않습니다."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "年"
+            "value": "平均分摊金额与总额不一致。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "年"
+            "value": "平均分攤金額與總額不一致。"
           }
         }
       }
     },
-    "Trial": {
+    "Someone": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Trial"
+            "value": "Someone"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "トライアル"
+            "value": "誰か"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "체험"
+            "value": "누군가"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "试用"
+            "value": "某人"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "試用"
+            "value": "某人"
           }
         }
       }
     },
-    "%lld days": {
+    "Unknown": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld days"
+            "value": "Unknown"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld 日"
+            "value": "不明"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld일"
+            "value": "알 수 없음"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld 天"
+            "value": "未知"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld 天"
+            "value": "未知"
           }
         }
       }
     },
-    "%lld weeks": {
+    "User": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld weeks"
+            "value": "User"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld 週"
+            "value": "ユーザー"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld주"
+            "value": "사용자"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld 周"
+            "value": "用户"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld 週"
+            "value": "使用者"
           }
         }
       }
     },
-    "%lld months": {
+    "Expense": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld months"
+            "value": "Expense"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld か月"
+            "value": "支出"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld개월"
+            "value": "지출"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld 个月"
+            "value": "账单"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld 個月"
+            "value": "帳單"
           }
         }
       }
     },
-    "%lld years": {
+    "Settlement": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld years"
+            "value": "Settlement"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld 年"
+            "value": "精算"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld년"
+            "value": "정산"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld 年"
+            "value": "结清"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld 年"
+            "value": "結清"
           }
         }
       }
     },
-    "%lld-Day": {
+    "Settlements": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld-Day"
+            "value": "Settlements"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld 日間"
+            "value": "精算"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld일"
+            "value": "정산"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld 天"
+            "value": "结清记录"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld 天"
+            "value": "結清紀錄"
           }
         }
       }
     },
-    "%lld-Week": {
+    "Description": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld-Week"
+            "value": "Description"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld 週間"
+            "value": "内容"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld주"
+            "value": "설명"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld 周"
+            "value": "描述"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld 週"
+            "value": "說明"
           }
         }
       }
     },
-    "%lld-Month": {
+    "Date,Type,Category,Description,Amount,Currency,Payer,Splits & Notes": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld-Month"
+            "value": "Date,Type,Category,Description,Amount,Currency,Payer,Splits & Notes"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld か月"
+            "value": "日付,種別,カテゴリ,内容,金額,通貨,支払者,分割とメモ"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld개월"
+            "value": "날짜,유형,카테고리,설명,금액,통화,결제자,분담 및 메모"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld 个月"
+            "value": "日期,类型,分类,描述,金额,币种,付款人,分摊与备注"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld 個月"
+            "value": "日期,類型,分類,說明,金額,幣別,付款人,分攤與備註"
           }
         }
       }
     },
-    "%lld-Year": {
+    "%@ - Expense Report": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld-Year"
+            "value": "%@ - Expense Report"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld 年間"
+            "value": "%@ - 支出レポート"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld년"
+            "value": "%@ - 지출 보고서"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld 年"
+            "value": "%@ - 支出报告"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld 年"
+            "value": "%@ - 支出報告"
           }
         }
       }
     },
-    "%@ / %@": {
+    "Export Date: %@": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ / %@"
+            "value": "Export Date: %@"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ / %@"
+            "value": "書き出し日: %@"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ / %@"
+            "value": "내보내기 날짜: %@"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ / %@"
+            "value": "导出日期：%@"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ / %@"
+            "value": "匯出日期：%@"
           }
         }
       }
     },
-    "%@ Free Trial": {
+    "Total Group Spending (%@, static rates): %@": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ Free Trial"
+            "value": "Total Group Spending (%@, static rates): %@"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ 無料トライアル"
+            "value": "グループ支出合計（%@・固定レート）: %@"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ 무료 체험"
+            "value": "그룹 총 지출(%@, 고정 환율): %@"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@免费试用"
+            "value": "群组总支出（%@，静态汇率）：%@"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@免費試用"
+            "value": "群組總支出（%@，靜態匯率）：%@"
           }
         }
       }
     },
-    "Intro Offer": {
+    "%@ - continued": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Intro Offer"
+            "value": "%@ - continued"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "お試しオファー"
+            "value": "%@ - 続き"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "소개 특가"
+            "value": "%@ - 계속"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "优惠入门价"
+            "value": "%@ - 续"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "優惠入門價"
+            "value": "%@ - 續"
           }
         }
       }
     },
-    "Purchase failed: %@": {
+    "%@ paid %@ via %@": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Purchase failed: %@"
+            "value": "%@ paid %@ via %@"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "購入に失敗しました: %@"
+            "value": "%@ が %@ に支払い（%@）"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "구매 실패: %@"
+            "value": "%@이(가) %@에게 지불함(%@)"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "购买失败：%@"
+            "value": "%@ 已向 %@ 付款（%@）"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "購買失敗：%@"
+            "value": "%@ 已向 %@ 付款（%@）"
           }
         }
       }
     },
-    "Products unavailable. Please try again later.": {
+    "Split Bills Effortlessly": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Products unavailable. Please try again later."
+            "value": "Split Bills Effortlessly"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "商品を取得できません。しばらくしてからもう一度お試しください。"
+            "value": "かんたん割り勘"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "상품을 불러올 수 없습니다. 나중에 다시 시도하세요."
+            "value": "간편한 비용 분담"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "无法获取商品，请稍后重试。"
+            "value": "轻松分摊账单"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "無法取得商品，請稍後再試。"
+            "value": "輕鬆分攤帳單"
           }
         }
       }
     },
-    "Purchase is pending approval.": {
+    "Easily track shared expenses for trips, roommates, couples, and events with 5 flexible split modes: Equal, Exact, %, Shares, and Itemized.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Purchase is pending approval."
+            "value": "Easily track shared expenses for trips, roommates, couples, and events with 5 flexible split modes: Equal, Exact, %, Shares, and Itemized."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "購入は承認待ちです。"
+            "value": "旅行・ルームメイト・カップル・イベントの共有支出を、均等・金額・％・シェア・明細の 5 つの分割モードで簡単に記録。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "구매가 승인 대기 중입니다."
+            "value": "여행, 룸메이트, 커플, 모임의 공동 지출을 균등·정확·%·지분·항목의 5가지 분담 방식으로 쉽게 기록하세요."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "购买正在等待批准。"
+            "value": "轻松记录旅行、合租、情侣与活动的共同支出，支持均分、精确、百分比、份额与分项五种模式。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "購買正在等待核准。"
+            "value": "輕鬆記錄旅行、合租、情侶與活動的共同支出，支援均分、精確、百分比、份額與分項五種模式。"
           }
         }
       }
     },
-    "No active Pro subscription found.": {
+    "Group & Friend Billing": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "No active Pro subscription found."
+            "value": "Group & Friend Billing"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "有効な Pro サブスクリプションが見つかりません。"
+            "value": "グループ＆友だち記帳"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "활성 Pro 구독을 찾을 수 없습니다."
+            "value": "그룹 및 친구 청구"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "未找到有效的 Pro 订阅。"
+            "value": "群组与好友记账"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "找不到有效的 Pro 訂閱。"
+            "value": "群組與好友記帳"
           }
         }
       }
     },
-    "Restore failed: %@": {
+    "Smart Debt Simplification": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Restore failed: %@"
+            "value": "Smart Debt Simplification"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "復元に失敗しました: %@"
+            "value": "スマート債務簡易化"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "복원 실패: %@"
+            "value": "스마트 부채 단순화"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "恢复失败：%@"
+            "value": "智能债务简化"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "恢復失敗：%@"
+            "value": "智慧債務簡化"
           }
         }
       }
     },
-    "Receipt OCR": {
+    "Net balances to reduce transfers between group members using a simple pairing heuristic (not a proven global minimum).": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Receipt OCR"
+            "value": "Net balances to reduce transfers between group members using a simple pairing heuristic (not a proven global minimum)."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "レシート OCR"
+            "value": "簡単なペアリング手法で残高を相殺し、送金回数を減らします（大域最適は保証しません）。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "영수증 OCR"
+            "value": "간단한 페어링 휴리스틱으로 잔액을 상계해 이체를 줄입니다(전역 최소 보장 없음)."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "小票 OCR"
+            "value": "用简单配对启发式轧差余额，减少成员间转账（不保证全局最少笔数）。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "收據 OCR"
+            "value": "用簡單配對啟發式軋差餘額，減少成員間轉帳（不保證全域最少筆數）。"
           }
         }
       }
     },
-    "PDF & CSV Export": {
+    "Local AA Tool": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "PDF & CSV Export"
+            "value": "Local AA Tool"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "PDF / CSV 書き出し"
+            "value": "ローカル AA ツール"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "PDF 및 CSV 내보내기"
+            "value": "로컬 AA 도구"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "PDF 与 CSV 导出"
+            "value": "本地 AA 工具"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "PDF 與 CSV 匯出"
+            "value": "本機 AA 工具"
           }
         }
       }
     },
-    "Advanced Charts": {
+    "Vision OCR Receipt Scanner": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Advanced Charts"
+            "value": "Vision OCR Receipt Scanner"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "高度なチャート"
+            "value": "Vision OCR レシートスキャナー"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "고급 차트"
+            "value": "Vision OCR 영수증 스캐너"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "高级图表"
+            "value": "Vision OCR 小票扫描"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "進階圖表"
+            "value": "Vision OCR 收據掃描"
           }
         }
       }
     },
-    "Itemized Splits": {
+    "Pick a receipt photo and parse amounts on-device. If scanning fails, enter the expense manually — no fake demo data.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Itemized Splits"
+            "value": "Pick a receipt photo and parse amounts on-device. If scanning fails, enter the expense manually — no fake demo data."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "明細ごとの割り勘"
+            "value": "レシート写真を選び端末上で金額を解析。失敗時は手動入力 — 偽のデモデータは使いません。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "항목별 분담"
+            "value": "영수증 사진을 선택해 기기에서 금액을 분석합니다. 실패 시 수동 입력 — 가짜 데모 데이터 없음."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "按条目分摊"
+            "value": "选择小票照片并在设备端解析金额。失败时请手动填写——不会使用虚假演示数据。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "依項目分攤"
+            "value": "選擇收據照片並在裝置端解析金額。失敗時請手動填寫——不會使用虛假示範資料。"
           }
         }
       }
     },
-    "Scan receipts with on-device Vision OCR.": {
+    "Vision OCR": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Scan receipts with on-device Vision OCR."
+            "value": "Vision OCR"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "端末上の Vision OCR でレシートをスキャンします。"
+            "value": "Vision OCR"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "기기 내 Vision OCR로 영수증을 스캔합니다."
+            "value": "Vision OCR"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "使用设备端 Vision OCR 扫描小票。"
+            "value": "Vision OCR"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "使用裝置端 Vision OCR 掃描收據。"
+            "value": "Vision OCR"
           }
         }
       }
     },
-    "Export group statements as PDF or CSV.": {
+    "Analytics & PDF Statements": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Export group statements as PDF or CSV."
+            "value": "Analytics & PDF Statements"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "グループ明細書を PDF または CSV で書き出します。"
+            "value": "分析と PDF 明細書"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "그룹 명세서를 PDF 또는 CSV로 내보냅니다."
+            "value": "분석 및 PDF 명세서"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "将群组账单导出为 PDF 或 CSV。"
+            "value": "分析与 PDF 账单"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "將群組對帳單匯出為 PDF 或 CSV。"
+            "value": "分析與 PDF 對帳單"
           }
         }
       }
     },
-    "View category, trend, and group analytics.": {
+    "Visualize your share of spending with charts and export PDF/CSV statements for trips and roommates.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "View category, trend, and group analytics."
+            "value": "Visualize your share of spending with charts and export PDF/CSV statements for trips and roommates."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "カテゴリ・トレンド・グループ分析を表示します。"
+            "value": "チャートで負担を可視化し、旅行やルームメイト向けに PDF/CSV を書き出します。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "카테고리, 추이, 그룹 분석을 확인합니다."
+            "value": "차트로 내 분담을 시각화하고 여행·룸메이트용 PDF/CSV를 내보냅니다."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "查看分类、趋势与群组分析。"
+            "value": "用图表查看你的支出份额，并为旅行与合租导出 PDF/CSV。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "查看分類、趨勢與群組分析。"
+            "value": "用圖表查看你的支出份額，並為旅行與合租匯出 PDF/CSV。"
           }
         }
       }
     },
-    "Reduce transfers with simplified balances.": {
+    "Insights": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Reduce transfers with simplified balances."
+            "value": "Insights"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "簡易化した残高で送金回数を減らします。"
+            "value": "インサイト"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "단순화된 잔액으로 이체 횟수를 줄입니다."
+            "value": "인사이트"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "通过简化余额减少转账次数。"
+            "value": "洞察"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "透過簡化餘額減少轉帳次數。"
+            "value": "洞察"
           }
         }
       }
     },
-    "Assign receipt line items to members.": {
+    "Cash": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Assign receipt line items to members."
+            "value": "Cash"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "レシート明細をメンバーに割り当てます。"
+            "value": "現金"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "영수증 항목을 멤버에게 지정합니다."
+            "value": "현금"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "将小票条目分配给成员。"
+            "value": "现金"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "將收據項目分配給成員。"
+            "value": "現金"
+          }
+        }
+      }
+    },
+    "PayPal": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PayPal"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PayPal"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PayPal"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PayPal"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PayPal"
+          }
+        }
+      }
+    },
+    "Venmo": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Venmo"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Venmo"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Venmo"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Venmo"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Venmo"
+          }
+        }
+      }
+    },
+    "Zelle": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zelle"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zelle"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zelle"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zelle"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zelle"
+          }
+        }
+      }
+    },
+    "Bank Transfer": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bank Transfer"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "銀行振込"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "계좌이체"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "银行转账"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "銀行轉帳"
+          }
+        }
+      }
+    },
+    "WeChat Pay": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "WeChat Pay"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "WeChat Pay"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "WeChat Pay"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "微信支付"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "微信支付"
+          }
+        }
+      }
+    },
+    "Alipay": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alipay"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alipay"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alipay"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "支付宝"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "支付寶"
+          }
+        }
+      }
+    },
+    "Trip": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trip"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "旅行"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "여행"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "旅行"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "旅行"
+          }
+        }
+      }
+    },
+    "Home": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Home"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ホーム"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "집"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "家庭"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "家庭"
+          }
+        }
+      }
+    },
+    "Couple": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couple"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "カップル"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "커플"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "情侣"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "情侶"
+          }
+        }
+      }
+    },
+    "Other": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Other"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "その他"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "기타"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "其他"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "其他"
           }
         }
       }

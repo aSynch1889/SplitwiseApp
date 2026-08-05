@@ -9,9 +9,9 @@ public struct OnboardingView: View {
     struct OnboardingSlide: Identifiable {
         let id: Int
         let iconName: String
-        let title: String
-        let description: String
-        let badge: String
+        let title: LocalizedStringKey
+        let description: LocalizedStringKey
+        let badge: LocalizedStringKey
     }
 
     private let slides: [OnboardingSlide] = [
@@ -142,9 +142,10 @@ public struct OnboardingView: View {
                     .foregroundColor(ColorTheme.brandTeal)
             }
 
-            Text(slide.badge.uppercased())
+            Text(slide.badge)
                 .font(.caption2)
                 .fontWeight(.bold)
+                .textCase(.uppercase)
                 .padding(.horizontal, 10)
                 .padding(.vertical, 4)
                 .background(ColorTheme.brandTeal.opacity(0.15))

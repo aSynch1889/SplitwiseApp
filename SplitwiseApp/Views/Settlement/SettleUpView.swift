@@ -59,7 +59,7 @@ public struct SettleUpView: View {
                 Section("Payment Details") {
                     Picker("Method", selection: $paymentMethod) {
                         ForEach(paymentMethods, id: \.self) { method in
-                            Text(method).tag(method)
+                            Text(LocalizedStringKey(method)).tag(method)
                         }
                     }
 

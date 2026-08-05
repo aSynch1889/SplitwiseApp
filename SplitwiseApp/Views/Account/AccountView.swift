@@ -228,7 +228,7 @@ public struct AccountView: View {
                     guard let url = urls.first else { return }
                     importBackup(from: url)
                 case .failure(let error):
-                    backupMessage = "Import failed: \(error.localizedDescription)"
+                    backupMessage = String(localized: "Import failed: \(error.localizedDescription)")
                 }
             }
             .alert("Backup", isPresented: Binding(
@@ -270,7 +270,7 @@ public struct AccountView: View {
             backupShareItems = [url]
             showingShareBackup = true
         } catch {
-            backupMessage = "Export failed: \(error.localizedDescription)"
+            backupMessage = String(localized: "Export failed: \(error.localizedDescription)")
         }
     }
 
@@ -281,9 +281,9 @@ public struct AccountView: View {
             let data = try Data(contentsOf: url)
             try BackupManager.importSnapshot(data: data, context: modelContext, replaceExisting: true)
             appState.resolveCurrentUser(from: modelContext)
-            backupMessage = "Backup restored successfully."
+            backupMessage = String(localized: "Backup restored successfully.")
         } catch {
-            backupMessage = "Restore failed: \(error.localizedDescription)"
+            backupMessage = String(localized: "Restore failed: \(error.localizedDescription)")
         }
     }
 
@@ -299,7 +299,7 @@ public struct AccountView: View {
             SampleData.populateIfEmpty(context: modelContext)
             appState.resolveCurrentUser(from: modelContext)
         } catch {
-            backupMessage = "Reset demo data failed: \(error.localizedDescription)"
+            backupMessage = String(localized: "Reset demo data failed: \(error.localizedDescription)")
         }
     }
     #endif
