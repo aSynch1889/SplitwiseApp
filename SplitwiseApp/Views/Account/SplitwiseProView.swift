@@ -3,6 +3,7 @@ import StoreKit
 
 public struct SplitwiseProView: View {
     @Environment(\.dismiss) private var dismiss
+    @Environment(LocalizationManager.self) private var loc
     @Bindable var proManager = ProSubscriptionManager.shared
 
     public var body: some View {
@@ -34,11 +35,11 @@ public struct SplitwiseProView: View {
                     // Pro Features List
                     VStack(alignment: .leading, spacing: 16) {
                         proFeatureRow(icon: "doc.text.viewfinder", title: "OCR Receipt Scanning", desc: "Scan receipts automatically with Vision AI and convert items to split expenses.")
-                        proFeatureRow(icon: "dollarsign.arrow.circlepath", title: "Real-time Multi-Currency", desc: "Automatic rate conversion across 10+ currencies.")
+                        proFeatureRow(icon: "dollarsign.arrow.circlepath", title: "Multi-Currency Conversion", desc: "Convert amounts across 10+ currencies using in-app rates.")
                         proFeatureRow(icon: "doc.badge.plus", title: "PDF & CSV Statements", desc: "Export high-quality PDF reports for taxes, business trips, and roommates.")
                         proFeatureRow(icon: "chart.pie.fill", title: "Advanced Analytics Charts", desc: "Detailed monthly spending trends and category insights with Swift Charts.")
-                        proFeatureRow(icon: "arrow.triangle.merge", title: "Automatic Debt Simplification", desc: "Minimize transfers for all your groups using graph min-flow algorithms.")
-                        proFeatureRow(icon: "nosign", title: "100% Ad-Free Experience", desc: "Enjoy clean, distraction-free expense tracking.")
+                        proFeatureRow(icon: "arrow.triangle.merge", title: "Debt Simplification", desc: "Reduce transfers for your groups using balance netting.")
+                        proFeatureRow(icon: "nosign", title: "Ad-Free Experience", desc: "Enjoy clean, distraction-free expense tracking.")
                     }
                     .padding()
                     .background(ColorTheme.cardBackground)
@@ -49,8 +50,11 @@ public struct SplitwiseProView: View {
                     VStack(spacing: 14) {
                         planCard(
                             title: "Pro Monthly",
-                            price: "$2.99 / month",
-                            badge: "7-Day Free Trial",
+                            price: displayPrice(
+                                for: ProSubscriptionManager.monthlyProID,
+                                fallback: "$2.99 / month"
+                            ),
+                            badge: introductoryBadge(for: ProSubscriptionManager.monthlyProID) ?? "Auto-Renewable",
                             isPopular: false
                         ) {
                             purchasePlan(productID: ProSubscriptionManager.monthlyProID)
@@ -58,8 +62,11 @@ public struct SplitwiseProView: View {
 
                         planCard(
                             title: "Pro Annual",
-                            price: "$29.99 / year",
-                            badge: "Save 16%",
+                            price: displayPrice(
+                                for: ProSubscriptionManager.yearlyProID,
+                                fallback: "$29.99 / year"
+                            ),
+                            badge: introductoryBadge(for: ProSubscriptionManager.yearlyProID) ?? "Best Value",
                             isPopular: true
                         ) {
                             purchasePlan(productID: ProSubscriptionManager.yearlyProID)
@@ -95,11 +102,22 @@ public struct SplitwiseProView: View {
                             .padding(.horizontal)
                         #endif
 
-                        Text("Subscription automatically renews unless cancelled in Apple ID Settings at least 24h before end of period. Terms of Service & Privacy Policy apply.")
+                        Text("Subscription automatically renews unless cancelled in Apple ID Settings at least 24 hours before the end of the current period. Payment is charged to your Apple ID.")
                             .font(.caption2)
                             .foregroundColor(.secondary)
                             .multilineTextAlignment(.center)
                             .padding(.horizontal, 32)
+
+                        HStack(spacing: 16) {
+                            Link("Privacy Policy", destination: LegalURLs.privacyPolicy(languageCode: loc.currentLanguage))
+                            Text("·")
+                                .foregroundColor(.secondary)
+                            Link("Terms of Service", destination: LegalURLs.termsOfService(languageCode: loc.currentLanguage))
+                        }
+                        .font(.caption)
+                        .fontWeight(.semibold)
+                        .foregroundColor(ColorTheme.brandTeal)
+                        .padding(.top, 2)
                     }
                     .padding(.bottom, 30)
                 }
@@ -116,6 +134,53 @@ public struct SplitwiseProView: View {
                         .foregroundColor(ColorTheme.brandTeal)
                 }
             }
+            .task {
+                if proManager.products.isEmpty {
+                    await proManager.fetchProducts()
+                }
+            }
+        }
+    }
+
+    private func product(for id: String) -> Product? {
+        proManager.products.first(where: { $0.id == id })
+    }
+
+    private func displayPrice(for productID: String, fallback: String) -> String {
+        guard let product = product(for: productID) else { return fallback }
+        if let subscription = product.subscription {
+            let period = subscription.subscriptionPeriod
+            let unitLabel: String
+            switch period.unit {
+            case .day: unitLabel = period.value == 1 ? "day" : "\(period.value) days"
+            case .week: unitLabel = period.value == 1 ? "week" : "\(period.value) weeks"
+            case .month: unitLabel = period.value == 1 ? "month" : "\(period.value) months"
+            case .year: unitLabel = period.value == 1 ? "year" : "\(period.value) years"
+            @unknown default: unitLabel = "period"
+            }
+            return "\(product.displayPrice) / \(unitLabel)"
+        }
+        return product.displayPrice
+    }
+
+    private func introductoryBadge(for productID: String) -> String? {
+        guard let offer = product(for: productID)?.subscription?.introductoryOffer else { return nil }
+        switch offer.paymentMode {
+        case .freeTrial:
+            let period = offer.period
+            let unit: String
+            switch period.unit {
+            case .day: unit = period.value == 1 ? "Day" : "\(period.value)-Day"
+            case .week: unit = period.value == 1 ? "Week" : "\(period.value)-Week"
+            case .month: unit = period.value == 1 ? "Month" : "\(period.value)-Month"
+            case .year: unit = period.value == 1 ? "Year" : "\(period.value)-Year"
+            @unknown default: unit = "Trial"
+            }
+            return "\(unit) Free Trial"
+        case .payAsYouGo, .payUpFront:
+            return "Intro Offer"
+        default:
+            return "Intro Offer"
         }
     }
 

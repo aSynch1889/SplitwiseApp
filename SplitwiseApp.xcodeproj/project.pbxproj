@@ -51,6 +51,7 @@
 		DB1C6D6F2E6049A1D317B046 /* ExpenseDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83AF2179F158E9A861F2C99 /* ExpenseDetailView.swift */; };
 		E2C7EFE0EC0BADE6A8331FA8 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = EF79B4D286EC830119E3DDB1 /* PrivacyInfo.xcprivacy */; };
 		E69E54DBA176BDC915167128 /* ProSubscriptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F9FDC5112809A5F2EA027D /* ProSubscriptionManager.swift */; };
+		E7E07C7010E54FCC9298595B /* LegalURLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E31A0E65F72F74FA2E5157D /* LegalURLs.swift */; };
 		EBE8D53EE7941D50480C825A /* LanguageSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC54C3499774669A612005F /* LanguageSelectionView.swift */; };
 		EC5DC8D565C1A8333424CB09 /* FriendDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8405A287DA35F59D60F2B9 /* FriendDetailView.swift */; };
 		F7D634B0A76F808AE180BCF4 /* Bundle+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3E915707ECD333AADE1162 /* Bundle+Localization.swift */; };
@@ -86,6 +87,7 @@
 		3409B2C403D911C9D3F51C0B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3C71A01C8FF47B7B1C5F7190 /* GroupListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListView.swift; sourceTree = "<group>"; };
 		3C7F26B85E1ECACD432E58D9 /* CreateGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupView.swift; sourceTree = "<group>"; };
+		3E31A0E65F72F74FA2E5157D /* LegalURLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalURLs.swift; sourceTree = "<group>"; };
 		40F0421F024AB86BC7D926B9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		442E38856B7F52F915B131D4 /* CurrencyPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyPicker.swift; sourceTree = "<group>"; };
 		4B86614DA51BD09683BB6850 /* SplitwiseApp.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = SplitwiseApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -209,6 +211,7 @@
 			children = (
 				AECE8BB1918D85239CA87247 /* ColorTheme.swift */,
 				A6305BEE5EA67EB8E0E5E0FC /* CurrencyFormatter.swift */,
+				3E31A0E65F72F74FA2E5157D /* LegalURLs.swift */,
 				B017574B45A045817433FF08 /* SplitMath.swift */,
 			);
 			path = Utilities;
@@ -464,6 +467,7 @@
 				9C74FB96EC525664D95D3614 /* GroupSettingsView.swift in Sources */,
 				EBE8D53EE7941D50480C825A /* LanguageSelectionView.swift in Sources */,
 				BD4EA6149047B72602CAC136 /* LaunchScreenView.swift in Sources */,
+				E7E07C7010E54FCC9298595B /* LegalURLs.swift in Sources */,
 				14019CB131D9F7219695293F /* LocalizationManager.swift in Sources */,
 				4843FAA1A8D717209E292B80 /* MainView.swift in Sources */,
 				10CC265C53A4234859BDAE4F /* OnboardingView.swift in Sources */,

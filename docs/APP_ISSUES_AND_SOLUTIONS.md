@@ -150,21 +150,20 @@ xcodebuild -project SplitwiseApp.xcodeproj -scheme SplitwiseApp \
 
 ### 3.4 订阅合规要素缺失（法律链接与动态价格）
 
-**现象**
+**状态：✅ 已修复（I-04）**
 
-- 仅有一句静态免责声明，**无可点击** Privacy Policy / Terms of Use / EULA 链接。
-- 价格硬编码 `$2.99 / month`、`$29.99 / year`，未使用 `Product.displayPrice`。
-- 未展示订阅时长、续费规则、试用期的完整法定披露（部分地区强制）。
+**修复说明**
 
-**解决方案**
+1. 订阅页与 Account → About 提供可点击 Privacy Policy / Terms of Service（按当前语言打开中/英 GitHub Pages）。
+2. 价格优先使用 `Product.displayPrice` + `subscriptionPeriod`；拉品失败时回退静态文案。
+3. 展示 introductory offer / 自动续费说明；恢复购买失败有明确错误。
+4. Info.plist 增加 `ITSAppUsesNonExemptEncryption = false`。
 
-1. 上线前准备可公网访问的：
-   - Privacy Policy URL  
-   - Terms of Use / EULA URL  
-2. 订阅页必须用 `product.displayPrice`、`subscriptionPeriod`、introductory offer 动态文案。
-3. 提供 **Restore Purchases**（已有）并在失败时有明确 Toast/Alert。
-4. App 描述、截图、ASC 订阅元数据与 App 内文案一致。
-5. Account/About 增加法律入口；设置 `ITSAppUsesNonExemptEncryption` 等导出合规声明。
+**法律页 URL**
+
+- https://asynch1889.github.io/BillNest-Legal/privacy.html
+- https://asynch1889.github.io/BillNest-Legal/terms.html
+- 中文：`privacy-zh.html` / `terms-zh.html`
 
 ---
 
@@ -626,7 +625,7 @@ xcodebuild -project SplitwiseApp.xcodeproj -scheme SplitwiseApp \
 | I-01 | ✅ | P0 | currentUserId 随机导致余额错误 | 已持久化 + `resolveCurrentUser` 与 `isCurrentUser` 对齐 |
 | I-02 | ⚠️ | P0 | 商标/品牌 Splitwise | 规划 BillNest；代码全量替换待 Phase 2 |
 | I-03 | ✅ | P0 | isMockPro 默认 true | Release 恒 false；Toggle 仅 DEBUG |
-| I-04 | ❌ | P0 | 无隐私政策/条款可点击链接、价格写死 | `SplitwiseProView.swift` |
+| I-04 | ✅ | P0 | 无隐私政策/条款可点击链接、价格写死 | GitHub Pages 链接 + StoreKit 动态价 |
 | I-05 | ✅ | P0 | Camera/Face ID/Push 声明与实现不符 | 已删未实现权限与空开关 |
 | I-06 | ✅ | P0 | 多币种未换算 | 余额引擎统一换算到基准币 |
 | I-07 | ❌ | P1 | 邀请/协同虚假承诺 | `AddFriendView.swift` |

@@ -125,6 +125,14 @@ public struct AccountView: View {
                             .foregroundColor(.secondary)
                     }
 
+                    Link(destination: LegalURLs.privacyPolicy(languageCode: loc.currentLanguage)) {
+                        Label("Privacy Policy", systemImage: "hand.raised.fill")
+                    }
+
+                    Link(destination: LegalURLs.termsOfService(languageCode: loc.currentLanguage)) {
+                        Label("Terms of Service", systemImage: "doc.text.fill")
+                    }
+
                     #if DEBUG
                     Button(role: .destructive) {
                         showingResetConfirm = true
