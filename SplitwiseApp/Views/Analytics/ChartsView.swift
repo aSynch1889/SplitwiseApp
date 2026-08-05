@@ -25,7 +25,7 @@ public struct ChartsView: View {
 
     public var body: some View {
         NavigationStack {
-            Group {
+            SwiftUI.Group {
                 if ProAccess.isPro {
                     ScrollView {
                         VStack(spacing: 20) {
