@@ -62,7 +62,11 @@ public final class AppState {
         let allUsers = (try? context.fetch(FetchDescriptor<User>())) ?? []
         if let matched = allUsers.first(where: { $0.id == currentUserId }) {
             matched.isCurrentUser = true
-            try? context.save()
+            do {
+                try context.save()
+            } catch {
+                print("AppState: failed to mark current user — \(error.localizedDescription)")
+            }
             return
         }
     }

@@ -16,6 +16,7 @@ public struct CreateGroupView: View {
 
     @State private var newMemberName: String = ""
     @State private var newMemberEmail: String = ""
+    @State private var saveErrorMessage: String?
 
     public var body: some View {
         NavigationStack {
@@ -128,6 +129,14 @@ public struct CreateGroupView: View {
                     .disabled(groupName.trimmingCharacters(in: .whitespaces).isEmpty)
                 }
             }
+            .alert("Couldn’t Create Group", isPresented: Binding(
+                get: { saveErrorMessage != nil },
+                set: { if !$0 { saveErrorMessage = nil } }
+            )) {
+                Button("OK", role: .cancel) {}
+            } message: {
+                Text(saveErrorMessage ?? "")
+            }
         }
     }
 
@@ -162,6 +171,7 @@ public struct CreateGroupView: View {
 
         modelContext.insert(newGroup)
 
+        var createdLog: ActivityLog?
         if let me = existingUsers.first(where: { $0.isCurrentUser }) {
             let log = ActivityLog(
                 type: .createdGroup,
@@ -171,9 +181,18 @@ public struct CreateGroupView: View {
                 groupId: newGroup.id
             )
             modelContext.insert(log)
+            createdLog = log
         }
 
-        try? modelContext.save()
-        dismiss()
+        do {
+            try modelContext.save()
+            dismiss()
+        } catch {
+            modelContext.delete(newGroup)
+            if let createdLog {
+                modelContext.delete(createdLog)
+            }
+            saveErrorMessage = error.localizedDescription
+        }
     }
 }

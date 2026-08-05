@@ -18,6 +18,7 @@ public struct GroupSettingsView: View {
     @State private var showingAddMemberSheet = false
     @State private var newMemberName: String = ""
     @State private var newMemberEmail: String = ""
+    @State private var saveErrorMessage: String?
 
     private var groupMembers: [User] {
         allUsers.filter { group.memberIds.contains($0.id) }
@@ -111,6 +112,14 @@ public struct GroupSettingsView: View {
                 }
                 Button("Cancel", role: .cancel) {}
             }
+            .alert("Couldn’t Save Changes", isPresented: Binding(
+                get: { saveErrorMessage != nil },
+                set: { if !$0 { saveErrorMessage = nil } }
+            )) {
+                Button("OK", role: .cancel) {}
+            } message: {
+                Text(saveErrorMessage ?? "")
+            }
         }
     }
 
@@ -128,16 +137,39 @@ public struct GroupSettingsView: View {
 
         newMemberName = ""
         newMemberEmail = ""
+
+        do {
+            try modelContext.save()
+        } catch {
+            group.memberIds.removeAll { $0 == newUser.id }
+            modelContext.delete(newUser)
+            saveErrorMessage = error.localizedDescription
+        }
     }
 
     private func saveChanges() {
+        let previousName = group.name
+        let previousType = group.groupType
+        let previousCurrency = group.defaultCurrency
+        let previousSimplify = group.simplifyDebts
+        let previousArchived = group.isArchived
+
         group.name = groupName.trimmingCharacters(in: .whitespaces)
         group.groupType = groupType
         group.defaultCurrency = defaultCurrency
         group.simplifyDebts = simplifyDebts
         group.isArchived = isArchived
 
-        try? modelContext.save()
-        dismiss()
+        do {
+            try modelContext.save()
+            dismiss()
+        } catch {
+            group.name = previousName
+            group.groupType = previousType
+            group.defaultCurrency = previousCurrency
+            group.simplifyDebts = previousSimplify
+            group.isArchived = previousArchived
+            saveErrorMessage = error.localizedDescription
+        }
     }
 }

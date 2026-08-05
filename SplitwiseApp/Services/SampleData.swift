@@ -23,13 +23,21 @@ public enum SampleData {
                 isCurrentUser: true
             )
             context.insert(me)
-            try? context.save()
+            do {
+                try context.save()
+            } catch {
+                print("SampleData.ensureCurrentUserExists: insert failed — \(error.localizedDescription)")
+            }
             return
         }
 
         if let first = allUsers.first {
             first.isCurrentUser = true
-            try? context.save()
+            do {
+                try context.save()
+            } catch {
+                print("SampleData.ensureCurrentUserExists: mark current failed — \(error.localizedDescription)")
+            }
         }
     }
 
@@ -224,6 +232,10 @@ public enum SampleData {
         context.insert(act1)
         context.insert(act2)
 
-        try? context.save()
+        do {
+            try context.save()
+        } catch {
+            print("SampleData.populateIfEmpty: save failed — \(error.localizedDescription)")
+        }
     }
 }

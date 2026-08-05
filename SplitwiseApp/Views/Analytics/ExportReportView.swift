@@ -13,6 +13,7 @@ public struct ExportReportView: View {
 
     @State private var showingShareSheet = false
     @State private var shareItems: [Any] = []
+    @State private var exportErrorMessage: String?
 
     public var body: some View {
         NavigationStack {
@@ -120,6 +121,14 @@ public struct ExportReportView: View {
                 Text("Sharing completed.")
                 #endif
             }
+            .alert("Export Failed", isPresented: Binding(
+                get: { exportErrorMessage != nil },
+                set: { if !$0 { exportErrorMessage = nil } }
+            )) {
+                Button("OK", role: .cancel) {}
+            } message: {
+                Text(exportErrorMessage ?? "")
+            }
         }
     }
 
@@ -132,11 +141,15 @@ public struct ExportReportView: View {
             settlements: settlements,
             currency: group.defaultCurrency
         )
-        let tempURL = FileManager.default.temporaryDirectory.appendingPathComponent("\(group.name)_Report.pdf")
-        try? pdfData.write(to: tempURL)
-
-        shareItems = [tempURL]
-        showingShareSheet = true
+        let safeName = group.name.replacingOccurrences(of: "/", with: "-")
+        let tempURL = FileManager.default.temporaryDirectory.appendingPathComponent("\(safeName)_Report.pdf")
+        do {
+            try pdfData.write(to: tempURL, options: .atomic)
+            shareItems = [tempURL]
+            showingShareSheet = true
+        } catch {
+            exportErrorMessage = error.localizedDescription
+        }
         #endif
     }
 
@@ -147,11 +160,15 @@ public struct ExportReportView: View {
             expenses: expenses,
             settlements: settlements
         )
-        let tempURL = FileManager.default.temporaryDirectory.appendingPathComponent("\(group.name)_Statement.csv")
-        try? csvString.write(to: tempURL, atomically: true, encoding: .utf8)
-
-        shareItems = [tempURL]
-        showingShareSheet = true
+        let safeName = group.name.replacingOccurrences(of: "/", with: "-")
+        let tempURL = FileManager.default.temporaryDirectory.appendingPathComponent("\(safeName)_Statement.csv")
+        do {
+            try csvString.write(to: tempURL, atomically: true, encoding: .utf8)
+            shareItems = [tempURL]
+            showingShareSheet = true
+        } catch {
+            exportErrorMessage = error.localizedDescription
+        }
     }
 }
 

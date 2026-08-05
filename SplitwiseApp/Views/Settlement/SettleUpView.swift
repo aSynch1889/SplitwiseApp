@@ -18,6 +18,7 @@ public struct SettleUpView: View {
     @State private var paymentMethod: String = "Cash"
     @State private var notes: String = ""
     @State private var date: Date = Date()
+    @State private var saveErrorMessage: String?
 
     let paymentMethods = ["Cash", "PayPal", "Venmo", "Zelle", "Bank Transfer", "WeChat Pay", "Alipay"]
 
@@ -93,6 +94,14 @@ public struct SettleUpView: View {
                     .disabled(amount <= 0 || payerId == payeeId)
                 }
             }
+            .alert("Couldn’t Save Payment", isPresented: Binding(
+                get: { saveErrorMessage != nil },
+                set: { if !$0 { saveErrorMessage = nil } }
+            )) {
+                Button("OK", role: .cancel) {}
+            } message: {
+                Text(saveErrorMessage ?? "")
+            }
         }
     }
 
@@ -159,7 +168,13 @@ public struct SettleUpView: View {
         )
         modelContext.insert(log)
 
-        try? modelContext.save()
-        dismiss()
+        do {
+            try modelContext.save()
+            dismiss()
+        } catch {
+            modelContext.delete(settlement)
+            modelContext.delete(log)
+            saveErrorMessage = error.localizedDescription
+        }
     }
 }

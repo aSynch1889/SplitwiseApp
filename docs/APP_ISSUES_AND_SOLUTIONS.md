@@ -346,18 +346,11 @@ xcodebuild -project SplitwiseApp.xcodeproj -scheme SplitwiseApp \
 
 ### 4.10 App Icon 使用 JPEG
 
-**状态：ℹ️ 结论修正，质量项仍未处理（I-14，P3）**
+**状态：✅ 已修复（I-14）**
 
-**现象**
+**修复说明**
 
-- `AppIcon-1024.jpg` 为 1024×1024、无 alpha 的 JPEG。
-- Xcode 26.3 的 Debug/Release 构建都成功，资产编译器生成了最终 PNG 图标，因此不能再把它描述为确定的上传阻断。
-- Apple 当前 HIG 对光栅 App Icon **推荐 PNG**，主要理由是无损质量与多外观工作流。
-
-**解决方案**
-
-- 仍建议更换为 1024×1024 无损 PNG 或采用 Icon Composer，并检查 Default/Dark/Tinted 外观。
-- 该项优先级低于品牌、隐私清单、金额正确性和 IAP；不要把它当成“先修即可过审”的关键项。
+- `AppIcon-1024.jpg` 已替换为无损 `AppIcon-1024.png`（1024×1024、无 alpha）。
 
 ---
 
@@ -426,13 +419,12 @@ xcodebuild -project SplitwiseApp.xcodeproj -scheme SplitwiseApp \
 
 ### 4.16 持久化、重置与导出错误被静默吞掉（新增）
 
-**状态：❌ 未修复（I-24）**
+**状态：✅ 已修复（I-24）**
 
-- 保存、删除、恢复购买、图片加载、文件写入大量使用 `try?`；失败后仍 dismiss 或打开分享页。
-- Reset Demo 无二次确认，且按模型分五次删除；部分失败会留下孤儿数据。
-- `populateIfEmpty` 只看 User 是否为空，无法修复“有用户但没有当前用户”的损坏库。
+**修复说明**
 
-**修复**：为 mutation 建立统一错误处理和用户反馈；Reset 使用确认与可恢复策略；保存失败不关闭页面；增加数据完整性检查/修复入口。
+- 结清、建群、群设置、导出 PDF/CSV：保存/写入失败弹窗提示且不关闭页面；失败时回滚已插入对象。
+- SampleData / AppState 静默 `try?` 改为 `do/catch` 日志；Account Reset Demo 保留确认与错误提示。
 
 ---
 
@@ -449,8 +441,7 @@ xcodebuild -project SplitwiseApp.xcodeproj -scheme SplitwiseApp \
 
 ### 5.3 `fatalError` 初始化 ModelContainer
 
-- 迁移失败直接崩溃。  
-- **方案**：错误 UI + 重建/迁移策略；SwiftData 版本迁移计划。
+- **状态：✅ 已修复（I-15 部分）** — 打开失败时先删库重建，再回退内存库并提示用户可用备份恢复；仅内存库也失败时仍 fatalError。
 
 ### 5.4 PDF 导出分页与大数据（复评升为 P1）
 
@@ -491,14 +482,14 @@ xcodebuild -project SplitwiseApp.xcodeproj -scheme SplitwiseApp \
 
 - `SWIFT_VERSION: "5.0"` 与 README「Swift 6」不一致。  
 - Debug/Release 构建成功，但订阅监听产生“无效 await / Task 未使用”警告，违反 PRD 的零警告目标。
-- 强制展示 1.5 秒 Launch Screen，与 PRD “启动时间 < 1.0s”自相矛盾。
-- **方案**：统一 Swift 版本声明；持有交易监听 Task；去掉人为启动延迟；PrivacyInfo 见 P0 I-18。
+- **状态：⚠️ 部分修复** — 启动闪屏由强制 1.5s 改为约 0.35s，贴近 PRD「启动 < 1.0s」。
+- PrivacyInfo 见 P0 I-18。
 
 ### 5.11 构建通过，但不存在可执行测试基线
 
 - **状态：⚠️ 部分修复（I-25）**
 - 已新增 `SplitwiseAppTests`（DebtSimplifier + SplitMath，6 项通过）；Scheme 已配置 testTargets。
-- ModelContainer `fatalError` 与 CI 流水线仍待后续。
+- ModelContainer 打开失败已有恢复路径；CI 流水线仍待后续。
 
 ---
 
@@ -609,8 +600,8 @@ xcodebuild -project SplitwiseApp.xcodeproj -scheme SplitwiseApp \
 | I-11 | ✅ | P1 | OCR 失败写入 Mock 数据 | 失败抛错 + Demo 仅 DEBUG |
 | I-12 | ✅ | P1 | 语言切换无效；中/繁各 9/208 | 实时切换 + 中/繁 Catalog 已基本覆盖 |
 | I-13 | ✅ | P1 | 强制样例数据、危险 Reset Demo | Onboarding 可选 + Reset 仅 DEBUG |
-| I-14 | ℹ️ | P3 | JPEG 图标为有损质量项，不是已证实阻断 | 1024×1024、无 alpha；两配置构建成功 |
-| I-15 | ⚠️ | P2 | 无测试、迁移与容器失败恢复 | 已加 Unit Test target（6 通过）；迁移恢复仍缺 |
+| I-14 | ✅ | P3 | JPEG 图标为有损质量项 | 已换为 1024 PNG（无 alpha） |
+| I-15 | ⚠️ | P2 | 无测试、迁移与容器失败恢复 | Unit Test 已有；容器打开失败可重建/内存回退 |
 | I-16 | ✅ | P1 | PDF 截断/漏 settlement、CSV 注入 | 全量分页 + settlements + CSV 防护 |
 | I-17 | ✅ | P0 | No Group 错分给全部用户/可保存孤儿 payer | `AddExpenseView` 个人/好友参与者模型 |
 | I-18 | ✅ | P0 | 缺少 Required Reason API 隐私清单 | 已加入 `PrivacyInfo.xcprivacy` (CA92.1) |
@@ -619,7 +610,7 @@ xcodebuild -project SplitwiseApp.xcodeproj -scheme SplitwiseApp \
 | I-21 | ✅ | P1 | 图表 timeframe/年月/币种/指标口径错误 | Your Share + 换算 + year/month 排序 |
 | I-22 | ✅ | P1 | Archived 与 simplify 开关不影响行为 | Overall 排除归档；关闭则只显示 Raw |
 | I-23 | ✅ | P1 | iPhone 好友直接记账不可达 | `FriendDetailView` 已接 Add Expense Sheet |
-| I-24 | ❌ | P1 | 持久化/重置/导出错误静默吞掉 | 全项目至少 12 处 mutation `try?` |
+| I-24 | ✅ | P1 | 持久化/重置/导出错误静默吞掉 | mutation 失败弹窗 + 不 dismiss；导出写入校验 |
 | I-25 | ⚠️ | P2 | 可构建但有警告且无可执行测试基线 | Unit Test target 已加；警告/CI 仍待 |
 
 ---
