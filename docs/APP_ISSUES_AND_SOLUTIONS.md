@@ -591,7 +591,7 @@ xcodebuild -project SplitwiseApp.xcodeproj -scheme SplitwiseApp \
 | I-09 | ✅ | P1 | 分摊覆盖、无校验、Itemized 丢条目 | `SplitMath` + Options 草稿校验 |
 | I-10 | ✅ | P1 | 循环账单仅存字段 | 仅 Never + Coming Soon 提示 |
 | I-11 | ✅ | P1 | OCR 失败写入 Mock 数据 | 失败抛错 + Demo 仅 DEBUG |
-| I-12 | ✅ | P1 | 语言切换无效；中/繁各 9/208 | 实时切换 + 中/繁 Catalog 已基本覆盖 |
+| I-12 | ✅ | P1 | 语言切换无效；中/繁各 9/208 | 实时切换；五语言 Catalog 已 100% 覆盖 |
 | I-13 | ✅ | P1 | 强制样例数据、危险 Reset Demo | Onboarding 可选 + Reset 仅 DEBUG |
 | I-14 | ✅ | P3 | JPEG 图标为有损质量项 | 已换为 1024 PNG（无 alpha） |
 | I-15 | ⚠️ | P2 | 无测试、迁移与容器失败恢复 | Unit Test 已有；容器打开失败可重建/内存回退 |
