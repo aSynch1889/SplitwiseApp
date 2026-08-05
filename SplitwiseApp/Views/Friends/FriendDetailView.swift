@@ -26,17 +26,31 @@ public struct FriendDetailView: View {
                 // Friend Header Summary
                 headerCard
 
-                // Settle Up Action
-                Button {
-                    showingSettleUp = true
-                } label: {
-                    Label("Settle Up with \(friend.name)", systemImage: "dollarsign.arrow.circlepath")
-                        .font(.headline)
-                        .foregroundColor(.white)
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 14)
-                        .background(ColorTheme.brandTeal)
-                        .cornerRadius(12)
+                // Actions: Add Expense + Settle Up
+                HStack(spacing: 12) {
+                    Button {
+                        showingAddExpense = true
+                    } label: {
+                        Label("Add Expense", systemImage: "plus.circle.fill")
+                            .font(.headline)
+                            .foregroundColor(ColorTheme.brandTeal)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 14)
+                            .background(ColorTheme.brandTeal.opacity(0.12))
+                            .cornerRadius(12)
+                    }
+
+                    Button {
+                        showingSettleUp = true
+                    } label: {
+                        Label("Settle Up", systemImage: "dollarsign.arrow.circlepath")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 14)
+                            .background(ColorTheme.brandTeal)
+                            .cornerRadius(12)
+                    }
                 }
                 .padding(.horizontal)
 
@@ -79,6 +93,9 @@ public struct FriendDetailView: View {
         #endif
         .sheet(isPresented: $showingSettleUp) {
             SettleUpView(targetPayee: friend)
+        }
+        .sheet(isPresented: $showingAddExpense) {
+            AddExpenseView(preselectedFriend: friend)
         }
     }
 

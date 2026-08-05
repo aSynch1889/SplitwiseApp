@@ -9,7 +9,14 @@ public struct AddExpenseView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(AppState.self) private var appState
 
-    public var preselectedGroup: Group?
+    public var preselectedGroup: Group? = nil
+    /// When set (e.g. from FriendDetail), No Group mode is locked to this 1-on-1 friend.
+    public var preselectedFriend: User? = nil
+
+    public init(preselectedGroup: Group? = nil, preselectedFriend: User? = nil) {
+        self.preselectedGroup = preselectedGroup
+        self.preselectedFriend = preselectedFriend
+    }
 
     @Query private var groups: [Group]
     @Query private var users: [User]
@@ -19,7 +26,8 @@ public struct AddExpenseView: View {
     @State private var currency: String = "USD"
     @State private var selectedCategory: ExpenseCategory = .general
     @State private var selectedGroupId: UUID?
-    @State private var payerId: UUID = UUID()
+    @State private var selectedFriendId: UUID?
+    @State private var payerId: UUID?
     @State private var splitMethod: SplitMethod = .equal
     @State private var splits: [ExpenseSplit] = []
 
@@ -30,16 +38,45 @@ public struct AddExpenseView: View {
 
     @State private var showingSplitOptions = false
     @State private var showingReceiptPicker = false
+    @State private var saveErrorMessage: String?
+
+    private var currentUser: User? {
+        users.first(where: { $0.isCurrentUser })
+            ?? users.first(where: { $0.id == appState.currentUserId })
+    }
 
     private var activeGroup: Group? {
         groups.first(where: { $0.id == selectedGroupId })
     }
 
+    /// Friends available for No Group / 1-on-1 expenses (everyone except current user).
+    private var friendCandidates: [User] {
+        guard let me = currentUser else { return users }
+        return users.filter { $0.id != me.id }
+    }
+
+    /// Participants for the active group, or current user + optional friend for individual bills.
     private var groupMembers: [User] {
         if let g = activeGroup {
             return users.filter { g.memberIds.contains($0.id) }
         }
-        return users
+        guard let me = currentUser else { return [] }
+        if let friendId = selectedFriendId,
+           let friend = users.first(where: { $0.id == friendId }) {
+            return [me, friend]
+        }
+        // Personal expense: only the current user.
+        return [me]
+    }
+
+    private var canSave: Bool {
+        let trimmed = title.trimmingCharacters(in: .whitespaces)
+        guard !trimmed.isEmpty, amount > 0 else { return false }
+        guard currentUser != nil else { return false }
+        guard let payerId, groupMembers.contains(where: { $0.id == payerId }) else { return false }
+        guard !splits.isEmpty else { return false }
+        guard splits.allSatisfy({ split in groupMembers.contains(where: { $0.id == split.userId }) }) else { return false }
+        return true
     }
 
     public var body: some View {
@@ -78,7 +115,7 @@ public struct AddExpenseView: View {
                     }
                 }
 
-                // Section 2: Group & Payer Selector
+                // Section 2: Group / Friend & Payer Selector
                 Section("Group & Payer") {
                     Picker("With Group", selection: $selectedGroupId) {
                         Text("No Group (Individual)").tag(UUID?.none)
@@ -87,12 +124,31 @@ public struct AddExpenseView: View {
                         }
                     }
 
-                    Picker("Paid By", selection: $payerId) {
+                    if selectedGroupId == nil {
+                        if preselectedFriend != nil {
+                            LabeledContent("With Friend") {
+                                Text(preselectedFriend?.name ?? "")
+                                    .foregroundColor(.secondary)
+                            }
+                        } else {
+                            Picker("With Friend", selection: $selectedFriendId) {
+                                Text("Just Me (Personal)").tag(UUID?.none)
+                                ForEach(friendCandidates) { friend in
+                                    Text(friend.name).tag(UUID?.some(friend.id))
+                                }
+                            }
+                        }
+                    }
+
+                    Picker("Paid By", selection: Binding(
+                        get: { payerId ?? currentUser?.id },
+                        set: { payerId = $0 }
+                    )) {
                         ForEach(groupMembers) { member in
                             if member.id == appState.currentUserId {
-                                Text("You").tag(member.id)
+                                Text("You").tag(Optional(member.id))
                             } else {
-                                Text(member.name).tag(member.id)
+                                Text(member.name).tag(Optional(member.id))
                             }
                         }
                     }
@@ -114,6 +170,7 @@ public struct AddExpenseView: View {
                         }
                         .fontWeight(.semibold)
                         .foregroundColor(ColorTheme.brandTeal)
+                        .disabled(groupMembers.isEmpty)
                     }
 
                     ForEach(splits) { split in
@@ -175,23 +232,27 @@ public struct AddExpenseView: View {
             .navigationBarTitleDisplayMode(.inline)
             #endif
             .onAppear {
-                if let g = preselectedGroup {
-                    selectedGroupId = g.id
-                    currency = g.defaultCurrency
-                } else {
-                    currency = appState.selectedCurrency
-                }
-
-                if let me = users.first(where: { $0.isCurrentUser }) {
-                    payerId = me.id
-                }
-
+                configureInitialSelection()
                 recalculateSplits()
             }
-            .onChange(of: selectedGroupId) { _, _ in
+            .onChange(of: selectedGroupId) { _, newValue in
+                if newValue != nil {
+                    // Leaving individual mode — clear friend selection unless locked.
+                    if preselectedFriend == nil {
+                        selectedFriendId = nil
+                    }
+                }
+                ensureValidPayer()
+                recalculateSplits()
+            }
+            .onChange(of: selectedFriendId) { _, _ in
+                ensureValidPayer()
                 recalculateSplits()
             }
             .onChange(of: amount) { _, _ in
+                recalculateSplits()
+            }
+            .onChange(of: payerId) { _, _ in
                 recalculateSplits()
             }
             .toolbar {
@@ -204,8 +265,16 @@ public struct AddExpenseView: View {
                     }
                     .fontWeight(.bold)
                     .foregroundColor(ColorTheme.brandTeal)
-                    .disabled(title.trimmingCharacters(in: .whitespaces).isEmpty || amount <= 0)
+                    .disabled(!canSave)
                 }
+            }
+            .alert("Could Not Save", isPresented: Binding(
+                get: { saveErrorMessage != nil },
+                set: { if !$0 { saveErrorMessage = nil } }
+            )) {
+                Button("OK", role: .cancel) { saveErrorMessage = nil }
+            } message: {
+                Text(saveErrorMessage ?? "")
             }
             .sheet(isPresented: $showingSplitOptions) {
                 SplitOptionsView(
@@ -231,12 +300,42 @@ public struct AddExpenseView: View {
         }
     }
 
-    private func recalculateSplits() {
-        let count = Double(max(1, groupMembers.count))
-        let equalShare = amount / count
+    private func configureInitialSelection() {
+        if let g = preselectedGroup {
+            selectedGroupId = g.id
+            currency = g.defaultCurrency
+        } else {
+            currency = appState.selectedCurrency
+        }
 
-        splits = groupMembers.map { member in
-            let isPayer = (member.id == payerId)
+        if let friend = preselectedFriend {
+            selectedGroupId = nil
+            selectedFriendId = friend.id
+        }
+
+        ensureValidPayer()
+    }
+
+    private func ensureValidPayer() {
+        if let payerId, groupMembers.contains(where: { $0.id == payerId }) {
+            return
+        }
+        payerId = currentUser?.id ?? groupMembers.first?.id
+    }
+
+    private func recalculateSplits() {
+        let members = groupMembers
+        guard !members.isEmpty else {
+            splits = []
+            return
+        }
+
+        let count = Double(members.count)
+        let equalShare = amount / count
+        let resolvedPayer = payerId ?? currentUser?.id
+
+        splits = members.map { member in
+            let isPayer = (member.id == resolvedPayer)
             return ExpenseSplit(
                 userId: member.id,
                 userName: member.name,
@@ -249,11 +348,26 @@ public struct AddExpenseView: View {
     }
 
     private func saveExpense() {
+        guard canSave, let resolvedPayer = payerId ?? currentUser?.id else {
+            saveErrorMessage = "Missing current user or payer. Please set up your profile and try again."
+            return
+        }
+
+        guard groupMembers.contains(where: { $0.id == resolvedPayer }) else {
+            saveErrorMessage = "Payer is not a participant of this expense."
+            return
+        }
+
+        guard !splits.isEmpty else {
+            saveErrorMessage = "At least one participant is required."
+            return
+        }
+
         let newExpense = Expense(
             title: title.trimmingCharacters(in: .whitespaces),
             amount: amount,
             currency: currency,
-            payerId: payerId,
+            payerId: resolvedPayer,
             groupId: selectedGroupId,
             splitMethod: splitMethod,
             category: selectedCategory,
@@ -266,7 +380,7 @@ public struct AddExpenseView: View {
 
         modelContext.insert(newExpense)
 
-        if let me = users.first(where: { $0.id == payerId }) {
+        if let me = users.first(where: { $0.id == resolvedPayer }) {
             let log = ActivityLog(
                 type: .addedExpense,
                 actorId: me.id,
@@ -279,7 +393,11 @@ public struct AddExpenseView: View {
             modelContext.insert(log)
         }
 
-        try? modelContext.save()
-        dismiss()
+        do {
+            try modelContext.save()
+            dismiss()
+        } catch {
+            saveErrorMessage = "Failed to save expense: \(error.localizedDescription)"
+        }
     }
 }

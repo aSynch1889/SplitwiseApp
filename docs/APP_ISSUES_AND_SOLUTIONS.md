@@ -222,26 +222,24 @@ public var isMockPro: Bool = true  // 默认 true → isPro 恒为 true
 
 ### 3.7 「No Group (Individual)」会错误分摊给全部用户（新增）
 
-**状态：❌ 未修复（I-17）**
+**状态：✅ 已修复（I-17）**
 
-**证据**
+**现象（历史）**
 
 - `AddExpenseView.groupMembers` 在没有选中群组时直接返回 `users`，即 SwiftData 中的全部用户。
 - 随后 `recalculateSplits()` 为这些用户全部创建分摊；Save 只校验标题与总额。
 - iPhone 端没有全局 Add Expense 入口，`FriendDetailView.showingAddExpense` 也从未使用，导致好友 1 对 1 记账入口事实上断裂。
 - 如果数据库没有 `isCurrentUser`，`payerId` 会保留随机 UUID，仍可能保存成无法关联用户的账单。
 
-**后果**
+**修复说明**
 
-- 用户选择“个人账单”时，账单可能被 Alex/Sarah 等所有本地联系人共同分摊，直接污染余额。
-- 存在孤儿 `payerId`、空 splits 或错误参与者集合，后续无法可靠修复。
+1. No Group 模式：可选「Just Me (Personal)」或指定好友；参与者仅为当前用户，或当前用户 + 该好友。
+2. 支持 `preselectedFriend`；好友详情进入时锁定 1 对 1。
+3. Save 要求：存在当前用户、payer 属于参与者、splits 非空且参与者一致；失败时 Alert，不再用随机 UUID。
 
-**解决方案**
+**关联**
 
-1. 明确产品语义：无群组账单必须要求选择一个目标好友，或只记录当前用户个人支出。
-2. `payerId`、参与者集合、当前用户缺失时禁止保存并展示可恢复错误。
-3. 为 iPhone 好友详情补上明确的 Add Expense 入口，并预选当前用户与该好友。
-4. 增加测试：无群组、无当前用户、空群组、好友 1 对 1 四条路径。
+- I-23：好友详情已补上 Add Expense 入口。
 
 ---
 
@@ -497,13 +495,18 @@ Apple 官方依据：[Required Reason API](https://developer.apple.com/documenta
 
 ### 4.15 好友直接记账在 iPhone 上不可达（新增）
 
-**状态：❌ 未修复（I-23）**
+**状态：✅ 已修复（I-23）**
+
+**现象（历史）**
 
 - 全局 Add Expense 只存在 iPad Sidebar。
 - `FriendDetailView` 声明了 `showingAddExpense`，但没有按钮或 Sheet 使用它。
 - 因此 iPhone 用户无法从好友页创建 1 对 1 账单；即使从无群组 Add Expense 进入，也会触发 I-17。
 
-**修复**：好友详情提供 Add Expense，预选当前用户与好友；把“参与者选择”与“群组选择”建模为明确状态。
+**修复说明**
+
+- 好友详情提供 Add Expense + Settle Up；Sheet 使用 `AddExpenseView(preselectedFriend:)` 预选 1 对 1。
+- 与 I-17 的参与者模型一并关闭。
 
 ---
 
@@ -637,7 +640,7 @@ Apple 官方依据：[Required Reason API](https://developer.apple.com/documenta
 ### Phase 0（1–2 天）— 止血
 
 - [x] 修复 `currentUserId` 绑定  
-- [ ] 修复 No Group/好友 1 对 1 参与者模型，禁止随机 payer 与空 splits
+- [x] 修复 No Group/好友 1 对 1 参与者模型，禁止随机 payer 与空 splits
 - [ ] 关闭默认 Mock Pro；隐藏 DEBUG 开关  
 - [ ] 产品改名评估与 Bundle ID 规划  
 - [ ] OCR 失败禁止 Mock 污染  
@@ -655,6 +658,7 @@ Apple 官方依据：[Required Reason API](https://developer.apple.com/documenta
 - [ ] 样例数据可选  
 - [ ] 基础单元测试（DebtSimplifier + Split）  
 - [ ] 导出完整性（31+ 条、settlements、CSV 注入）
+- [x] 好友详情 Add Expense 入口（I-23，与 Phase 0 一并完成）
 
 ### Phase 2（1 周）— 合规可提审
 
@@ -693,13 +697,13 @@ Apple 官方依据：[Required Reason API](https://developer.apple.com/documenta
 | I-14 | ℹ️ | P3 | JPEG 图标为有损质量项，不是已证实阻断 | 1024×1024、无 alpha；两配置构建成功 |
 | I-15 | ❌ | P2 | 无测试、迁移与容器失败恢复 | 无 Test target；`fatalError` |
 | I-16 | ❌ | P1 | PDF 截断/漏 settlement、CSV 注入 | `ExportManager.swift:105` |
-| I-17 | ❌ | P0 | No Group 错分给全部用户/可保存孤儿 payer | `AddExpenseView.swift:38-43, 203` |
+| I-17 | ✅ | P0 | No Group 错分给全部用户/可保存孤儿 payer | `AddExpenseView` 个人/好友参与者模型 |
 | I-18 | ❌ | P0 | 缺少 Required Reason API 隐私清单 | Release App 无 `PrivacyInfo.xcprivacy` |
 | I-19 | ❌ | P1 | 订阅冷启动不恢复、任意 entitlement 解锁 | `ProSubscriptionManager.swift:24-29, 109-110` |
 | I-20 | ❌ | P1 | 债务算法不保证最少笔数，Raw 结算不完整 | `DebtSimplifier.swift` |
 | I-21 | ❌ | P1 | 图表 timeframe/年月/币种/指标口径错误 | `ChartsView.swift:51-223` |
 | I-22 | ❌ | P1 | Archived 与 simplify 开关不影响行为 | `GroupListView.swift`, `GroupDetailView.swift` |
-| I-23 | ❌ | P1 | iPhone 好友直接记账不可达 | `FriendDetailView.swift` |
+| I-23 | ✅ | P1 | iPhone 好友直接记账不可达 | `FriendDetailView` 已接 Add Expense Sheet |
 | I-24 | ❌ | P1 | 持久化/重置/导出错误静默吞掉 | 全项目至少 12 处 mutation `try?` |
 | I-25 | ❌ | P2 | 可构建但有警告且无可执行测试基线 | Xcode Debug/Release build；test action 缺失 |
 
