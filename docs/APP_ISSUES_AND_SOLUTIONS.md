@@ -102,23 +102,33 @@ xcodebuild -project SplitwiseApp.xcodeproj -scheme SplitwiseApp \
 
 ### 3.2 品牌与商标：直接使用「Splitwise」命名
 
-**现象**
+**状态：⚠️ 部分修复（I-02）— Phase 0 规划已完成，全量代码替换待 Phase 2**
+
+**现象（仍存在）**
 
 - `CFBundleName`、启动页、导航、Pro 文案、PDF 元数据、StoreKit 商品名均使用 **Splitwise / Splitwise Pro**。
 - Bundle ID：`com.splitwise.ios.app`。
 - README 写「完整复刻 Splitwise」。
 
-**后果**
+**Phase 0 定稿方案**
 
-- 商标侵权与 App Store 4.1（抄袭/混淆）高风险。
-- 即使功能做完，品牌不过关也会被拒或被下架。
+| 项 | 决策 |
+|----|------|
+| 目标显示名 | **BillNest**（原创 AA 记账，避开 Splitwise 商标） |
+| 新 Bundle ID | `app.billnest.ios`（ASC 新建 App 记录；勿在旧 ID 上硬改已上架包） |
+| IAP Product ID | `app.billnest.pro.monthly` / `app.billnest.pro.yearly` |
+| 文案口径 | 「本地 AA / 分摊记账工具」；禁止「官方复刻 / 兼容 Splitwise」 |
+| 图标与色板 | 保持现有 teal 体系，避免仿官方绿标识别 |
+| 替换范围 | Info.plist、全部 UI 字符串、StoreKit.storekit、PDF 作者、README、工程名（可分步） |
 
-**解决方案**
+**Phase 2 执行清单（未开始）**
 
-1. **立即重命名产品**（建议原创名，如 BillFlow / SplitNest / FairShare 等，并做商标检索）。
-2. 全量替换显示名、Bundle ID、StoreKit Product ID、PDF 作者字段、本地化字符串。
-3. 营销文案改为「灵感来自常见 AA 场景」，禁止「官方复刻 / 兼容 Splitwise」表述。
-4. 应用图标、颜色体系避免高度仿官方品牌识别。
+1. 全局字符串与资源替换为 BillNest。
+2. 更新 `project.yml` Bundle ID + 重新 `xcodegen`。
+3. ASC 新建 App + 订阅组；沙盒验证购买。
+4. 法律页与营销材料同步新品牌。
+
+详见下方路线图 Phase 0 勾选「产品改名评估与 Bundle ID 规划」。
 
 ---
 
@@ -599,7 +609,7 @@ xcodebuild -project SplitwiseApp.xcodeproj -scheme SplitwiseApp \
 - [x] 修复 `currentUserId` 绑定  
 - [x] 修复 No Group/好友 1 对 1 参与者模型，禁止随机 payer 与空 splits
 - [x] 关闭默认 Mock Pro；隐藏 DEBUG 开关  
-- [ ] 产品改名评估与 Bundle ID 规划  
+- [x] 产品改名评估与 Bundle ID 规划（BillNest / `app.billnest.ios`；全量替换待 Phase 2）  
 - [x] OCR 失败禁止 Mock 污染  
 - [x] 删除或实现 Face ID / 相机 / 推送声明  
 - [x] 添加 `PrivacyInfo.xcprivacy` 并声明 UserDefaults Required Reason
@@ -639,7 +649,7 @@ xcodebuild -project SplitwiseApp.xcodeproj -scheme SplitwiseApp \
 | ID | 状态 | 级别 | 问题 | 关键证据 |
 |----|------|------|------|----------|
 | I-01 | ✅ | P0 | currentUserId 随机导致余额错误 | 已持久化 + `resolveCurrentUser` 与 `isCurrentUser` 对齐 |
-| I-02 | ❌ | P0 | 商标/品牌 Splitwise | Release 二进制、Info、Bundle ID、IAP ID |
+| I-02 | ⚠️ | P0 | 商标/品牌 Splitwise | 规划 BillNest；代码全量替换待 Phase 2 |
 | I-03 | ✅ | P0 | isMockPro 默认 true | Release 恒 false；Toggle 仅 DEBUG |
 | I-04 | ❌ | P0 | 无隐私政策/条款可点击链接、价格写死 | `SplitwiseProView.swift` |
 | I-05 | ✅ | P0 | Camera/Face ID/Push 声明与实现不符 | 已删未实现权限与空开关 |
