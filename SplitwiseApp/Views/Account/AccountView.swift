@@ -9,8 +9,6 @@ public struct AccountView: View {
     @Query(filter: #Predicate<User> { $0.isCurrentUser }) private var currentUsers: [User]
 
     @State private var showingProView = false
-    @State private var passcodeEnabled = false
-    @State private var notificationsEnabled = true
 
     private var currentUser: User? {
         currentUsers.first
@@ -115,19 +113,6 @@ public struct AccountView: View {
                                 .foregroundColor(.secondary)
                         }
                     }
-                }
-
-                // Security & Notifications Section
-                Section("Security & Notifications") {
-                    Toggle(isOn: $notificationsEnabled) {
-                        Label("Push Notifications", systemImage: "bell.fill")
-                    }
-                    .tint(ColorTheme.brandTeal)
-
-                    Toggle(isOn: $passcodeEnabled) {
-                        Label("Face ID / Passcode Lock", systemImage: "faceid")
-                    }
-                    .tint(ColorTheme.brandTeal)
                 }
 
                 // App Info & Demo Data Reset

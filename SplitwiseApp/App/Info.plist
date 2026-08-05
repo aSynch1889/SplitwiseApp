@@ -20,12 +20,8 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSCameraUsageDescription</key>
-	<string>Splitwise requires access to your camera to capture and scan receipts for shared expenses.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Splitwise requires access to your photo library to select receipt photos for shared expenses.</string>
-	<key>NSFaceIDUsageDescription</key>
-	<string>Splitwise uses Face ID to securely authenticate and protect your private expense data.</string>
+	<string>This app needs access to your photo library so you can select receipt photos for shared expenses.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
