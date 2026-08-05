@@ -160,19 +160,17 @@ xcodebuild -project SplitwiseApp.xcodeproj -scheme SplitwiseApp \
 
 ### 3.5 隐私声明与真实能力不一致
 
-| 声明 | 实际实现 | 风险 |
-|------|----------|------|
-| `NSCameraUsageDescription` | 仅有 `PhotosPicker`，无相机拍摄 | 未使用权限 + 描述夸大 |
-| `NSFaceIDUsageDescription` | Face ID Toggle 无 `LocalAuthentication` | 虚假权限 / 功能欺诈感 |
-| `NSPhotoLibraryUsageDescription` | 使用 PhotosPicker | 基本合理，但文案可更准确 |
-| Push Notifications Toggle | 无 APNs 注册 | 空开关误导用户 |
+**状态：✅ 已修复（I-05）** — 采用「不做就删」
 
-**解决方案**
+**修复说明**
 
-1. **不做就删**：移除 Face ID / Camera / Push 的 Info.plist 与 UI，或完整实现。
-2. 若要做相册 OCR：保留 Photos；若要拍照：接入 `UIImagePickerController` / `AVCapture` 并真请求相机。
-3. 若要做锁屏：用 `LAContext` 在 `scenePhase == .active` 时鉴权，失败则遮罩。
-4. 隐私清单（Privacy Nutrition Labels）与实际数据收集一致：当前为本地存储，应声明「不收集」或仅「设备上处理」。
+1. 移除未实现的 Face ID / Passcode、Push Notifications UI 开关。
+2. 删除 `NSCameraUsageDescription`、`NSFaceIDUsageDescription`（当前仅用 PhotosPicker）。
+3. 保留并收紧 `NSPhotoLibraryUsageDescription` 文案。
+
+**仍待**
+
+- ASC Privacy Nutrition Labels 与「本地存储、不收集」声明对齐（Phase 2）。
 
 ---
 
@@ -225,25 +223,17 @@ xcodebuild -project SplitwiseApp.xcodeproj -scheme SplitwiseApp \
 
 ### 3.8 缺少 Required Reason API 隐私清单（新增）
 
-**状态：❌ 未修复（I-18）**
+**状态：✅ 已修复（I-18）**
 
-**证据**
+**修复说明**
 
-- `AppState` 与 `@AppStorage` 使用 `UserDefaults`。
-- 源码与实际 Release App 均无 `PrivacyInfo.xcprivacy`。
-- Apple 将 `UserDefaults` 列为 Required Reason API；App 自身仅访问本 App 域时通常应声明 `NSPrivacyAccessedAPICategoryUserDefaults` + `CA92.1`。
+1. 新增 `SplitwiseApp/PrivacyInfo.xcprivacy` 并纳入 App target。
+2. 声明 `NSPrivacyAccessedAPICategoryUserDefaults` + 理由 `CA92.1`（App 自身偏好读写）。
+3. `NSPrivacyTracking` / 收集数据类型均为空（本地优先、不追踪）。
 
-**后果**
+**仍待外部核验**
 
-- Apple 自 2024-05-01 起要求提交包声明 Required Reason API；缺失声明可能在 App Store Connect 上传/处理阶段被拒。
-
-**解决方案**
-
-1. 新建并加入 App target 的 `PrivacyInfo.xcprivacy`。
-2. 声明 `NSPrivacyAccessedAPICategoryUserDefaults`，理由按实际用途选择；当前代码对应 `CA92.1`。
-3. Archive 后用 Xcode Privacy Report 和最终 `.app` 内容复核，而不是只检查源码文件存在。
-
-Apple 官方依据：[Required Reason API](https://developer.apple.com/documentation/BundleResources/describing-use-of-required-reason-api)、[UserDefaults reasons](https://developer.apple.com/documentation/bundleresources/app-privacy-configuration/nsprivacyaccessedapitypes/nsprivacyaccessedapitype)。
+- Archive 后用 Xcode Privacy Report 与最终 `.app` 内容复核。
 
 ---
 
@@ -611,8 +601,8 @@ Apple 官方依据：[Required Reason API](https://developer.apple.com/documenta
 - [x] 关闭默认 Mock Pro；隐藏 DEBUG 开关  
 - [ ] 产品改名评估与 Bundle ID 规划  
 - [x] OCR 失败禁止 Mock 污染  
-- [ ] 删除或实现 Face ID / 相机 / 推送声明  
-- [ ] 添加 `PrivacyInfo.xcprivacy` 并声明 UserDefaults Required Reason
+- [x] 删除或实现 Face ID / 相机 / 推送声明  
+- [x] 添加 `PrivacyInfo.xcprivacy` 并声明 UserDefaults Required Reason
 
 ### Phase 1（3–5 天）— 可演示正确性
 
@@ -652,7 +642,7 @@ Apple 官方依据：[Required Reason API](https://developer.apple.com/documenta
 | I-02 | ❌ | P0 | 商标/品牌 Splitwise | Release 二进制、Info、Bundle ID、IAP ID |
 | I-03 | ✅ | P0 | isMockPro 默认 true | Release 恒 false；Toggle 仅 DEBUG |
 | I-04 | ❌ | P0 | 无隐私政策/条款可点击链接、价格写死 | `SplitwiseProView.swift` |
-| I-05 | ❌ | P0 | Camera/Face ID/Push 声明与实现不符 | `Info.plist`, `AccountView.swift` |
+| I-05 | ✅ | P0 | Camera/Face ID/Push 声明与实现不符 | 已删未实现权限与空开关 |
 | I-06 | ❌ | P0 | 多币种未换算 | `DebtSimplifier.swift`, `ChartsView.swift` |
 | I-07 | ❌ | P1 | 邀请/协同虚假承诺 | `AddFriendView.swift` |
 | I-08 | ❌ | P1 | Pro 无门禁 | 全 Views |
@@ -665,7 +655,7 @@ Apple 官方依据：[Required Reason API](https://developer.apple.com/documenta
 | I-15 | ❌ | P2 | 无测试、迁移与容器失败恢复 | 无 Test target；`fatalError` |
 | I-16 | ❌ | P1 | PDF 截断/漏 settlement、CSV 注入 | `ExportManager.swift:105` |
 | I-17 | ✅ | P0 | No Group 错分给全部用户/可保存孤儿 payer | `AddExpenseView` 个人/好友参与者模型 |
-| I-18 | ❌ | P0 | 缺少 Required Reason API 隐私清单 | Release App 无 `PrivacyInfo.xcprivacy` |
+| I-18 | ✅ | P0 | 缺少 Required Reason API 隐私清单 | 已加入 `PrivacyInfo.xcprivacy` (CA92.1) |
 | I-19 | ✅ | P1 | 订阅冷启动不恢复、任意 entitlement 解锁 | 冷启动恢复 + Product ID 白名单 |
 | I-20 | ❌ | P1 | 债务算法不保证最少笔数，Raw 结算不完整 | `DebtSimplifier.swift` |
 | I-21 | ❌ | P1 | 图表 timeframe/年月/币种/指标口径错误 | `ChartsView.swift:51-223` |
