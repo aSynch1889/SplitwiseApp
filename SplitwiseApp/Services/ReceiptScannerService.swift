@@ -10,18 +10,39 @@ public struct ScannedReceiptResult {
     public var lineItems: [ItemizedSplit]
 }
 
+public enum ReceiptScanError: LocalizedError {
+    case invalidImage
+    case recognitionFailed
+    case noUsefulData
+
+    public var errorDescription: String? {
+        switch self {
+        case .invalidImage:
+            return "Could not read the selected image."
+        case .recognitionFailed:
+            return "Receipt recognition failed. Please enter the expense manually."
+        case .noUsefulData:
+            return "No amount or items could be read. Please fill in the expense manually."
+        }
+    }
+}
+
 public enum ReceiptScannerService {
-    
+
     #if canImport(UIKit)
-    public static func scanReceipt(image: UIImage) async -> ScannedReceiptResult {
+    public static func scanReceipt(image: UIImage) async throws -> ScannedReceiptResult {
         guard let cgImage = image.cgImage else {
-            return mockReceiptResult()
+            throw ReceiptScanError.invalidImage
         }
 
-        return await withCheckedContinuation { continuation in
+        return try await withCheckedThrowingContinuation { continuation in
             let request = VNRecognizeTextRequest { request, error in
-                guard error == nil, let observations = request.results as? [VNRecognizedTextObservation] else {
-                    continuation.resume(returning: mockReceiptResult())
+                if let error {
+                    continuation.resume(throwing: error)
+                    return
+                }
+                guard let observations = request.results as? [VNRecognizedTextObservation] else {
+                    continuation.resume(throwing: ReceiptScanError.recognitionFailed)
                     return
                 }
 
@@ -32,23 +53,31 @@ public enum ReceiptScannerService {
                     }
                 }
 
-                let parsedResult = parseReceiptText(lines: detectedLines)
-                continuation.resume(returning: parsedResult)
+                do {
+                    let parsedResult = try parseReceiptText(lines: detectedLines)
+                    continuation.resume(returning: parsedResult)
+                } catch {
+                    continuation.resume(throwing: error)
+                }
             }
 
             request.recognitionLevel = .accurate
+            request.recognitionLanguages = ["en-US", "zh-Hans", "zh-Hant"]
+            request.usesLanguageCorrection = true
+
             let handler = VNImageRequestHandler(cgImage: cgImage, options: [:])
             do {
                 try handler.perform([request])
             } catch {
-                continuation.resume(returning: mockReceiptResult())
+                continuation.resume(throwing: error)
             }
         }
     }
     #endif
 
+    /// DEBUG-only sample data for UI demos. Never used as a fallback for real scans.
     public static func mockReceiptResult() -> ScannedReceiptResult {
-        return ScannedReceiptResult(
+        ScannedReceiptResult(
             title: "Trader Joe's Grocery",
             totalAmount: 48.50,
             lineItems: [
@@ -62,31 +91,36 @@ public enum ReceiptScannerService {
         )
     }
 
-    private static func parseReceiptText(lines: [String]) -> ScannedReceiptResult {
+    private static func parseReceiptText(lines: [String]) throws -> ScannedReceiptResult {
+        guard !lines.isEmpty else {
+            throw ReceiptScanError.noUsefulData
+        }
+
         var detectedTotal: Double = 0.0
         var items: [ItemizedSplit] = []
         let mainTitle = lines.first ?? "Receipt Expense"
 
         let numberRegex = try? NSRegularExpression(pattern: #"(\d+\.\d{2})"#)
+        let totalKeywords = ["total", "amount due", "合计", "总计", "總計"]
 
         for line in lines {
             let lower = line.lowercased()
-            if lower.contains("total") || lower.contains("amount due") || lower.contains("subtotal") {
+            let isTotalLine = totalKeywords.contains(where: { lower.contains($0) })
+                || lower.contains("subtotal")
+
+            if isTotalLine {
                 if let match = numberRegex?.firstMatch(in: line, range: NSRange(line.startIndex..., in: line)),
                    let range = Range(match.range(at: 1), in: line),
                    let val = Double(line[range]), val > detectedTotal {
                     detectedTotal = val
                 }
-            } else {
-                // Try parse item line
-                if let match = numberRegex?.firstMatch(in: line, range: NSRange(line.startIndex..., in: line)),
-                   let range = Range(match.range(at: 1), in: line),
-                   let val = Double(line[range]) {
-                    let name = line.replacingOccurrences(of: String(line[range]), with: "")
-                        .trimmingCharacters(in: .whitespacesAndNewlines)
-                    if !name.isEmpty && val > 0 && val < 500 {
-                        items.append(ItemizedSplit(title: name, price: val))
-                    }
+            } else if let match = numberRegex?.firstMatch(in: line, range: NSRange(line.startIndex..., in: line)),
+                      let range = Range(match.range(at: 1), in: line),
+                      let val = Double(line[range]) {
+                let name = line.replacingOccurrences(of: String(line[range]), with: "")
+                    .trimmingCharacters(in: .whitespacesAndNewlines)
+                if !name.isEmpty && val > 0 && val < 500 {
+                    items.append(ItemizedSplit(title: name, price: val))
                 }
             }
         }
@@ -94,11 +128,13 @@ public enum ReceiptScannerService {
         if detectedTotal == 0.0 {
             detectedTotal = items.reduce(0.0) { $0 + $1.price }
         }
-        if detectedTotal == 0.0 {
-            detectedTotal = 48.50
+
+        guard detectedTotal > 0 || !items.isEmpty else {
+            throw ReceiptScanError.noUsefulData
         }
-        if items.isEmpty {
-            items = mockReceiptResult().lineItems
+
+        if detectedTotal == 0.0 {
+            detectedTotal = items.reduce(0.0) { $0 + $1.price }
         }
 
         return ScannedReceiptResult(title: mainTitle, totalAmount: detectedTotal, lineItems: items)

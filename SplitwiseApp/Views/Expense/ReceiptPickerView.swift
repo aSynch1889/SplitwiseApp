@@ -12,6 +12,7 @@ public struct ReceiptPickerView: View {
 
     @State private var selectedPhotoItem: PhotosPickerItem?
     @State private var isScanning: Bool = false
+    @State private var scanErrorMessage: String?
 
     public var body: some View {
         NavigationStack {
@@ -68,6 +69,14 @@ public struct ReceiptPickerView: View {
                         .foregroundColor(ColorTheme.brandTeal)
                 }
             }
+            .alert("Scan Failed", isPresented: Binding(
+                get: { scanErrorMessage != nil },
+                set: { if !$0 { scanErrorMessage = nil } }
+            )) {
+                Button("OK", role: .cancel) { scanErrorMessage = nil }
+            } message: {
+                Text(scanErrorMessage ?? "")
+            }
         }
     }
 
@@ -81,7 +90,7 @@ public struct ReceiptPickerView: View {
                 .font(.title3)
                 .fontWeight(.bold)
 
-            Text("Splitwise Pro uses Vision OCR to automatically parse amounts and items from your receipt.")
+            Text("Uses on-device Vision OCR to parse amounts and items from your receipt. If scanning fails, enter the expense manually.")
                 .font(.subheadline)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
@@ -100,17 +109,19 @@ public struct ReceiptPickerView: View {
                 .cornerRadius(12)
             }
 
+            #if DEBUG
             Button {
                 scanDemoReceipt()
             } label: {
                 HStack {
                     Image(systemName: "sparkles")
-                    Text("Scan Sample Receipt (Pro Demo)")
+                    Text("Scan Sample Receipt (Debug Demo)")
                 }
                 .fontWeight(.medium)
                 .foregroundColor(ColorTheme.brandTeal)
                 .padding(.vertical, 8)
             }
+            #endif
         }
         .padding()
     }
@@ -118,19 +129,24 @@ public struct ReceiptPickerView: View {
     #if canImport(UIKit)
     private func performOCR(image: UIImage) async {
         isScanning = true
-        let result = await ReceiptScannerService.scanReceipt(image: image)
-        isScanning = false
-        onReceiptScanned?(result)
+        defer { isScanning = false }
+        do {
+            let result = try await ReceiptScannerService.scanReceipt(image: image)
+            onReceiptScanned?(result)
+        } catch {
+            scanErrorMessage = error.localizedDescription
+        }
     }
     #endif
 
+    #if DEBUG
     private func scanDemoReceipt() {
         isScanning = true
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
             isScanning = false
-            let mock = ReceiptScannerService.mockReceiptResult()
-            onReceiptScanned?(mock)
+            onReceiptScanned?(ReceiptScannerService.mockReceiptResult())
             dismiss()
         }
     }
+    #endif
 }

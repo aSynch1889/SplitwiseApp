@@ -336,25 +336,14 @@ Apple 官方依据：[Required Reason API](https://developer.apple.com/documenta
 
 ### 4.6 OCR 失败静默回落 Mock 小票
 
-**现象**
+**状态：✅ 已修复（I-11）**
 
-```swift
-// 识别失败 → mockReceiptResult()
-// total 为 0 → 写死 48.50
-// items 空 → 填入 Trader Joe's 假明细
-```
+**修复说明**
 
-**后果**
-
-- 用户拍真实小票却得到虚假 Trader Joe's 数据，财务风险极高。
-
-**解决方案**
-
-1. 失败时返回明确错误态：「未能识别，请手动填写」。  
-2. **禁止**用演示数据污染用户输入。  
-3. Demo 按钮与真扫描路径分离，且 Demo 仅 DEBUG 可见。  
-4. 识别语言设置 `recognitionLanguages`，支持中英文小票。  
-5. 改进解析：TOTAL/合计优先、排除日期电话、置信度阈值。
+1. 识别失败 / 无效图 / 无金额与明细时抛出错误，UI Alert 提示手动填写。
+2. **禁止**用 Trader Joe's 演示数据污染真实扫描路径。
+3. Sample Receipt 按钮仅 `#if DEBUG` 可见。
+4. 设置 `recognitionLanguages` 支持中英文。
 
 ---
 
@@ -621,7 +610,7 @@ Apple 官方依据：[Required Reason API](https://developer.apple.com/documenta
 - [x] 修复 No Group/好友 1 对 1 参与者模型，禁止随机 payer 与空 splits
 - [x] 关闭默认 Mock Pro；隐藏 DEBUG 开关  
 - [ ] 产品改名评估与 Bundle ID 规划  
-- [ ] OCR 失败禁止 Mock 污染  
+- [x] OCR 失败禁止 Mock 污染  
 - [ ] 删除或实现 Face ID / 相机 / 推送声明  
 - [ ] 添加 `PrivacyInfo.xcprivacy` 并声明 UserDefaults Required Reason
 
@@ -669,7 +658,7 @@ Apple 官方依据：[Required Reason API](https://developer.apple.com/documenta
 | I-08 | ❌ | P1 | Pro 无门禁 | 全 Views |
 | I-09 | ❌ | P1 | 分摊覆盖、无校验、Itemized 丢条目 | `AddExpenseView.swift:187-224`, `SplitOptionsView.swift` |
 | I-10 | ❌ | P1 | 循环账单仅存字段 | `Expense.swift`, `AddExpenseView.swift` |
-| I-11 | ❌ | P1 | OCR 失败写入 Mock 数据 | `ReceiptScannerService.swift` |
+| I-11 | ✅ | P1 | OCR 失败写入 Mock 数据 | 失败抛错 + Demo 仅 DEBUG |
 | I-12 | ❌ | P1 | 语言切换无效；中/繁各 9/208 | `Localizable.xcstrings`, `AppState.swift` |
 | I-13 | ❌ | P1 | 强制样例数据、危险 Reset Demo | `MainView.swift`, `AccountView.swift` |
 | I-14 | ℹ️ | P3 | JPEG 图标为有损质量项，不是已证实阻断 | 1024×1024、无 alpha；两配置构建成功 |
