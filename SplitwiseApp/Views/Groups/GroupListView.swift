@@ -29,7 +29,7 @@ public struct GroupListView: View {
                     // Filter picker
                     Picker("Filter", selection: $selectedFilter) {
                         ForEach(GroupFilter.allCases) { filter in
-                            Text(filter.rawValue).tag(filter)
+                            Text(LocalizedStringKey(filter.rawValue)).tag(filter)
                         }
                     }
                     .pickerStyle(.segmented)
