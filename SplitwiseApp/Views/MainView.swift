@@ -145,6 +145,7 @@ public struct MainView: View {
         }
         .onAppear {
             SampleData.populateIfEmpty(context: modelContext)
+            appState.resolveCurrentUser(from: modelContext)
         }
         .sheet(isPresented: $showingGlobalAddExpense) {
             AddExpenseView()

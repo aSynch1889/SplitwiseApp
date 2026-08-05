@@ -20,7 +20,7 @@
 
 ### 0.2 复评结果
 
-- 初评的 **I-01～I-16 均未修复**；其中 I-14（JPEG 图标）由 P1 调整为 P3 质量项，不再表述为“必然上传失败”。
+- 初评的 **I-01 已修复**；**I-02～I-16 仍未修复**；其中 I-14（JPEG 图标）由 P1 调整为 P3 质量项，不再表述为“必然上传失败”。
 - 本次新增 **I-17～I-25**，其中 I-17（个人账单错误分摊）和 I-18（缺失 Required Reason API 隐私清单）属于新的 P0。
 - **Debug 与 Release 模拟器构建均成功**（Xcode 26.3），但均产生 `ProSubscriptionManager.swift:28` 的 2 类警告。
 - `xcodebuild test` 失败：Scheme 未配置 Test Action；工程只有 1 个 App target，无 XCTest/UI Test target。
@@ -80,32 +80,23 @@ xcodebuild -project SplitwiseApp.xcodeproj -scheme SplitwiseApp \
 
 ### 3.1 `currentUserId` 与真实用户严重脱节（核心余额全错）
 
-**现象**
+**状态：✅ 已修复（I-01）**
+
+**现象（历史）**
 
 - `AppState.currentUserId` 在 `init` 时默认为 `UUID()`（每次冷启动可能是新随机 ID）。
 - 样例数据与业务以 `User.isCurrentUser == true` 标识「我」。
 - 大量 UI 用 `appState.currentUserId` 判断「You」、计算群组/好友净余额（`GroupListView`、`FriendDetailView`、`FriendsListView`、`GroupDetailView` 等）。
 
-**后果**
+**修复说明**
 
-- 首页「总体欠/被欠」、群组列表余额徽章、好友间净额 **几乎恒为 0 或错误**。
-- 「Paid By / You」展示可能指错人。
-- 这是**产品级致命 Bug**，比 UI 问题更严重。
+1. `AppState` 将 `currentUserId` 持久化到 `UserDefaults`（`app_current_user_id`）。
+2. `MainView.onAppear` 在样例数据填充后调用 `resolveCurrentUser(from:)`，以 SwiftData 中 `isCurrentUser == true` 为准写回 `AppState`。
+3. 若库中无 `isCurrentUser` 但持久化 ID 仍匹配某用户，则标记该用户为当前用户。
 
-**解决方案**
+**仍待（Phase 1）**
 
-1. 启动时从 SwiftData 解析当前用户，并写回 `AppState`：
-   ```swift
-   // 伪代码
-   if let me = try context.fetch(FetchDescriptor<User>(
-       predicate: #Predicate { $0.isCurrentUser }
-   )).first {
-       appState.currentUserId = me.id
-   }
-   ```
-2. 或彻底去掉 `AppState.currentUserId`，全局统一用 `isCurrentUser` / 注入的 `currentUser`。
-3. 将 `currentUserId` 持久化到 `UserDefaults`，并与 `User.id` 保持一致。
-4. 增加单元测试：样例数据下整体净余额、群组余额与手工验算一致。
+- 增加单元测试：样例数据下整体净余额、群组余额与手工验算一致。
 
 ---
 
@@ -645,7 +636,7 @@ Apple 官方依据：[Required Reason API](https://developer.apple.com/documenta
 
 ### Phase 0（1–2 天）— 止血
 
-- [ ] 修复 `currentUserId` 绑定  
+- [x] 修复 `currentUserId` 绑定  
 - [ ] 修复 No Group/好友 1 对 1 参与者模型，禁止随机 payer 与空 splits
 - [ ] 关闭默认 Mock Pro；隐藏 DEBUG 开关  
 - [ ] 产品改名评估与 Bundle ID 规划  
@@ -686,7 +677,7 @@ Apple 官方依据：[Required Reason API](https://developer.apple.com/documenta
 
 | ID | 状态 | 级别 | 问题 | 关键证据 |
 |----|------|------|------|----------|
-| I-01 | ❌ | P0 | currentUserId 随机导致余额错误 | `AppState.swift:22-23` |
+| I-01 | ✅ | P0 | currentUserId 随机导致余额错误 | 已持久化 + `resolveCurrentUser` 与 `isCurrentUser` 对齐 |
 | I-02 | ❌ | P0 | 商标/品牌 Splitwise | Release 二进制、Info、Bundle ID、IAP ID |
 | I-03 | ❌ | P0 | isMockPro 默认 true | `ProSubscriptionManager.swift:18` |
 | I-04 | ❌ | P0 | 无隐私政策/条款可点击链接、价格写死 | `SplitwiseProView.swift` |

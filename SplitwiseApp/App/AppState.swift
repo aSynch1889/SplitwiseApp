@@ -1,8 +1,15 @@
 import SwiftUI
+import SwiftData
 
 @Observable
 public final class AppState {
-    public var currentUserId: UUID
+    private static let currentUserIdKey = "app_current_user_id"
+
+    public var currentUserId: UUID {
+        didSet {
+            UserDefaults.standard.set(currentUserId.uuidString, forKey: Self.currentUserIdKey)
+        }
+    }
     public var selectedCurrency: String {
         didSet {
             UserDefaults.standard.set(selectedCurrency, forKey: "app_selected_currency")
@@ -20,11 +27,44 @@ public final class AppState {
         }
     }
 
-    public init(currentUserId: UUID = UUID()) {
-        self.currentUserId = currentUserId
+    public init(currentUserId: UUID? = nil) {
+        let resolvedId: UUID
+        if let currentUserId {
+            resolvedId = currentUserId
+        } else if let stored = UserDefaults.standard.string(forKey: Self.currentUserIdKey),
+                  let uuid = UUID(uuidString: stored) {
+            resolvedId = uuid
+        } else {
+            resolvedId = UUID()
+        }
+        self.currentUserId = resolvedId
+        // didSet does not run during init — persist explicitly.
+        UserDefaults.standard.set(resolvedId.uuidString, forKey: Self.currentUserIdKey)
         self.selectedCurrency = UserDefaults.standard.string(forKey: "app_selected_currency") ?? "USD"
         self.colorSchemePreference = UserDefaults.standard.string(forKey: "app_color_scheme") ?? "system"
         self.selectedTabRaw = (UserDefaults.standard.object(forKey: "app_selected_tab") as? Int) ?? 0
+    }
+
+    /// Resolve `currentUserId` from SwiftData (`User.isCurrentUser`) so balances and "You" labels stay correct across launches.
+    @MainActor
+    public func resolveCurrentUser(from context: ModelContext) {
+        let descriptor = FetchDescriptor<User>(
+            predicate: #Predicate { $0.isCurrentUser }
+        )
+        if let me = try? context.fetch(descriptor).first {
+            if currentUserId != me.id {
+                currentUserId = me.id
+            }
+            return
+        }
+
+        // Fallback: if a persisted ID still matches a user, adopt it and mark as current.
+        let allUsers = (try? context.fetch(FetchDescriptor<User>())) ?? []
+        if let matched = allUsers.first(where: { $0.id == currentUserId }) {
+            matched.isCurrentUser = true
+            try? context.save()
+            return
+        }
     }
 
     public var preferredColorScheme: ColorScheme? {
